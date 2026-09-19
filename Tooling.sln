@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStandCLI", "TestStandCLI\TestStandCLI.csproj", "{6C889239-EF83-4FA2-A053-1F3DD531AD41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vipm2", "vipm2\vipm2.csproj", "{E9EEECB6-4485-4E5A-815A-24119283A572}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C889239-EF83-4FA2-A053-1F3DD531AD41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C889239-EF83-4FA2-A053-1F3DD531AD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C889239-EF83-4FA2-A053-1F3DD531AD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C889239-EF83-4FA2-A053-1F3DD531AD41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9EEECB6-4485-4E5A-815A-24119283A572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9EEECB6-4485-4E5A-815A-24119283A572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9EEECB6-4485-4E5A-815A-24119283A572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9EEECB6-4485-4E5A-815A-24119283A572}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

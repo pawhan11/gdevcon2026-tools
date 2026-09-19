@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?><doc><members>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext">
+      <summary>Use the AnalysisContext class in an analysis module to access information about the current object being analyzed or about the current analysis transition. The TestStand Sequence Analyzer passes an instance of this class as a parameter to the analysis module.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.AnalysisId">
+      <summary>Use this property in an analysis module to obtain the unique ID of the current analysis session.</summary>
+      <remarks>The TestStand Sequence Analyzer can perform multiple analysis sessions simultaneously. Each session specifies a unique analysis ID. In general, National Instruments recommends that you use the AnalysisContext.GetRuleAnalysisData method to store global data generated during analysis. You can also store data in a global table that you index using the analysis session unique ID. Because the sequence analyzer can use multiple threads to perform analysis, you must implement locks around code that accesses the global table data.</remarks>
+      <seealso cref="AnalysisContext.GetRuleAnalysisData" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.EditContext">
+      <summary>Use this property in an analysis module to obtain a sequence context that corresponds to the object under analysis. This property is <c>NULL</c> when the TestStand Sequence Analyzer calls an analysis module for analysis transitions.</summary>
+      <seealso cref="AnalysisContext.Object" />
+      <seealso cref="AnalysisContext.Transition" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.Engine">
+      <summary>Use this property in an analysis module to access methods and properties in the TestStand Engine class.</summary>
+      <seealso cref="AnalysisContext.EditContext" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.File">
+      <summary>Use this property in an analysis module to access the file the TestStand Sequence Analyzer is currently analyzing.</summary>
+      <remarks>This property is <c>NULL</c> when the sequence analyzer calls an analysis module for the AnalysisTransition_BeforeSystem and AnalysisTransition_AfterSystem analysis transitions.</remarks>
+      <seealso cref="AnalysisContext.Transition" />
+      <seealso cref="AnalysisTransition" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.Object">
+      <summary>Use this property in an analysis module to access the object the TestStand Sequence Analyzer is currently analyzing.</summary>
+      <remarks>This property is <c>NULL</c> when the sequence analyzer calls an analysis module for certain analysis transitions . Analysis modules must not hold a reference to the object this property returns because the sequence analyzer unloads each file from memory after analysis completes.</remarks>
+      <seealso cref="AnalysisContext.Transition" />
+      <seealso cref="AnalysisTransition" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.StopRequested">
+      <summary>Use this property in an analysis module to determine whether the user or another analysis module has requested to stop the current analysis session.</summary>
+      <remarks>When the user stops analysis, the TestStand Sequence Analyzer stops calling analysis modules to analyze objects but continues to call analysis modules for the remaining transitions. You can choose not to report messages if analysis stops.</remarks>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.Transition">
+      <summary>Use this property in an analysis module to access the file that the TestStand Sequence Analyzer is currently analyzing.</summary>
+      <remarks>This property has the value AnalysisTransition_None when the sequence analyzer calls an analysis module to analyze an object.</remarks>
+      <seealso cref="AnalysisTransition" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.Utilities">
+      <summary>Use this property in an analysis module to access utility methods that help you implement a rule.</summary>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.GetRuleAnalysisData(System.String,NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleAnalysisDataScope,System.Int32)">
+      <summary>Use this method in an analysis module to store and retrieve data to share among multiple calls to analysis modules.</summary>
+      <remarks>The TestStand Sequence Analyzer creates empty PropertyObject containers for each rule to store data that analysis modules generate during analysis. Analysis modules use this method to obtain references to these containers. An analysis module can use the container to store and retrieve data associated with the rule, such as cumulative item counts.</remarks>
+      <param name="RuleId">[In] Pass the unique rule ID of the rule.</param>
+      <param name="RuleAnalysisDataScope">[In] Pass the scope of the data to access. Use file scope to access data associated with the file currently under analysis. The sequence analyzer destroys the file data when it completes the analysis of the file and after it calls the analysis modules for the After file transition. Use global scope to access data associated with the current analysis session. The sequence analyzer destroys the global data when analysis of the project completes.</param>
+      <param name="options">[In] Use one of the GetRuleAnalysisDataOptions . You must use the <c>GetRuleAnalysisDataOption_Lock</c> option if the analysis module modifies the rule analysis data.</param>
+      <seealso cref="GetRuleAnalysisDataOptions" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.GetRuleConfiguration(System.String)">
+      <summary>Use this method in an analysis module to obtain a rule configuration. A rule configuration contains the enabled state, severity, description, and other information for a specific rule.</summary>
+      <remarks>The analysis project stores the rule configurations. Analysis modules must not modify rule configurations. Only rule configuration modules and the TestStand Sequence Analyzer should modify rule configurations.&#13; To improve analysis performance, configure analysis modules to check the enabled state of the rule before performing checks or reporting messages for the rule.&#13; This method returns <c>NULL</c> if the RuleId parameter is not a valid rule ID.</remarks>
+      <param name="RuleId">[In] Pass the unique rule ID of the rule.</param>
+      <seealso cref="RuleConfigurationContext.RuleConfiguration" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.NewMessage(System.String,System.String,NationalInstruments.TestStand.Interop.API.PropertyObject)">
+      <summary>Use this method in an analysis module to create a new analysis message to report during analysis.</summary>
+      <remarks>After you create the message you can modify the message properties. You must call the AnalysisContext.ReportMessage method after calling this method to report the message to the TestStand Sequence Analyzer, which adds the message to the analyzer project.</remarks>
+      <param name="RuleId">[In] Pass the unique rule ID of the rule to which the message corresponds.</param>
+      <param name="messageText">[In] Pass the message text. The sequence analyzer displays this text on the Analyzer Messages tab of the Analysis Results pane.</param>
+      <param name="locationObject">[In] Pass the object associated with the message. The sequence analyzer uses this object to initialize the AnalysisMessage.Locations property, which specifies the location that the sequence analyzer uses when you go to the location associated with a message. Pass <c>NULL</c> if no specific object exists.</param>
+      <seealso cref="AnalysisMessage.Locations" />
+      <seealso cref="AnalysisContext.ReportMessage" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.ReportMessage(NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisMessage)">
+      <summary>Use this method in an analysis module to report and add an analysis message to the list of messages in the project.</summary>
+      <remarks>Use the AnalysisContext.NewMessage method to create a message. Do not call this method more than once for a message. Do not change message properties after calling this method. Because this method makes a copy of the message you pass to the method, all changes to the message after calling this method do not affect the reported message.&#13; The TestStand Sequence Analyzer discards the message if you disable the rule that corresponds to the message.</remarks>
+      <param name="message">[In] Pass the message to report.</param>
+      <seealso cref="AnalysisContext.NewMessage" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisContext.StopAnalysis">
+      <summary>Use this method in an analysis module to stop the current analysis session. After you call this method, the TestStand Sequence Analyzer calls analysis modules for the remaining transitions, closes all files, and stops analyzing.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisMessage">
+      <summary>An object of the <c>AnalysisMessage</c> class represents a message an analysis module creates while performing an analysis. The message displays in the TestStand Sequence Editor or the stand-alone sequence analyzer application and is stored in a TestStand Sequence Analyzer project. Use the AnalysisContext.NewMessage method in an analysis module to create a new instance of this class.</summary>
+      <seealso cref="AnalysisContext.NewMessage" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisMessage.Locations">
+      <summary>Use this property in an analysis module to obtain the location associated with the message. You can call methods on this property to specify the location the TestStand Sequence Analyzer uses when you go to the location associated with a message.</summary>
+      <remarks>Do not set this property after calling the AnalysisContext.ReportMessage method because the <c>AnalysisContext.ReportMessage</c> method makes a copy of the message you pass to the method. Changes to this property after calling the <c>AnalysisContext.ReportMessage</c> method do not affect the reported message.&#13; The sequence analyzer recognizes only the first location this property contains.</remarks>
+      <seealso cref="AnalysisContext.NewMessage" />
+      <seealso cref="AnalysisContext.ReportMessage" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisMessage.RuleId">
+      <summary>Use this property in an analysis module to obtain or specify the unique rule ID associated with the message.</summary>
+      <remarks>Do not set this property after calling the AnalysisContext.ReportMessage method because the <c>AnalysisContext.ReportMessage</c> method makes a copy of the message you pass to the method. Changes to this property after calling the <c>AnalysisContext.ReportMessage</c> method do not affect the reported message.</remarks>
+      <seealso cref="AnalysisContext.ReportMessage" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisMessage.Text">
+      <summary>Use this property in an analysis module to obtain or specify the message text.</summary>
+      <remarks>Do not set this property after calling the AnalysisContext.ReportMessage method because the <c>AnalysisContext.ReportMessage</c> method makes a copy of the message you pass to the method. Changes to this property after calling the <c>AnalysisContext.ReportMessage</c> method do not affect the reported message.</remarks>
+      <seealso cref="AnalysisContext.ReportMessage" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisUtilities">
+      <summary>Use the objects of the <c>AnalysisUtilities</c> class in an analysis module to perform common analysis functions. Use the AnalysisContext.Utilities property to obtain an instance of this class.</summary>
+      <seealso cref="AnalysisContext.Utilities" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisUtilities.AutomaticPropertyCheckingEnabled">
+      <summary>Set this property to <c>False</c> in an analysis module to prevent the sequence analyzer built-in analysis modules from performing automatic checks on step properties that are instances of the Path and Expression data types. An analysis module typically sets this property to <c>False</c> when analyzing a step instance for a custom step type. The analysis module must perform all expression and path property checking for the step when you disable this property. The analysis module can perform more specific expression checking than the built-in analysis modules, including type validation, and can selectively analyze properties based on other property values.&#13; The sequence analyzer automatically resets this property to <c>True</c> before analyzing each step. The sequence analyzer always checks all built-in expression and path properties, such as pre-expressions and preconditions, even if an analysis module sets this property to <c>False</c> .</summary>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisUtilities.ValidateCodeModuleUpToDate(System.String,System.String,NationalInstruments.TestStand.Interop.API.PropertyObject,NationalInstruments.TestStand.Interop.API.APILocations,System.Int32)">
+      <summary>Use this method in an analysis module to verify that a source file has not been modified more recently than the code module.</summary>
+      <param name="codeModulePath">[In] Pass the path of the code module that needs to be validated.</param>
+      <param name="sourcePath">[In] Pass the path of the source file containing the code module.</param>
+      <param name="baseLocation">[In] Pass the base object to use with the apiLocation parameter as the location associated with any analysis messages this method reports.</param>
+      <param name="apiLocation">[In] Pass the APILocations enumeration to use as the location associated with any analysis messages this method reports. To use the baseLocation as the location, pass <c>APILocation_None</c> .</param>
+      <param name="reserved">[In] Not used.</param>
+      <seealso cref="APILocations" />
+      <seealso cref="AnalysisUtilities.AutomaticPropertyCheckingEnabled" />
+      <seealso cref="ValidateExpressionOptions" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisUtilities.ValidateExpression(System.String,NationalInstruments.TestStand.Interop.API.PropertyObject,NationalInstruments.TestStand.Interop.API.APILocations,NationalInstruments.TestStand.Interop.API.EvaluationTypes,System.Int32,System.Object[],System.Int32)">
+      <summary>Use this method in an analysis module to validate an expression. An analysis module can call this method to perform expression validation on any property that is not an instance of the Expression data type or to perform custom expression validation beyond syntax errors, such as type checking.&#13; If the analysis module calls this method on expression properties within a step, the analysis module must set the AnalysisUtilities.AutomaticPropertyCheckingEnabled property to <c>False</c> to ensure that the sequence analyzer does not report duplicate messages, and the analysis module must perform all path and expression property checking for the step.&#13; If the rules are enabled, this method reports analysis messages for the <c>NI_ExpressionEvaluationError</c> , <c>NI_DynamicPropertyDoesNotExist</c> , and <c>NI_EscapeSequenceValid</c> rules. This method also finds variables in the expression to determine which variables are used for the <c>NI_UnusedVariables</c> rule.&#13; If you set the <c>AnalysisUtilities.AutomaticPropertyCheckingEnabled</c> property to <c>True</c> , the built-in analysis modules call this method with the evaluationFlags parameter set to ValidateExpressionOption_NoOptions for all properties of type Expression.</summary>
+      <param name="expression">[In] Pass the expression to validate.</param>
+      <param name="baseLocation">[In] Pass the base object to use with the apiLocation parameter as the location associated with any analysis messages this method reports.</param>
+      <param name="apiLocation">[In] Pass the APILocations enumeration to use as the location associated with any analysis messages this method reports. To use the baseLocation as the location, pass <c>APILocation_None</c> .</param>
+      <param name="validTypes">[In] Pass the type or types to which you expect the expression to evaluate.</param>
+      <param name="evaluationOptions">[In] Pass any combination of the EvaluationOptions constants. You do not need to pass the <c>EvalOption_DoNotAlterValues</c> constant because this method never changes values.</param>
+      <param name="additionalConstants">[In] Pass additional variables the expression might contain that are not part of the context. This parameter is useful if the expression contains a constant from an enumeration, such as a parameter value of a module call when the parameter type is an enumeration. You can pass <c>NULL</c> for this parameter if no additional constants you want to use exist when evaluating the expression.</param>
+      <param name="evaluationFlags">[In] Pass a combination of the ValidateExpressionOptions constants.</param>
+      <seealso cref="AnalysisUtilities.AutomaticPropertyCheckingEnabled" />
+      <seealso cref="ValidateExpressionOptions" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisUtilities.ValidatePath(System.String,NationalInstruments.TestStand.Interop.API.PropertyObject,NationalInstruments.TestStand.Interop.API.APILocations,System.Int32)">
+      <summary>Use this method in an analysis module to validate a path. An analysis module can call this method to perform path validation on any property that is not an instance of the Path data type or to validate a path with a different validation option than the built-in analysis modules.&#13; If the analysis module calls this method on path properties within a step, the analysis module must set the AnalysisUtilities.AutomaticPropertyCheckingEnabled property to <c>False</c> to ensure that the sequence analyzer does not report duplicate messages, and the analysis module must perform all path and expression property checking for the step If the rules are enabled, this method reports analysis messages for the <c>NI_ValidPath</c> rule, the <c>NI_FileNotFoundWarning</c> rule, and the <c>NI_FileNotFound</c> rule.&#13; If you set the <c>AnalysisUtilities.AutomaticPropertyCheckingEnabled</c> property to <c>True</c> , the built-in analysis modules call this method with the validationOptions parameter set to ValidatePathOption_DoNotCheckIfExists for all properties that use the Path type.&#13; For path expression properties, analysis modules must instead call the AnalysisUtilities.ValidateExpression method and pass <c>ValidateExpressionOption_Path</c> for the evaluationFlags parameter.</summary>
+      <param name="Path">[In] Pass the path to validate. This path can be a relative or absolute path.</param>
+      <param name="baseLocation">[In] Pass the base object to use with the apiLocation parameter as the location associated with any analysis messages this method reports.</param>
+      <param name="apiLocation">[In] Pass the APILocations enumeration to use as the location associated with any analysis messages this method reports. To use the baseLocation as the location, pass <c>APILocation_None</c> .</param>
+      <param name="validationOptions">[In] Pass any of the ValidatePathOptions constants.</param>
+      <seealso cref="AnalysisUtilities.AutomaticPropertyCheckingEnabled" />
+      <seealso cref="AnalysisUtilities.ValidateExpression" />
+      <seealso cref="ValidatePathOptions" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisUtilities.ValidateRemoteHost(System.String,NationalInstruments.TestStand.Interop.API.PropertyObject,NationalInstruments.TestStand.Interop.API.APILocations)">
+      <summary>Use this method in an analysis module to validate whether a remote host can be located on the network. This method reports analysis messages for the <c>NI_RemoteHostExists</c> rule if the rule is enabled.</summary>
+      <param name="remoteHost">[In] Pass the name of the remote host to validate.</param>
+      <param name="baseLocation">[In] Pass the base object to use with the apiLocation parameter as the location associated with any analysis messages this method reports.</param>
+      <param name="apiLocation">[In] Pass the APILocations enumeration to use as the location associated with any analysis messages this method reports. To use the baseLocation as the location, pass <c>APILocation_None</c> .</param>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration">
+      <summary>Use the objects of the <c>RuleConfiguration</c> class to access the configuration information of a rule. A rule configuration contains the enabled state, severity, description, and other information for a specific rule. The sequence analyzer stores the configuration information of a rule in an analyzer project.&#13; In a rule configuration module, use the RuleConfigurationContext.RuleConfiguration property to obtain an instance of this class.&#13; In an analysis module, use the AnalysisContext.GetRuleConfiguration method to obtain an instance of this class.</summary>
+      <seealso cref="AnalysisContext.GetRuleConfiguration" />
+      <seealso cref="RuleConfigurationContext.RuleConfiguration" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration.ConfigurationData">
+      <summary>In a rule configuration module, use this property to store configuration data for the rule. In an analysis module, use this property to obtain the configuration data stored for the rule.</summary>
+      <remarks>Use only rule configuration modules to modify configuration data. Do not make changes to the data in an analysis module.&#13; The TestStand Sequence Analyzer creates an empty container property object for each rule when it creates a new analyzer project. Use a rule configuration module to save rule data in the property object.&#13; When you save configuration data to this property in a rule configuration module, also set the RuleConfiguration.Description property to include a description of the configuration data so that generated reports contain information about the configuration data and so that users can easily view the rule settings by viewing the rule description on the Rules pane of the Current Sequence Analyzer Project window in the TestStand Sequence Editor or on the Rules tab of the stand-alone sequence analyzer application .</remarks>
+      <seealso cref="RuleConfiguration.Description" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration.Description">
+      <summary>Use this property in an analysis module to obtain the rule description. Use this property in a rule configuration module to save a custom rule description.</summary>
+      <remarks>When you save configuration data to the RuleConfiguration.ConfigurationData property in a rule configuration module, also set this property to include a description of the configuration data so that generated reports contain information about the configuration data and so that users can easily view the rule settings by viewing the rule description on the Rules pane of the Current Sequence Analyzer Project window in the TestStand Sequence Editor or on the Rules tab of the stand-alone sequence analyzer application .</remarks>
+      <seealso cref="RuleConfiguration.ConfigurationData" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration.Enabled">
+      <summary>Use this property in an analysis module to determine whether the rule is enabled. Do not set this property. Do not perform any analysis in the analysis module if this property is <c>False</c> .</summary>
+      <remarks>The TestStand Sequence Analyzer sets this property when a user enables or disables a rule on the Rules pane of the Current Sequence Analyzer Project window in the TestStand Sequence Editor or on the Rules tab of the stand-alone sequence analyzer application .</remarks>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration.RuleId">
+      <summary>Use this property in an analysis module or rule configuration module to obtain the unique ID of the rule.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration.RuleSettingValues">
+      <summary>Use this property in an analysis module to obtain the values for rule settings. Use this property only for rules for which you enable the Use Rule Settings configuration option on the Advanced tab of the Edit Rule dialog box. Do not use this property in a rule configuration module. Rule configuration modules store rule data in the RuleConfiguration.ConfigurationData property.</summary>
+      <seealso cref="RuleConfiguration.ConfigurationData" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfiguration.Severity">
+      <summary>Use this property in an analysis module or rule configuration module to obtain the rule severity. Do not set this property.</summary>
+      <remarks>The TestStand Sequence Analyzer sets this property when a user changes the setting in the Severity column for a rule on the Rules pane of the Current Sequence Analyzer Project window in the TestStand Sequence Editor or on the Rules tab of the stand-alone sequence analyzer application .</remarks>
+      <returns>Use the following constants with this data type: RuleSeverity_Default &#8211;(Value: 3) Specifies the default severity the rule defines.&#13; RuleSeverity_Error &#8211;(Value: 0) Indicates that the analysis message reflects an error.&#13; RuleSeverity_Information &#8211;(Value: 2) Indicates that the analysis message contains information that is neither a warning nor an error.&#13; RuleSeverity_Unknown &#8211;(Value: 4) Do not use this value.&#13; RuleSeverity_Warning &#8211;(Value: 1) Indicates that the analysis message reflects a warning.</returns>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfigurationContext">
+      <summary>Use the objects of the <c>RuleConfigurationContext</c> class in a rule configuration module to access the rule configuration data. The TestStand Sequence Analyzer passes an instance of this class as a parameter to the rule configuration module.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfigurationContext.Engine">
+      <summary>Use this property in a rule configuration module to access methods and properties on the TestStand Engine class.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfigurationContext.IsModified">
+      <summary>Set this property in a rule configuration module to <c>True</c> if the module makes a change to the rule configuration. The TestStand Sequence Analyzer uses this property to determine whether the rule configuration module modified the project file.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleConfigurationContext.RuleConfiguration">
+      <summary>Use this property in a rule configuration module to access the rule configuration. The rule configuration stores settings specific to a rule.</summary>
+      <seealso cref="AnalysisContext.GetRuleConfiguration" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSettingValues">
+      <summary>Use objects of the <c>RuleSettingValues</c> class to obtain rule setting values. Use the RuleConfiguration.RuleSettingValues property to obtain an instance of the <c>RuleSettingValues</c> class. Use this class only for rules for which you enable the Use Rule Settings configuration option on the Advanced tab of the Edit Rule dialog box.</summary>
+      <seealso cref="RuleConfiguration.RuleSettingValues" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSettingValues.GetBooleanValue(System.String)">
+      <summary>Use this method in an analysis module to obtain the value for a Boolean rule setting.</summary>
+      <param name="settingName">[In] Pass the name of the rule setting.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSettingValues.GetNumberValue(System.String)">
+      <summary>Use this method in an analysis module to obtain the value for a number or enumeration rule setting.</summary>
+      <param name="settingName">[In] Pass the name of the rule setting.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSettingValues.GetStringValue(System.String)">
+      <summary>Use this method in an analysis module to obtain the value for a string rule setting.</summary>
+      <param name="settingName">[In] Pass the name of the rule setting.</param>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.GetRuleAnalysisDataOptions">
+      <summary>Use this enumeration with the AnalysisContext.GetRuleAnalysisData method.</summary>
+      <seealso cref="AnalysisContext.GetRuleAnalysisData" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.GetRuleAnalysisDataOptions.GetRuleAnalysisDataOption_Lock">
+      <summary>&#8211;(Value: 0x1) Locks the data and prevents other threads from accessing the data. You must use this option if you change any of the rule analysis data. The TestStand Sequence Analyzer unlocks the data after the call to the analysis module completes.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.GetRuleAnalysisDataOptions.GetRuleAnalysisDataOption_NoOptions">
+      <summary>&#8211;(Value: 0x0) No options.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidateExpressionOptions">
+      <summary>Use this enumeration with the AnalysisUtilities.ValidateExpression method.</summary>
+      <seealso cref="AnalysisUtilities.ValidateExpression" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidateExpressionOptions.ValidateExpressionOption_MustEvaluateToProperty">
+      <summary>&#8211;(Value: 0x2) Specifies that an expression must evaluate to a property location.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidateExpressionOptions.ValidateExpressionOption_NoOptions">
+      <summary>&#8211;(Value: 0x0) No options.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidateExpressionOptions.ValidateExpressionOption_Path">
+      <summary>&#8211;(Value: 0x1) Specifies to expect a path in the expression the TestStand Sequence Analyzer validates.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions">
+      <summary>Use this enumeration with the AnalysisUtilities.ValidatePath method.</summary>
+      <seealso cref="AnalysisUtilities.ValidatePath" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_DoNotCheckIfExists">
+      <summary>&#8211;(Value: 0x2) Specifies that a path does not have to exist. You typically use this option when a path refers to a directory or the location of a file to create at run time.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_IgnoreAbsolutePath">
+      <summary>&#8211;(Value: 0x1) Specifies that the validation does not generate messages from the <c>NI_AbsolutePaths</c> rule. Pass this flag when you pass an absolute path to the AnalysisUtilities.ValidatePath method and do not want the validation to generate a message.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_IsCommand">
+      <summary>&#8211;(Value: 0x8) Specifies that the path is an executable command. When you use this option and the path has no file extension, the <c>AnalysisUtilities.ValidatePath</c> method searches for files with the same basename that end in the <c>.exe</c> , <c>.com</c> , and <c>.bat</c> common command extensions.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_NoOptions">
+      <summary>&#8211;(Value: 0x0) No options.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_NotRequiredForExecution">
+      <summary>&#8211;(Value: 0x4) Use this option to indicate that a file is not required for execution. If you use this option, the <c>AnalysisUtilities.ValidatePath</c> method generates a warning instead of an error if the file you specified is missing.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_DoNotAllowEmpty">
+      <summary>(Value: 0x20) Specifies that empty paths are not allowed.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.ValidatePathOptions.ValidatePathOption_IsDirectory">
+      <summary>(Value: 0x10) Specifies that the path is a directory.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition">
+      <summary>Use this enumeration with the AnalysisContext.Transition property to determine the current analysis transition of the TestStand Sequence Analyzer.</summary>
+      <seealso cref="AnalysisContext.File" />
+      <seealso cref="AnalysisContext.Object" />
+      <seealso cref="AnalysisContext.Transition" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterCleanupStepGroup">
+      <summary>&#8211;(Value: 39) Indicates that the sequence analyzer finished analyzing the Cleanup step group in a sequence. Use the AnalysisContext.Object property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterFileTypes">
+      <summary>&#8211;(Value: 48) Indicates that the sequence analyzer finished analyzing the types defined in a TestStand file, including type palette files, sequence files, and workspace files. Use the AnalysisContext.File property to obtain a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterMainStepGroup">
+      <summary>&#8211;(Value: 37) Indicates that the sequence analyzer finished analyzing the Main step group in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequence">
+      <summary>&#8211;(Value: 41) Indicates that the sequence analyzer finished analyzing one sequence in a sequence file. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequenceFile">
+      <summary>&#8211;(Value: 43) Indicates that the sequence analyzer finished analyzing a sequence file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the sequence file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequenceFileGlobals">
+      <summary>&#8211;(Value: 24) Indicates that the sequence analyzer finished analyzing the global variables in a sequence file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequenceLocals">
+      <summary>&#8211;(Value: 29) Indicates that the sequence analyzer finished analyzing the local variables in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequenceParameters">
+      <summary>&#8211;(Value: 31) Indicates that the sequence analyzer finished analyzing the parameters in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequences">
+      <summary>&#8211;(Value: 42) Indicates that the sequence analyzer finished analyzing the sequences in a sequence file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSequenceVariables">
+      <summary>&#8211;(Value: 32) Indicates that the sequence analyzer finished analyzing the variables in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSetupStepGroup">
+      <summary>&#8211;(Value: 35) Indicates that the sequence analyzer finished analyzing the Setup step group in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterStationGlobals">
+      <summary>&#8211;(Value: 14) Indicates that the sequence analyzer finished analyzing the global variables in the station global variables file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the station global variables file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterStationGlobalsFile">
+      <summary>&#8211;(Value: 15) Indicates that the sequence analyzer finished analyzing the station global variables file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the station global variables file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterStep">
+      <summary>&#8211;(Value: 46) Indicates that the sequence analyzer finished analyzing a step. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the step.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSteps">
+      <summary>&#8211;(Value: 40) Indicates that the sequence analyzer finished analyzing the steps in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterSystem">
+      <summary>&#8211;(Value: 44) Indicates that the sequence analyzer finished analyzing all files.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterTemplates">
+      <summary>&#8211;(Value: 18) Indicates that the sequence analyzer finished analyzing the templates in the templates file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterTemplatesFile">
+      <summary>&#8211;(Value: 19) Indicates that the sequence analyzer finished analyzing the templates file. The templates file contains the configuration settings for the Templates list on the Insertion Palette . Use the <c>AnalysisContext.File</c> property to obtain a reference to the templates file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterTypePalette">
+      <summary>&#8211;(Value: 4) Indicates that the sequence analyzer finished analyzing a specific type palette file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the type palette file that was analyzed. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterTypePalettes">
+      <summary>&#8211;(Value: 5) Indicates that the sequence analyzer finished analyzing the type palette files.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterUserGroups">
+      <summary>&#8211;(Value: 10) Indicates that the sequence analyzer finished analyzing the user groups in the users file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterUsers">
+      <summary>&#8211;(Value: 8) Indicates that the sequence analyzer finished analyzing the users in the users file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the users file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterUsersFile">
+      <summary>&#8211;(Value: 11) Indicates that the sequence analyzer finished analyzing the users file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the users file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_AfterWorkspaceFile">
+      <summary>&#8211;(Value: 21) Indicates that the sequence analyzer finished analyzing the workspace file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the workspace file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeCleanupStepGroup">
+      <summary>&#8211;(Value: 38) Indicates that the sequence analyzer is preparing to analyze the Cleanup step group in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeFileTypes">
+      <summary>&#8211;(Value: 47) Indicates that the sequence analyzer is preparing to analyze the types defined in a TestStand file, including type palette files, sequence files, and workspace files. Use the <c>AnalysisContext.File</c> property to obtain a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeMainStepGroup">
+      <summary>&#8211;(Value: 36) Indicates that the sequence analyzer is preparing to analyze the Main step group in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequence">
+      <summary>&#8211;(Value: 26) Indicates that the sequence analyzer is preparing to analyze one sequence in a sequence file. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequenceFile">
+      <summary>&#8211;(Value: 22) Indicates that the sequence analyzer is preparing to analyze a sequence file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the sequence file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequenceFileGlobals">
+      <summary>&#8211;(Value: 23) Indicates that the sequence analyzer is preparing to analyze the global variables in a sequence file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequenceLocals">
+      <summary>&#8211;(Value: 28) Indicates that the sequence analyzer is preparing to analyze the local variables in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequenceParameters">
+      <summary>&#8211;(Value: 30) Indicates that the sequence analyzer is preparing to analyze the parameters in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequences">
+      <summary>&#8211;(Value: 25) Indicates that the sequence analyzer is preparing to analyze the sequences in a sequence file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSequenceVariables">
+      <summary>&#8211;(Value: 27) Indicates that the sequence analyzer is preparing to analyze the variables in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSetupStepGroup">
+      <summary>&#8211;(Value: 34) Indicates that the sequence analyzer is preparing to analyze the Setup step group in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeStationGlobals">
+      <summary>&#8211;(Value: 13) Indicates that the sequence analyzer is preparing to analyze the global variables in the station global variables file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeStationGlobalsFile">
+      <summary>&#8211;(Value: 12) Indicates that the sequence analyzer is preparing to analyze the station global variables file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the station global variables file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeStep">
+      <summary>&#8211;(Value: 45) Indicates that the sequence analyzer is preparing to analyze a step. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the step.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSteps">
+      <summary>&#8211;(Value: 33) Indicates that the sequence analyzer is preparing to analyze the steps in a sequence. Use the <c>AnalysisContext.Object</c> property to obtain a reference to the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeSystem">
+      <summary>&#8211;(Value: 1) Indicates that the sequence analyzer is preparing to start analyzing.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeTemplates">
+      <summary>&#8211;(Value: 17) Indicates that the sequence analyzer is preparing to analyze the templates in the templates file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeTemplatesFile">
+      <summary>&#8211;(Value: 16) Indicates that the sequence analyzer is preparing to analyze the templates file. The templates file contains the configuration settings for the Templates list. Use the <c>AnalysisContext.File</c> property to obtain a reference to the templates file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeTypePalette">
+      <summary>&#8211;(Value: 3) Indicates that the sequence analyzer is preparing to analyze a specific type palette file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the type palette file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeTypePalettes">
+      <summary>&#8211;(Value: 2) Indicates that the sequence analyzer is preparing to analyze type palette files.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeUserGroups">
+      <summary>&#8211;(Value: 9) Indicates that the sequence analyzer is preparing to analyze the user groups in the users file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeUsers">
+      <summary>&#8211;(Value: 7) Indicates that the sequence analyzer is preparing to analyze the users in the users file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeUsersFile">
+      <summary>&#8211;(Value: 6) Indicates that the sequence analyzer is preparing to analyze the users file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the users file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_BeforeWorkspaceFile">
+      <summary>&#8211;(Value: 20) Indicates that the sequence analyzer is preparing to analyze the workspace file. Use the <c>AnalysisContext.File</c> property to obtain a reference to the workspace file. The <c>AnalysisContext.Object</c> property also contains a reference to the file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.AnalysisTransition.AnalysisTransition_None">
+      <summary>&#8211;(Value: 0) Indicates that the sequence analyzer is not in a transition.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleAnalysisDataScope">
+      <summary>Use this enumeration with the AnalysisContext.GetRuleAnalysisData method.</summary>
+      <seealso cref="AnalysisContext.GetRuleAnalysisData" />
+      <seealso cref="AnalysisTransition" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleAnalysisDataScope.RuleAnalysisDataScope_File">
+      <summary>&#8211;(Value: 1) Specifies the rule analysis data that is specific to the file being analyzed. The TestStand Sequence Analyzer creates the file data the first time you call the AnalysisContext.GetRuleAnalysisData method while analyzing the file and destroys it after the analysis of the file completes and after calling analysis modules for the after file transition. Do not use this option for the AnalysisTransition_BeforeSystem and AnalysisTransition_AfterSystem transitions.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleAnalysisDataScope.RuleAnalysisDataScope_Global">
+      <summary>&#8211;(Value: 0) Specifies the rule analysis data that is global to the analysis session. The sequence analyzer creates the global data before the analysis begins and destroys it after the analysis completes.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSeverity">
+      <summary>Use these constants with the RuleConfiguration.Severity property.</summary>
+      <seealso cref="RuleConfiguration.Severity" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSeverity.RuleSeverity_Default">
+      <summary>&#8211;(Value: 3) Specifies the default severity the rule defines.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSeverity.RuleSeverity_Error">
+      <summary>&#8211;(Value: 0) Indicates that the analysis message reflects an error.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSeverity.RuleSeverity_Information">
+      <summary>&#8211;(Value: 2) Indicates that the analysis message contains information that is neither a warning nor an error.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSeverity.RuleSeverity_Unknown">
+      <summary>&#8211;(Value: 4) Do not use this value.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.SequenceAnalyzer.RuleSeverity.RuleSeverity_Warning">
+      <summary>&#8211;(Value: 1) Indicates that the analysis message reflects a warning.</summary>
+    </member>
+  </members>
+</doc>

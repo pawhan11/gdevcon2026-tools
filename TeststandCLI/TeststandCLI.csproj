@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWPF>true</UseWPF>
+        <SelfContained>true</SelfContained>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <PublishSingleFile>true</PublishSingleFile>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <PublishTrimmed>false</PublishTrimmed>
+    </PropertyGroup>
+    
+    
+    <ItemGroup>
+      <PackageReference Include="CoreWCF.WebHttp" Version="1.9.1" />
+      <PackageReference Include="System.CommandLine" Version="2.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.10" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="NationalInstruments.TestStand.Interop.API">
+        <HintPath>..\dlls\NationalInstruments.TestStand.Interop.API.dll</HintPath>
+      </Reference>
+      <Reference Include="NationalInstruments.TestStand.Interop.SequenceAnalyzer">
+        <HintPath>..\dlls\NationalInstruments.TestStand.Interop.SequenceAnalyzer.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+
+
+    <Target Name="GenerateRuntimeConfig" AfterTargets="Build">
+        <PropertyGroup>
+            <RuntimeConfigPath>$(OutputPath)$(AssemblyName).runtimeconfig.json</RuntimeConfigPath>
+        </PropertyGroup>
+
+        <Copy SourceFiles="runtimeconfig.template.json"
+              DestinationFiles="$(RuntimeConfigPath)" />
+    </Target>
+    
+    
+
+</Project>

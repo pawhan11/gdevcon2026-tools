@@ -1,0 +1,2398 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NationalInstruments.TestStand.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:NationalInstruments.TestStand.Utility.TestStandObjectReleaser">
+            <summary>
+            Determines all TestStand objects that can be reached from the root object, in the constructor and releases them in Dispose.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TestStandObjectReleaser.#ctor(System.Object,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a class instance and determines all TestStand objects that can be reached from <paramref name="rootObj"/>.
+            </summary>
+            <param name="rootObj">Root object from which the function finds all reachable TestStand object.</param>
+            <param name="typeOrNamespaceToIgnore">Namespaces or Type names to ignore while determining TestStand objects.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TestStandObjectReleaser.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TestStandObjectReleaser.Dispose(System.Boolean)">
+            <summary>
+            Overloaded dispose method implemented per:
+            https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose .
+            </summary>
+            <param name="disposing">indicates whether the method call comes from a Dispose method (true)
+            or from a finalizer (false).</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.TestStandObjectReleaserExcludingEngineAndUIControls">
+            <summary>
+            Determines all TestStand objects that can be reached from the root object, in the constructor and excluding Engine releases those objects in Dispose.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TestStandObjectReleaserExcludingEngineAndUIControls.#ctor(System.Object)">
+            <summary>
+            Determines all TestStand objects that can be reached from the root object, in the constructor and excluding Engine releases those objects in Dispose.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.TSHelper">
+            <summary>
+            This class contains various methods that can be useful when you use the TestStand API or the TestStand UI Controls API from a .NET language
+            </summary>
+            <lastupdated>9/29/2011 1:54:18 PM</lastupdated>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.GetTestStandSplashImage">
+            <summary>
+            Returns  the standard image used as the background TestStand splash screens. 
+            </summary>
+            <returns>The splash screen image.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.GetTestStandAnimatedSplashImage">
+            <summary>
+            Returns  the standard animated image used as the background TestStand splash screens. 
+            </summary>
+            <returns>The animated splash screen image.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.DoSynchronousGCForCOMObjectDestruction">
+            <summary>
+            This method ensures than any COM objects pending for garbage collection are released before it returns.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.MakePath(System.String,System.String,System.String)">
+            <summary>
+            Creates a path with the <paramref name="directory"/>, <paramref name="fileName"/> and
+            <paramref name="extension"/> specified by combining the three.
+            </summary>
+            <param name="directory">The directory part of the path</param>
+            <param name="fileName">The file name part of the path</param>
+            <param name="extension">
+            The extension part of the path. The extension can be passed with or without the dot.
+            </param>
+            <returns>
+            The combined path <paramref name="directory"/>\<paramref name="fileName"/>.<paramref name="extension"/>
+            </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.NumericSuffixStartingIndex(System.String)">
+            <summary>
+            Returns the index of the underscore in the numeric suffix at the end of 
+            <paramref name="fileName"/>. The numeric suffix is defined as an underscore followed by
+            one or more digits.
+            </summary>
+            <param name="fileName">The file name to get a numeric index from.</param>
+            <returns>The index of the underscore in the numeric suffix.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.GetFileNameWithCountSuffix(System.String,System.Int32)">
+            <summary>
+            Creates a new file name from the base <paramref name="fileName"/> with a numeric suffix
+            with an integer part <paramref name="count"/>
+            </summary>
+            <example>
+            GetFileNameWithCountSuffix("abc", 3) --> "abc_3"
+            </example>
+            <param name="fileName">The base part of the file name to generate</param>
+            <param name="count">The integer part of the suffix of th file name to generate</param>
+            <returns>A string with the file name generated from the base and count specified</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.LongCreateUniqueFile(System.String,System.String,System.String)">
+            <summary>
+            Returns the path of a unique file name in <paramref name="directory"/> with the base 
+            <paramref name="fileName"/> specified and <paramref name="extension"/>. The method will
+            return the result of calling <see cref="M:System.IO.Path.Combine(System.String,System.String)"/> with 
+            <paramref name="directory"/> and <paramref name="fileName"/> if no file with that name
+            already exists in <paramref name="directory"/> or it will create a new unique file name
+            with a numeric suffix.
+            </summary>
+            <param name="directory">The directory where the unique file name will be created</param>
+            <param name="fileName">The base part of the file name which will be generated</param>
+            <param name="extension">The extension to add to the file name</param>
+            <returns>A path guaranteed to be unique in the directory specified.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.CreateUniqueFile(System.String,System.String,System.String)">
+            <summary>
+            Returns the path of a unique file name in <paramref name="directory"/> with the base 
+            <paramref name="fileName"/> specified and <paramref name="extension"/>. The method will
+            return the result of calling <see cref="M:System.IO.Path.Combine(System.String,System.String)"/> with 
+            <paramref name="directory"/> and <paramref name="fileName"/> if no file with that name
+            already exists in <paramref name="directory"/> or it will create a new unique file name
+            with a numeric suffix.
+            </summary>
+            <param name="directory">The directory where the unique file name will be created</param>
+            <param name="fileName">The base part of the file name which will be generated</param>
+            <param name="extension">The extension to add to the file name</param>
+            <returns>A path guaranteed to be unique in the directory specified.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.CreateUniqueFileInternal(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            <see cref="M:NationalInstruments.TestStand.Utility.TSHelper.CreateUniqueFile(System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.ParseEnvironmentPathFromArgs(System.String[]@,System.Boolean,System.String)">
+             <summary>This is a helper function that command line applications that accept an engine
+             environment argument on the command line can use to parse out the environment argument.  The
+             environment must be passed with the syntax:
+             
+             /env {PATH}
+             
+             or, for example,
+             
+             /env d:\MyEnv.tsenv
+            
+             The argument can appear anywhere on the command line.
+            
+             If found, the path is returned and the environment argument is removed from the array.  If no 
+             environment argument is present, <paramref name="defaultEnvironment"/> is returned and args is left unchanged.
+            
+             If multiple environments are specified, only the first is removed from the list and returned.  It is up
+             to the command line parsing logic of the application to ignore or error if additional /env arguments
+             are present.</summary>
+             <param name="args">The command line arguments.  If an environment is found, it will be removed from the
+             array.</param>
+             <param name="allowExceptions">Pass true to allow this function to generate an exception if the arguments
+             are invalid.  Pass false if you are handling command line exceptions elsewhere.  If you use the 
+             TestStand Application Manager in your application, pass false.</param>
+             <param name="defaultEnvironment">if no environment is found, the method returns this value.</param>
+             <returns>The environment path if one was passed, null otherwise.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.SetFeatureTogglesFromArgs(System.String[]@,System.Boolean)">
+             <summary>
+             This is a helper function that command line applications can use that accepts a
+             set of command line arguments and toggles the state of features depending on the
+             feature toggle arguments provided (if any).
+             
+             /enableFeatures "FeatureName1;FeatureName2"
+             /disableFeatures "FeatureName1;FeatureName2"
+             /allowNextRelease
+             /allowIncomplete
+             
+             Note: The /allowIncomplete argument also enables all features which are set to a code readiness level of "Release" and "NextRelease"
+             
+             The argument can appear anywhere on the command line.
+            
+             If found, the features are toggled based on the arguments. 
+             </summary>
+             <param name="args">The command line arguments.</param>
+             <param name="allowExceptions">Pass true to allow this function to generate an exception if the arguments
+             are invalid.  Pass false if you are handling command line exceptions elsewhere.  If you use the 
+             TestStand Application Manager in your application, pass false.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.MakeEnvironmentArg(System.String)">
+            <summary>Create a command line argument to specify the TestStand environment to an application that uses
+            the /env "{PATH}" syntax.</summary>
+            <param name="path">The path to the environment.</param>
+            <returns>An empty string if path is null or empty.  Otherwise, returns
+                 /env + "{PATH}"
+            enclosed in quotes and preceded by a space.  This is to fascilitate construction of a command
+            line.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.TSHelper.GetTrimmedEngineVersion(System.String)">
+            <summary>
+            This method trims the TestStand engine version to remove the build number.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.TSHelper.TE_ROOT_KEY">
+            <summary>The path to TestStand related keys in the registry relative to HKEY_LOCAL_MACHINE.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.TSHelper.HKLM_TE_ROOT_KEY">
+            <summary>The path to TestStand related keys in the registry including HKEY_LOCAL_MACHINE.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Menus">
+            <summary>
+            This class contains various methods that can be useful when you use the TestStand API or the TestStand UI Controls API from a .NET language
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.TranslateShortcutKeyToDotNet(NationalInstruments.TestStand.Interop.UI.ShortcutKeys,System.Int32)">
+            <summary>
+            	<para>This method converts a ShortcutKeys and ShortcutModifiers into a .NET Shortcut key value. If no equivalent .NET Shortcut value exists, the method returns Shortcut.None.</para>
+            	<para>Typically, you call a higher level method, such as TSUtil.InsertCommandsInMenu, to create .NET menu items that execute TestStand commands.  In that case, the higher level method calls this method for you to determine the correct menu shortcut values.</para>
+            </summary>
+            <param name="key">a ShortcutKeys value
+            </param>
+            <param name="modifier">a ShortcutModifiers value
+            </param>
+            <returns>the .NET Shortcut value that corresponds to the key and modifier value you specify
+            </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.InsertCommandObjectInMenu(NationalInstruments.TestStand.Interop.UI.Command,System.Windows.Forms.ToolStripMenuItem,System.Windows.Forms.ToolStripMenuItem,System.Boolean)">
+            <summary>
+            Typically, you call InsertCommandsInMenu instead of this method. However, if you have a TestStand.Interop.UI.Command object for which you want to create a menu item, you can call this method directly.
+            </summary>
+            <param name="command">
+            Pass the TestStand.Interop.UI.Command object that represent the action the menu item takes when the user selects it.
+            </param>
+            <param name="parentMenu">
+            Pass the menu into which to insert the menu item.
+            </param>
+            <param name="menuItemToInsertBefore">
+            The MenuItem before which the method inserts the new menu item.  To insert at the end of the menu, pass Nothing (VB) or null (C#)
+            </param>
+            <param name="useShortCutKeys">
+            Pass false to prevent menu items from having shortcut keys.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.InsertCommandsInMenu(System.Collections.IList,System.Windows.Forms.ToolStripMenuItem,System.Windows.Forms.ToolStripMenuItem,System.Object,System.Boolean)">
+            <summary>
+            	<para>Use this overload of InsertCommandsInMenu when you do not need to know the actual number of menu items the method inserts.<br></br></para>
+            	<para>Refer to the other overload of this method for more information.</para>
+            </summary>
+            <param name="commandTypes">A list in which each element is a TestStand.Interop.UI.CommandKinds value. For each element in the list, the method inserts the corresponding menu item(s) into the menu.
+            </param>
+            <param name="parentMenuItem">The menu into which the method inserts the menu items
+            </param>
+            <param name="menuItemToInsertBefore">
+            The MenuItem before which the method inserts the new menu items.  To insert at the end of the menu, pass Nothing (VB) or null (C#)
+            </param>
+            <param name="managerControl">Pass the TestStand.Interop.UI.SequenceFileViewMgr or TestStand.Interop.UI.ExecutionViewMgr control, if any, to which the new menu item(s) apply. If the commands do not apply to a view manager control, pass the TestStand.Interop.UI.ApplicationMgr control that you placed on one of your application forms.  
+            </param>
+            <param name="useShortCutKeys">
+            Pass false to prevent menu items from having shortcut keys.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.RemoveInvalidShortcutKeys(NationalInstruments.TestStand.Interop.UI.Commands)">
+            <summary>
+            .NET does not support certain keys as menu shortcuts. Call this method to remove shortcuts that .NET does not support
+            from a Commands collection before calling Commands.InsertIntoWin32Menu
+            </summary>
+            <param name="commands">
+            Pass the TestStand.Interop.UI.Commands object that represent the actions that populate a context menu.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.InsertCommandsInMenu(System.Collections.IList,System.Windows.Forms.ToolStripMenuItem,System.Windows.Forms.ToolStripMenuItem,System.Object,System.Int32@,System.Boolean)">
+            <summary>
+            	<para>As an alternative to manually writing menu handler code for common TestStand commands, you can use this method to create new menu items that execute the commands you specify without requiring any additional code.</para>
+            	<para>To create the menu items, you specify a list of TestStand.Interop.UI.CommandKinds elements. Each element specifies a menu item or group of menu items to insert. To each menu item this method inserts, it attaches a TestStand.Interop.UI.Command object that represents the action the menu item takes.  The method installs an event handler for the menu item that automatically invokes the associated command object when the user selects the menu item.</para>
+            	<para>Typically, you call this method in response to the MenuStart event to populate the menu with the commands that apply to the current state of the application.  Before you call this method, you can call RemoveMenuCommands to remove any menu items you previously inserted.</para>
+            </summary>
+            <param name="commandTypes">A list in which each element is a TestStand.Interop.UI.CommandKinds value. For each element in the list, the method inserts the corresponding menu item(s) into the menu.
+            </param>
+            <param name="parentMenu">The menu into which the method inserts the menu items
+            </param>
+            <param name="menuItemToInsertBefore">
+            The MenuItem before which the method inserts the new menu items.  To insert at the end of the menu, pass Nothing (VB) or null (C#)
+            </param>
+            <param name="managerControl">Pass the TestStand.Interop.UI.SequenceFileViewMgr or TestStand.Interop.UI.ExecutionViewMgr control, if any, to which the new menu item(s) apply. If the commands do not apply to a view manager control, pass the TestStand.Interop.UI.ApplicationMgr control that you placed on one of your application forms. 
+            </param>
+            <param name="numInserted">This out parameter returns the number of menu items the method inserts.  The number of menu items does not necessarily equal the number of TestStand.Interop.UI.CommandKinds elements you specify because, depending on the CommandType and the state of the application, a single CommandType element might create several menu items or none at all. The parameter counts only items the method adds to the menu you pass. The parameter does not count items the method inserts into submenus the method creates.
+            </param>
+            <param name="useShortCutKeys">
+            Pass false to prevent menu items from having shortcut keys.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.InsertCommandCollectionInMenu(NationalInstruments.TestStand.Interop.UI.Commands,System.Windows.Forms.ToolStripMenuItem,System.Windows.Forms.ToolStripMenuItem,System.Boolean)">
+            <summary>Typically, you call InsertCommandsInMenu instead of this method. However, if you have a TestStand.Interop.UI.CommandCollection object for which you want to create menu items, you can call this method directly.
+            </summary>
+            <param name="commandCollection">A TestStand.Interop.UI.CommandCollection that contains the Commands to place in the menu.
+            </param>
+            <param name="parentMenu">
+            The menu into which to insert the menu item.
+            </param>
+            <param name="menuItemToInsertBefore">
+            The MenuItem before which the method inserts the new menu item. To insert at the end of the menu, pass Nothing (VB) or null (C#) 
+            </param>
+            <param name="useShortCutKeys">
+            Pass false to prevent menu items from having shortcut keys.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.RemoveMenuCommands(System.Windows.Forms.MenuStrip,System.Boolean,System.Boolean)">
+            <summary>
+            	<para>Call this method to remove menus and menu items that you insert with TSUtil methods such as InsertCommandsInMenu. Optionally, you can also remove menu and menu items that you insert by other means.</para>
+            	<para>Typically, you call this method when handling a MenuStart event in order to clear the menu so that you can then call InsertCommandsInMenu to populate the menu with items that are appropriate for the current state of the application.
+            </para>
+            </summary>
+            <param name="menu">The method removes any menus or menu items that TSUtil methods create under this menu, including the menu itself. To remove items from all menus, pass the Menu that is the menubar.
+            </param>
+            <param name="removeNonTSMenus">
+            Pass true to also remove menus that you did not insert by calling a TSUtil method.
+            </param>
+            <param name="removeNonTSItems">
+            Pass true to also remove menu items that you did not insert by calling a TSUtil method.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.RemoveMenuCommands(System.Windows.Forms.ToolStripMenuItem,System.Boolean,System.Boolean)">
+            <summary>
+            	<para>Call this method to remove menus and menu items that you insert with TSUtil methods such as InsertCommandsInMenu. Optionally, you can also remove menu and menu items that you insert by other means.</para>
+            	<para>Typically, you call this method when handling a MenuStart event in order to clear the menu so that you can then call InsertCommandsInMenu to populate the menu with items that are appropriate for the current state of the application.
+            </para>
+            </summary>
+            <param name="toolStripMenuItem">The method removes any menus or menu items that TSUtil methods create under this menu, including the menu itself. To remove items from all menus, pass the Menu that is the menubar.
+            </param>
+            <param name="removeNonTSMenus">
+            Pass true to also remove menus that you did not insert by calling a TSUtil method.
+            </param>
+            <param name="removeNonTSItems">
+            Pass true to also remove menu items that you did not insert by calling a TSUtil method.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.BeginUpdate(System.Windows.Forms.Form)">
+            <summary>
+            	<para>This method prevents edits made by the Menus class from affecting the visual state of the form's menu.</para>
+            	<para>Call this method prior to making changes to a form's menu with the Menu class.</para>
+            	<para>After edits are made, call EndUpdate to present the modified menu.</para>
+            </summary>
+            <param name="form">Pass the form which contains the menu being modified.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.EndUpdate">
+            <summary>
+            	<para>This method restores a form's modified menu and resumes updates.</para>
+            	<para>Call this method after making changes to a form's menu using the Menus class.</para>
+            	<para>Ensure that each call to EndUpdate is preceded by a call to BeginUpdate</para>
+            	<para>(Note: These calls can not be nested).</para>
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.CleanupMenu(System.Windows.Forms.MenuStrip)">
+            <summary>
+            	<para>This method removes any duplicate menu shortcut keys or redundant menu separator bars.</para>
+            	<para>If you make multiple calls to InsertCommandsInMenu or if call InsertCommandsInMenu to add to an existing menu, it can be difficult to prevent duplicate shortcut keys and separator bars because the inserted menus item may vary based on the state of the application.  Rather than trying to prevent duplicate shortcuts and separators, it is simpler to remove them with this method after you update the menu bar.</para>
+            	<para>Typically you call this method on the entire menu bar after you update a menu in response to a MenuStart event.</para>
+            </summary>
+            <param name="menu">Pass the MenuStrip to recursively search for duplicate shortcut keys and separator bars. Typically you pass the menu object that represents the menubar for a form.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Menus.CleanupMenu(System.Windows.Forms.ToolStripMenuItem)">
+            <summary>
+            	<para>This method removes any duplicate menu shortcut keys or redundant menu separator bars.</para>
+            	<para>If you make multiple calls to InsertCommandsInMenu or if call InsertCommandsInMenu to add to an existing menu, it can be difficult to prevent duplicate shortcut keys and separator bars because the inserted menus item may vary based on the state of the application.  Rather than trying to prevent duplicate shortcuts and separators, it is simpler to remove them with this method after you update the menu bar.</para>
+            	<para>Typically you call this method on the entire menu bar after you update a menu in response to a MenuStart event.</para>
+            </summary>
+            <param name="toolStripMenuItem">Pass the ToolStripMenuItem to recursively search for duplicate shortcut keys and separator bars. Typically you pass the menu object that represents the menubar for a form.
+            </param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32">
+            <summary>
+            Exposes selected Win32 SDK Functions. Typically, you only uses these functions in .NET code when necessary to implement a work-around for a .NET limitation or bug.
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.CopyDataStruct">
+            <summary>
+            Data structure for send message
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CopyDataStruct.SetMessage(System.String)">
+            <summary>
+            Sets the message of this structure and stores it in global memory in order to be able to send 
+            it to another process. If you are calling this method you will need to call the DisposeMessage() 
+            method to clean up the used memory.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CopyDataStruct.GetMessage">
+            <summary>
+            Converts the message pointer into a string
+            </summary>
+            <returns>The string in the messages data</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CopyDataStruct.DisposeMessage">
+            <summary>
+            Cleans the global memory used in the message
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.PostMessage(System.Runtime.InteropServices.HandleRef,System.UInt32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.SendMessage(System.Runtime.InteropServices.HandleRef,System.UInt32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetMenu(System.Runtime.InteropServices.HandleRef)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetKeyState(System.Int32)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetParent(System.Runtime.InteropServices.HandleRef)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetWindowThreadProcessId(System.Runtime.InteropServices.HandleRef,System.UInt32@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.LockWindowUpdate(System.Runtime.InteropServices.HandleRef)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetFileTime(System.IntPtr,System.Runtime.InteropServices.ComTypes.FILETIME@,System.Runtime.InteropServices.ComTypes.FILETIME@,System.Runtime.InteropServices.ComTypes.FILETIME@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetLongPathNameW(System.String,System.Text.StringBuilder,System.Int32)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetFileAttributesW(System.String)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.SetFileAttributesW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAttributes)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.FindFirstFileW(System.String,NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.FindNextFileW(System.IntPtr,NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CreateFileW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAccess,NationalInstruments.TestStand.Utility.Win32.FileShare,System.IntPtr,NationalInstruments.TestStand.Utility.Win32.CreationDisposition,NationalInstruments.TestStand.Utility.Win32.FileAttributes,System.IntPtr)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CreateDirectoryW(System.String,System.IntPtr)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.MoveFileExW(System.String,System.String,NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CopyFileW(System.String,System.String,System.Boolean)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.DeleteFileW(System.String)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.RemoveDirectoryW(System.String)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.FindClose(System.IntPtr)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetFileSize(System.IntPtr,System.UInt32@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetFileSizeEx(System.IntPtr,System.Int64@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.WriteFile(System.IntPtr,System.Byte[],System.UInt32,System.UInt32@,System.IntPtr)">
+            <summary>Refer to Microsoft Win32 SDK Help.
+            We use IntPtr for lpOverLapped here beacuse it is easier to pass null that way.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GlobalAlloc(System.UInt32,System.UIntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GlobalFree(System.IntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.SendStringMessage(System.Runtime.InteropServices.HandleRef,System.UInt32,System.IntPtr,NationalInstruments.TestStand.Utility.Win32.CopyDataStruct@)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.FindWindow(System.IntPtr,System.String)">
+             <summary>
+             Refer to Microsoft Win32 SDK Help.
+            
+             Note:  Pass IntPtr.Zero for the first parameter.
+             </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.FindWindowEx(System.Runtime.InteropServices.HandleRef,System.Runtime.InteropServices.HandleRef,System.String,System.String)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.SetForegroundWindow(System.Runtime.InteropServices.HandleRef)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.GetActiveWindow">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.OpenIcon(System.Runtime.InteropServices.HandleRef)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.IsIconic(System.Runtime.InteropServices.HandleRef)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CreateMutex(System.IntPtr,System.Boolean,System.String)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.WaitForSingleObject(System.IntPtr,System.UInt32)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.ReleaseMutex(System.IntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.CloseHandle(System.IntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.LoadLibrary(System.String)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.FreeLibrary(System.IntPtr)">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.INFINITE">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WAIT_ABANDONED">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WAIT_OBJECT_0">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WAIT_TIMEOUT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WAIT_FAILED">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MAX_PATH">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_QUERYENDSESSION">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_COPYDATA">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_SYSKEYDOWN">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_KEYDOWN">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_ENTERMENULOOP">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_INITMENU">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WM_EXITMENULOOP">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.BCM_SETSHIELD">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_F1">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_F4">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_F24">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_BACK">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_TAB">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_SHIFT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_CONTROL">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_PAUSE">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_SPACE">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_PRIOR">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NEXT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_END">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_HOME">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_LEFT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_UP">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_RIGHT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_DOWN">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_INSERT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_DELETE">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD0">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD1">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD2">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD3">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD4">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD5">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD6">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD7">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD8">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_NUMPAD9">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_MULTIPLY">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_ADD">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_SUBTRACT">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_DECIMAL">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.VK_DIVIDE">
+            <summary>
+            Refer to Microsoft Win32 SDK Help.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_SUCCESS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_FILE_NOT_FOUND">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_PATH_NOT_FOUND">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_ACCESS_DENIED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_INVALID_DRIVE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_NO_MORE_FILES">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_SHARING_VIOLATION">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_FILE_EXISTS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_INVALID_NAME">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_DIR_NOT_EMPTY">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_ALREADY_EXISTS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_FILENAME_EXCED_RANGE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.ERROR_OPERATION_ABORTED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.REGDB_E_CLASSNOTREG">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.INVALID_HANDLE_VALUE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.INVALID_FILE_SIZE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.FileAttributes">
+            <summary>Refer to Microsoft Win32 SDK Help for SetFileAttributes()
+            and GetFileAttributes() functions.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.INVALID_FILE_ATTRIBUTES">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_ARCHIVE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_COMPRESSED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_DEVICE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_DIRECTORY">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_ENCRYPTED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_HIDDEN">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_NORMAL">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_OFFLINE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_READONLY">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_REPARSE_POINT">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_SPARSE_FILE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_SYSTEM">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_TEMPORARY">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.FILE_ATTRIBUTE_VIRTUAL">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.ReadOnly">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Hidden">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.System">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Directory">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Archive">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Device">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Normal">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Temporary">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.SparseFile">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.ReparsePoint">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Compressed">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Offline">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.NotContentIndexed">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAttributes.Encrypted">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.FileAccess">
+            <summary>Refer to Microsoft Win32 SDK Help for "File Security and
+            Access Rights," "Generic Access Rights," "File Access Rights
+            Constants," as well as the WinNT.h header file.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.GENERIC_READ">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.GENERIC_WRITE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.GENERIC_EXECUTE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.GENERIC_ALL">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.DELETE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.READ_CONTROL">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.WRITE_DAC">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.WRITE_OWNER">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.SYNCHRONIZE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.STANDARD_RIGHTS_REQUIRED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.STANDARD_RIGHTS_READ">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.STANDARD_RIGHTS_WRITE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.STANDARD_RIGHTS_EXECUTE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.STANDARD_RIGHTS_ALL">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.SPECIFIC_RIGHTS_ALL">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_READ_DATA">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_LIST_DIRECTORY">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_WRITE_DATA">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_ADD_FILE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_APPEND_DATA">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_ADD_SUBDIRECTORY">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_CREATE_PIPE_INSTANCE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_READ_EA">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_WRITE_EA">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_EXECUTE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_TRAVERSE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_DELETE_CHILD">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_READ_ATTRIBUTES">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_WRITE_ATTRIBUTES">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_ALL_ACCESS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_GENERIC_READ">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_GENERIC_WRITE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileAccess.FILE_GENERIC_EXECUTE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.FileShare">
+            <summary>Refer to Microsoft Win32 SDK Help for the CreateFile()
+            function, "Creating and Opening Files" as well as the WinNT.h
+            header file.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileShare.FILE_SHARE_READ">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileShare.FILE_SHARE_WRITE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.FileShare.FILE_SHARE_DELETE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.CreationDisposition">
+            <summary>Refer to Microsoft Win32 SDK Help for the CreateFile()
+            function.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.CreationDisposition.CREATE_NEW">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.CreationDisposition.CREATE_ALWAYS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.CreationDisposition.OPEN_EXISTING">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.CreationDisposition.OPEN_ALWAYS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.CreationDisposition.TRUNCATE_EXISTING">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags">
+            <summary>Refer to Microsoft Win32 SDK Help for MoveFileEx()
+            function.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags.MOVEFILE_REPLACE_EXISTING">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags.MOVEFILE_COPY_ALLOWED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags.MOVEFILE_DELAY_UNTIL_REBOOT">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags.MOVEFILE_WRITE_THROUGH">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags.MOVEFILE_CREATE_HARDLINK">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags.MOVEFILE_FAIL_IF_NOT_TRACKABLE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.dwFileAttributes">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.ftCreationTime">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.ftLastAccessTime">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.ftLastWriteTime">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.nFileSizeHigh">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.nFileSizeLow">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.dwReserved0">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.dwReserved1">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.cFileName">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW.cAlternateFileName">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.AppBarMessage">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_NEW">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_REMOVE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_QUERYPOS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_SETPOS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_GETSTATE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_GETTASKBARPOS">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_ACTIVATE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_GETAUTOHIDEBAR">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_SETAUTOHIDEBAR">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_WINDOWPOSCHANGED">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.AppBarMessage.ABM_SETSTATE">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.APPBARDATA">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.cbSize">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.hWnd">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.uCallbackMessage">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.uEdge">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.rc">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.lParam">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.GetNewInstance">
+            <summary>
+            Create a new instance of <see cref="T:NationalInstruments.TestStand.Utility.Win32.APPBARDATA"/> with <see cref="F:NationalInstruments.TestStand.Utility.Win32.APPBARDATA.cbSize"/>
+            correctly set for the size of the type.
+            </summary>
+            <returns>A new instance of <see cref="T:NationalInstruments.TestStand.Utility.Win32.APPBARDATA"/></returns>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32.RECT">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.RECT.Left">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.RECT.Top">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.RECT.Right">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.RECT.Bottom">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.RECT.Width">
+            <summary>
+            Returns the width of the rectangle
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Win32.RECT.Height">
+            <summary>
+            Returns the height of the rectangle
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32.SHAppBarMessage(System.UInt32,NationalInstruments.TestStand.Utility.Win32.APPBARDATA@)">
+            <summary>Refer to Microsoft Win32 SDK Help.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32Wrap">
+            <summary>
+            Win32Wrap contains methods that wrap some of the P/Invoke defined
+            calls in the Win32 class.  The idea is to shield consumers from
+            detail of calling Win32 methods directly.  Win32Wrap methods
+            handle things like buffer sizing, translating Win32 error codes
+            to appropriate exceptions, etc.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.SendSetShieldMessage(System.Runtime.InteropServices.HandleRef,System.Boolean)">
+            <summary>
+            Call the SendMessage function with the message type <see cref="F:NationalInstruments.TestStand.Utility.Win32.BCM_SETSHIELD"/> 
+            to set or unset the UAC shield in the control <paramref name="controlReference"/>
+            </summary>
+            <param name="controlReference">
+            A <see cref="T:System.Runtime.InteropServices.HandleRef"/> to the control which should display the UAC shield.
+            </param>
+            <param name="setShield">Whether to show or hide the UAC shield.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindWindow(System.String)">
+            <summary>
+            Call the FindWindow Win API function. This method will return a pointer with a handle to the window if it was found or 
+            a null pointer if not found. 
+            </summary>
+            <param name="windowTitle">
+            The window title to match, if empty string or not specified then match all. The window name must be localized by the 
+            caller of this method.
+            </param>
+            <returns>A pointer to a window handle which matches the values passed in or a null pointer if no window matches.</returns>
+            <exception cref="T:System.Runtime.InteropServices.COMException">If the FindWindow method returns an error</exception>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.SendStringMessage(System.Runtime.InteropServices.HandleRef,System.UInt32,System.String)">
+            <summary>
+            Sends the specified message string with the specified code (or WM_USER if not defined) to the window handle specified.
+            In order to get a window handle call FindWindow
+            </summary>
+            <param name="windowHandle">The window handle received from FindWindow</param>
+            <param name="messageCode">The message code to send</param>
+            <param name="messageString">The message string to send</param>
+            <returns>A pointer with information, depends on the message sent</returns>
+            <exception cref="T:System.Runtime.InteropServices.COMException">If the SendMessage method returns an error</exception>
+            <exception cref="T:System.ArgumentNullException">If window handle is null</exception>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CreateMutex(System.String,System.Boolean)">
+            <summary>
+            Creates or opens a named or unnamed mutex object.
+            </summary>
+            <param name="mutexName">The name of the mutex object. The name is limited to MAX_PATH characters. Name comparison is case sensitive.</param>
+            <param name="initialOwner">
+            If this value is true and the caller created the mutex, the calling thread obtains initial ownership of the mutex object. 
+            Otherwise, the calling thread does not obtain ownership of the mutex.</param>
+            <returns>A handle to a mutex object.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CreateMutex(System.String,System.Boolean@,System.Boolean)">
+            <summary>
+            Creates a mutex with the name specified and returns a handle to it.
+            </summary>
+            <param name="mutexName">The name of the mutex object. The name is case sensitive.</param>
+            <param name="initialOwner">If the value is true the calling thread obtains initial ownership of the mutex object.</param>
+            <param name="alreadyExists">Returns true if the mutex already existed, false otherwise</param>
+            <returns>A handle to a mutex object.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.WaitForSingleObject(System.IntPtr,System.UInt32)">
+            <summary>
+            Waits for the specified mutex and returns true if the mutex was signaled. 
+            </summary>
+            <param name="mutex">The mutex reference to wait on, call CallCreateMutex to get it.</param>
+            <param name="timeout">The time out in milliseconds to wait, if not specified wait forever.</param>
+            <returns>
+            True if the mutex was signaled, false if a timeout occurred or if the thread which owned 
+            this mutex released it.
+            </returns>
+            <exception cref="T:System.Runtime.InteropServices.COMException">If the function fails</exception>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.ReleaseMutex(System.IntPtr)">
+            <summary>
+            Releases ownership of the specified mutex object.
+            </summary>
+            <param name="mutex">A handle to a mutex object.</param>
+            <returns>True if the mutex was successfully closed.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CloseHandle(System.IntPtr)">
+            <summary>CloseHandle() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CloseHandle(System.IntPtr)"/>.  It differs in two
+            ways.  First, it takes care of checking the return value of
+            Win32.CloseHandle() and throws an appropriate exception.
+            This means that CloseHandle() will generally either return
+            true or throw and exception.  The one exception to this rule
+            is if <see cref="P:NationalInstruments.TestStand.Utility.Win32.INVALID_HANDLE_VALUE"/> is passed as
+            the argument.  In this case, the wrapper function returns
+            false immediately without ever invoking the Win32 method.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.GetLongPathNameW(System.String)">
+            <summary>GetLongPathNameW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.GetLongPathNameW(System.String,System.Text.StringBuilder,System.Int32)"/>
+            that takes care of buffer sizing and converting Win32 error
+            codes to exceptions.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.GetLongPathNameW_Long(System.String)">
+            <summary>GetLongPathNameW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.GetLongPathNameW(System.String,System.Text.StringBuilder,System.Int32)"/>
+            that takes care of all of the escaping for paths longer than
+            MAX_PATH, as well as buffer sizing, and converting Win32 error
+            codes to exceptions.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper">
+            <summary>FindFirstFileW_Wrapper is a wrapper around the Win32
+            FindFirstFileW() / FindNextFileW() / FindClose() functions.
+            It manages the find handle returned by FindFirstFileW(),
+            providing final clean-up via the IDisposable interface.
+            Also, most error scenarios are mapped to appropriate .Net
+            exceptions.  (ERROR_FILE_NOT_FOUND for FindFirstFileW()
+            and ERROR_NO_MORE_FILES for FindNextFileW() are treated as
+            status causing false to be returned.  These cases do not
+            lead to exceptions.)
+            
+            To use FindFirstFileW_Wrapper, instantiate an empty instance
+            using the no-arg constructor.  Initialize the wrapper by
+            calling FindFirstFileW() on it, just as you would normally
+            call FindFirstFileW().  Iterate through the found files by
+            calling FindNextFileW() on the wrapper, just as you would
+            normally call FindNextFileW().
+            
+            When you are done, you should call Dispose() to clean up.
+            FindClose() has also been provided should you want to keep
+            the wrapper around for later use without holding on to the
+            current find handle.
+            
+            The wrapper can be reused as needed by calling FindFirstFileW().
+            This will release the current find handle before reinitializing
+            the wrapper.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.IsDots(System.String)">
+            <summary>Tests if a directory is "." (the current directory)
+            or ".." (the parent directory).  This is handy because
+            FindFirstFileW() includes "." and ".." in its returned files
+            when you ask for all files in a directory using the "*"
+            pattern.</summary>
+            <param name="fileName">The file name to test.  This is the
+            simple file name, not the full path.</param>
+            <returns>true if fileName is "." or "..", false
+            otherwise.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.Finalize">
+            <summary>Finalizer for FindFirstFileW_Wrapper.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.Dispose(System.Boolean)">
+            <summary>Dispose helper method for disposable pattern
+            described at
+            http://msdn.microsoft.com/en-us/library/system.idisposable.dispose.aspx.
+            </summary>
+            <param name="disposing">true if Dispose(bool) is called from
+            IDisposable.Dispose(),  false if Dispose(bool) is called from
+            the finalizer.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.FindClose">
+            <summary>Close the current find handle, if any, associated
+            with this wrapper.
+            
+            Normally you will not need to invoke FindClose().  You can
+            call FindFirstFileW() to reinitialize the wrapper with a
+            new set of files or Dispose() when you are done.
+            
+            FindClose() will throw an exception if it fails for any
+            reason other than the current handle being
+            INVALID_HANDLE_VALUE.</summary>
+            <returns>true if the current handle was successfully closed,
+            or false if the current handle is invalid.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.FindFirstFileW(System.String,NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW@)">
+            <summary>Closes the existing find handle, if any, and
+            searches a directory for a file or subdirectory with a
+            name that matches a specific name (or partial name if
+            wildcards are used).
+            
+            For paths longer than MAX_PATH, see FindFirstFileW_Long().
+            
+            FindFirstFileW() will throw an appropriate exception if
+            there is a problem closing the existing find handle (if
+            present) or the underlying Win32 FindFirstFileW() call
+            fails for any reason other than ERROR_FILE_NOT_FOUND.
+            </summary>
+            <param name="fileName">The directory or path, and the file
+            name, which can include wildcard characters, for example,
+            an asterisk (*) or a question mark (?).
+            
+            This parameter should not end in a trailing backslash (\).
+            
+            If the string ends with a wildcard, period (.), or directory
+            name, the user must have access permissions to the root and
+            all subdirectories on the path.
+            
+            To extend the path name limit beyond MAX_PATH to 32,767 wide
+            characters, prepend "\\?\" to the path, or use
+            FindFirstFileW_Long().</param>
+            <param name="findFileData">A WIN32_FIND_DATAW structure that
+            receives information about a found file or directory.</param>
+            <returns>If the function succeeds, the return value is
+            true and the findFileData parameter contains information
+            about the next file or directory found. If no files are
+            found, findFileData is left unchanged and false is returned.
+            </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.FindNextFileW(NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW@)">
+            <summary>Continues a file search from a previous call to the
+            FindFirstFileW() or FindFirstFileW_Long() methods.</summary>
+            <param name="findFileData">A WIN32_FIND_DATAW structure
+            that receives information about the found file or
+            subdirectory.
+            
+            FindNextFileW() throws an exception if it encounters an
+            error other than reaching the end of the list.
+            </param>
+            <returns>If the function succeeds, the return value is
+            true and the findFileData parameter contains information
+            about the next file or directory found.  If there are no
+            more files, findFileData is left unchanged and false is
+            returned.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.FindFirstFileW_Long(System.String,NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW@)">
+            <summary>This function mimics the behavior of
+            FindFirstFileW(), but works for paths longer than MAX_PATH.
+            
+            Note that paths longer than MAX_PATH cannot be relative and
+            cannot contain wild cards, so we cannot truly duplicate the
+            behavior of FindFirstFileW() for arbitrary paths.
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the path yourself.</summary>
+            <param name="fileName">The directory or path, and the file
+            name.  The path must be absolute.  It cannot use forward
+            slashes to represent path separators, a period to represent
+            the current directory, or double dots to represent the parent
+            directory.</param>
+            <param name="findFileData">A WIN32_FIND_DATAW structure that
+            receives information about a found file or directory.</param>
+            <returns>true if at least one file was found, false if no
+            files were found</returns>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.disposed">
+            <summary>Set to true once Dispose() has been executed
+            once.</summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.Win32Wrap.FindFirstFileW_Wrapper.mFindHandle">
+            <summary>The current find handle we are iterating
+            over.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CreateFileW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAccess,NationalInstruments.TestStand.Utility.Win32.FileShare,System.IntPtr,NationalInstruments.TestStand.Utility.Win32.CreationDisposition,NationalInstruments.TestStand.Utility.Win32.FileAttributes,System.IntPtr)">
+            <summary>CreateFileW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CreateFileW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAccess,NationalInstruments.TestStand.Utility.Win32.FileShare,System.IntPtr,NationalInstruments.TestStand.Utility.Win32.CreationDisposition,NationalInstruments.TestStand.Utility.Win32.FileAttributes,System.IntPtr)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CreateDirectoryW(System.String,System.IntPtr)">
+            <summary>CreateDirectoryW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CreateDirectoryW(System.String,System.IntPtr)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CreateFileW_Long(System.String,NationalInstruments.TestStand.Utility.Win32.FileAccess,NationalInstruments.TestStand.Utility.Win32.FileShare,System.IntPtr,NationalInstruments.TestStand.Utility.Win32.CreationDisposition,NationalInstruments.TestStand.Utility.Win32.FileAttributes,System.IntPtr)">
+            <summary>CreateFileW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CreateFileW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAccess,NationalInstruments.TestStand.Utility.Win32.FileShare,System.IntPtr,NationalInstruments.TestStand.Utility.Win32.CreationDisposition,NationalInstruments.TestStand.Utility.Win32.FileAttributes,System.IntPtr)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also escapes the fileName argument with the appropriate
+            long path prefix (\\?\ or \\?\UNC\).</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CreateDirectoryW_Long(System.String,System.IntPtr)">
+            <summary>CreateDirectoryW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CreateDirectoryW(System.String,System.IntPtr)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also escapes the fileName argument with the appropriate
+            long path prefix (\\?\ or \\?\UNC\).</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.GetFileSizeEx(System.IntPtr)">
+            <summary>GetFileSizeEx() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.GetFileSizeEx(System.IntPtr,System.Int64@)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+            <returns>The 64-bit file size.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.WriteFile(System.IntPtr,System.Byte[])">
+            <summary>WriteFile() is a wrapper for 
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.WriteFile(System.IntPtr,System.Byte[],System.UInt32,System.UInt32@,System.IntPtr)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also converts the output numberOfBytesWritten parameter to a
+            return value and passes null for lpOverLapped for convenience.
+            </summary>
+            <param name="hFile">A handle to the file or I/O device (e.g.
+            file, file stream, physical disk, etc.)</param>
+            <param name="lpBuffer">A buffer containing the data to be written
+            to the file or device.</param>
+            <returns>The number of bytes to be written to the file or device.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.GetFileSize(System.IntPtr)">
+            <summary>GetFileSize() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.GetFileSize(System.IntPtr,System.UInt32@)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also handles the conversion of the 32-bit low and high sizes
+            to a single 64-bit ulong return value.</summary>
+            <returns>The 64-bit file size.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.MoveFileExW(System.String,System.String,NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags)">
+            <summary>MoveFileExW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.MoveFileExW(System.String,System.String,NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.MoveFileExW_Long(System.String,System.String,NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags)">
+            <summary>MoveFileExW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.MoveFileExW(System.String,System.String,NationalInstruments.TestStand.Utility.Win32.MoveFileExFlags)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also escapes the existingFileName and newFileName arguments
+            with the appropriate long path prefix (\\?\ or
+            \\?\UNC\).</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CopyFileW(System.String,System.String,System.Boolean)">
+            <summary>CopyFileW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CopyFileW(System.String,System.String,System.Boolean)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.CopyFileW_Long(System.String,System.String,System.Boolean)">
+            <summary>CopyFileW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.CopyFileW(System.String,System.String,System.Boolean)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also escapes the existingFileName and newFileName arguments
+            with the appropriate long path prefix (\\?\ or
+            \\?\UNC\).</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.DeleteFileW(System.String)">
+            <summary>DeleteFileW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.DeleteFileW(System.String)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.RemoveDirectoryW(System.String)">
+            <summary>RemoveDirectoryW() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.RemoveDirectoryW(System.String)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.DeleteFileW_Long(System.String)">
+            <summary>DeleteFileW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.DeleteFileW(System.String)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also escapes the fileName argument with the appropriate
+            long path prefix (\\?\ or \\?\UNC\).</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.RemoveDirectoryW_Long(System.String)">
+            <summary>RemoveDirectoryW_Long() is a wrapper for
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32.RemoveDirectoryW(System.String)"/>
+            that takes care of converting Win32 error codes to exceptions.
+            It also escapes the fileName argument with the appropriate
+            long path prefix (\\?\ or \\?\UNC\).</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.GetFileAttributesW(System.String)">
+            <summary>
+            GetFileAttributesW() is a wrapper for <see cref="M:NationalInstruments.TestStand.Utility.Win32.GetFileAttributesW(System.String)"/>   
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.GetFileAttributesW_Long(System.String)">
+            <summary>
+            GetFileAttributesW_Long() is a wrapper for <see cref="M:NationalInstruments.TestStand.Utility.Win32.GetFileAttributesW(System.String)"/>
+            that takes care of converting Win32 error codes to exceptions. It also escapes the path
+            argument with the appropriate long path prefix (\\?\ or \\?\UNC\).
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.SetFileAttributesW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAttributes)">
+            <summary>
+            SetFileAttributesW() is a wrapper for <see cref="M:NationalInstruments.TestStand.Utility.Win32.SetFileAttributesW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAttributes)"/>   
+            that takes care of converting Win32 error codes to exceptions.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.SetFileAttributesW_Long(System.String,NationalInstruments.TestStand.Utility.Win32.FileAttributes)">
+            <summary>
+            SetFileAttributesW_Long() is a wrapper for <see cref="M:NationalInstruments.TestStand.Utility.Win32.SetFileAttributesW(System.String,NationalInstruments.TestStand.Utility.Win32.FileAttributes)"/>
+            that takes care of converting Win32 error codes to exceptions. It also escapes the path
+            argument with the appropriate long path prefix (\\?\ or \\?\UNC\).
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Win32Wrap.ThrowExceptionForLastError">
+            <summary>This method calls
+            <see cref="M:NationalInstruments.TestStand.Utility.Win32Wrap.ThrowExceptionForWin32Error(System.Int32)"/> on the return
+            value of <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.ITestStandLocalizable">
+            <summary>
+            Use the ITestStandLocalizable to allow a custom user control to be localizable.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.ITestStandLocalizable.Localize(NationalInstruments.TestStand.Interop.API.Engine,System.String)">
+            <summary>
+            When called, this method will localize the control that it is called in using the 
+            <paramref name="engine"/> and <paramref name="category"/>. 
+            </summary>
+            <param name="engine">The engine used to localize</param>
+            <param name="category">The category used to localize</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Localizer">
+            <summary>
+            Use a localizer to localize the Text property of .net menu items or controls.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.#ctor(NationalInstruments.TestStand.Interop.API.Engine)">
+            <summary>
+            Creates a new Localizer object. Localizers created with this constructor do not localize all TestStand UI Controls when LocalizeForm is called.
+            </summary>
+            <param name="engine">
+            The Localizer uses the TestStand engine you pass to obtain the localized text for menu items and controls.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.#ctor(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr)">
+            <summary>
+            Creates a new Localizer object. 
+            </summary>
+            <param name="applicationMgr">
+            The Localizer uses the TestStand ApplicationMgr you pass to obtain the localized text for menu items and controls.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.#ctor(NationalInstruments.TestStand.Interop.UI.ApplicationMgr)">
+            <summary>
+            Creates a new Localizer object. 
+            </summary>
+            <param name="applicationMgr">
+            The Localizer uses the TestStand ApplicationMgr you pass to obtain the localized text for menu items and controls.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.#ctor(NationalInstruments.TestStand.Interop.API.Engine,NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr)">
+            <summary>
+            Creates a new Localizer object.
+            </summary>
+            <param name="engine">
+            The Localizer uses the TestStand engine you pass to obtain the localized text for menu items and controls.
+            </param>
+            <param name="applicationMgr">
+            The Localizer uses the ApplicationMgr you pass to localize text for the TestStand User Interface controls. You can pass null to this parameter if you do not wish to localize UI controls.
+            </param>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Localizer.Engine">
+            <remarks>
+            Returns the Engine with which the Localize was constructed.
+            </remarks>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.Localizer.ApplicationMgr">
+            <remarks>
+            Returns the ApplicationMgr with which the Localizer was constructed. Obsolete, use GetApplicationMgr instead.
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.GetApplicationMgr">
+            <remarks>
+            Returns the ApplicationMgr with which the Localizer was constructed.
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.LocalizeControls(System.Windows.Forms.Control.ControlCollection,System.String)">
+            <summary>
+            Localize the collection of controls in <paramref name="controls"/> with the string in 
+            <paramref name="category"/>
+            </summary>
+            <param name="controls">The controls collection to localize</param>
+            <param name="category">The category to localize with</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.LocalizeForm(System.Windows.Forms.Form,System.String,System.Boolean)">
+            <summary><para>This method localizes the text on a form to the current language the TestStand language setting selects.</para>
+            	<para>For each control on a form, this method uses the value of the Control.Text property as a tag to obtain a localized string from the TestStand string resource category you specify. If a localized string with that tag exists, the method replaces the value of the Control.Text property with the localized string. If the tag does not exist, the method does not alter the control text.</para>
+            	<para>The method also localizes controls that reside within other controls or tab pages.</para>
+            </summary>
+            <param name="form">Pass the form to localize.
+            </param>
+            <param name="category">Pass the category name of the TestStand string resource section that contains the localized strings for the form.
+            </param>
+            <param name="localizeMenu">Pass true to localize the menu item text for the items in the menu bar of the form. 
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.LocalizeContextMenu(System.Windows.Forms.ContextMenuStrip,System.String)">
+            <summary>
+            Localizes the text in all menu items for a context menu strip to the current language the 
+            TestStand language setting selects. For each menu item this method uses the value of the menu 
+            item Text property as a tag to obtain a localized string from the string from the TestStand 
+            string resource category you specify. If a localized string with that tag exists, the method 
+            replaces the value of the Control.Text property with the localized string; if the tag does 
+            not exist, the method does not alter the control text.
+            </summary>
+            <param name="menu">Pass the context menu strip to localize</param>
+            <param name="category">
+            Pass the category name of the TestStand string resource section that contains the localized 
+            strings for the form.
+            </param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Localizer.LocalizeNotifyIcon(System.Windows.Forms.NotifyIcon,System.String)">
+            <summary>
+            Localizes the text in a notify icon for a context menu strip to the current language the 
+            TestStand language setting selects. For each menu item in the context menu strip this 
+            method uses the value of the menu item Text property as a tag to obtain a localized string 
+            from the string from the TestStand string resource category you specify. If a localized 
+            string with that tag exists, the method replaces the value of the Control.Text property 
+            with the localized string; if the tag does not exist, the method does not alter the control 
+            text.
+            </summary>
+            <param name="icon">Pass the notify icon to localize</param>
+            <param name="category">
+            Pass the category name of the TestStand string resource section that contains the localized 
+            strings for the form.
+            </param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Tiler">
+            <remarks>
+            You can use this class for tiling forms or other objects when the Form.LayoutMdi method is not adequate or applicable
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Tiler.#ctor">
+            <summary>
+            Use a Tiler object to layout windows or other objects in a square or nearly square grid
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Tiler.SetNumTiles(System.Int32)">
+            <summary>
+            Specificies the number of tiles to partition into a square or nearly square grid
+            </summary>
+            <param name="numTiles">The number of tiles to layout in a grid</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Tiler.GetTilePosition(System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the tile coordinates of a specified tile in the grid of tiles 
+            </summary>
+            <param name="tileIndex">the index of a tile, from 0 to (number-of-tiles - 1)</param>
+            <param name="x">returns the x position of the tile, from 0 to (max-number-of-tiles-in-a-row - 1)</param>
+            <param name="y">returns the y position of the tile, from 0 to (max-number-of-tiles-in-a-column - 1)</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Tiler.TileWindows(System.Collections.ICollection,System.Drawing.Rectangle)">
+            <summary>
+            Lays out a collection of forms in a grid within the specified bounds
+            </summary>
+            <param name="forms">a collection of forms</param>
+            <param name="bounds">the rectangle within which to layout the forms</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LayoutPersister">
+            <remarks>
+            You can use this class for saving and loading control bounds or sizes to/from a TestStand application's configuration file.
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.SaveSizes(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.Windows.Forms.Control[])">
+            <summary>
+            Saves the height and width for each of the specified controls into a TestStand application's configuration file. 
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.SaveSizes(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.String,System.Windows.Forms.Control[])">
+            <summary>
+            Saves the height and width for each of the specified controls into a TestStand application's configuration file. This overload let you specify the name of the configuration file property that stores the information.
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="configurationPropertyName">Pass the name of the configuration file subproperty that stores the information</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.SaveBounds(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.Windows.Forms.Control[])">
+            <summary>
+            Saves the bounds for each of the specified controls into a TestStand application's configuration file. 
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.SaveBounds(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.String,System.Windows.Forms.Control[])">
+            <summary>
+            Saves the bounds for each of the specified controls into a TestStand application's configuration file. This overload let you specify the name of the configuration file property that stores the information.
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="configurationPropertyName">Pass the name of the configuration file subproperty that stores the information</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.LoadSizes(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.Windows.Forms.Control[])">
+            <summary>
+            Loads the height and width for each of the specified controls into a TestStand application's configuration file. You must call LoadSizes and SaveSizes with the same set of controls in the same order.
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.LoadSizes(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.String,System.Windows.Forms.Control[])">
+            <summary>
+            Loads the height and width for each of the specified controls into a TestStand application's configuration file. You must call LoadSizes and SaveSizes with the same set of controls in the same order. This overload let you specify the name of the configuration file property that stores the information.
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="configurationPropertyName">Pass the name of the configuration file subproperty that stores the information</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.LoadBounds(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.Windows.Forms.Control[])">
+            <summary>
+            Loads the bounds for each of the specified controls into a TestStand application's configuration file. You must call LoadBounds and SaveBounds with the same set of controls in the same order. 
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LayoutPersister.LoadBounds(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.String,System.Windows.Forms.Control[])">
+            <summary>
+            Loads the bounds for each of the specified controls into a TestStand application's configuration file. You must call LoadBounds and SaveBounds with the same set of controls in the same order. This overload let you specify the name of the configuration file property that stores the information.
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="configurationPropertyName">Pass the name of the configuration file subproperty that stores the information</param>
+            <param name="controls">Pass any number of controls</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.Splitters">
+            <remarks>
+            You can use this class to simplify the implementation of splitter bars when using the border properties of TestStand UI Controls.
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Splitters.DragSplitter(System.Windows.Forms.Control,System.Windows.Forms.Control,System.Int32,System.Int32,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Call this method from the BorderDragged event for a TestStand control that has a drag border enabled in order to resize the control that owns the drag border and
+            the control that shares the area split by the border. This method has been tested only with one or fewer borders per control. It may require modification for use with more than one border per control.
+            /// </summary>
+            <param name="master">Pass the control that receives the BorderDragged event.</param>
+            <param name="slave">Pass the control that shares the area split by the drag border of the master control.</param>
+            <param name="newX">Pass the value of newX received in the BorderDragged event handler.</param>
+            <param name="newY">Pass the value of newY received in the BorderDragged event handler.</param>
+            <param name="newWidth">Pass the value of newWidth received in the BorderDragged event handler.</param>
+            <param name="newHeight">Pass the value of newHeight received in the BorderDragged event handler.</param>
+            <param name="bordersChanged">Pass the value of bordersChanged received in the BorderDragged event handler.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.Splitters.DivideSpaceBetweenPanes(System.Boolean,System.Int32,System.Int32,System.Windows.Forms.Control[])">
+            <summary>
+            Call this method to divide an area between two or more panes. If the area is larger or smaller than the current sum of the pane sizes, the available 
+            area is distributed among the open panes in proportion to their current relative sizes.
+            This method has been tested only with one or fewer borders per control. It may require modification for use with more than one border per control.
+            /// </summary>
+            <param name="verticalSplitter">Pass true if the controls are separated by vertical drag borders that divide a horizontal space. Pass false if the controls are separated by horizontal drag borders that divide a vertical space.</param>
+            <param name="spaceStart">Pass the start of area that the panes share. If the splitters are vertical, pass the X coordinate for the start of the area. If the splitters are horizontal, pass the Y coordinate for the start of the area.</param>
+            <param name="spaceEnd">Pass the end of area that the panes share. If the splitters are vertical, pass the X coordinate for the end of the area. If the splitters are horizontal, pass the Y coordinate for the end of the area.</param>
+            <param name="panes">Pass the controls that share the specified area. For vertical splitters, pass the controls in order from left to right. For horizontal splitters, pass the controls in order from top to bottom.</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.ErrorMessage">
+            <remarks>
+            Use this class to help format error messages
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.ErrorMessage.AppendCodeAndDescription(NationalInstruments.TestStand.Interop.UI.Ax.AxApplicationMgr,System.String,System.Int64)">
+            <summary>
+            Returns the errorString with the error code and code description appended to it if the code is a TestStand error code.
+            </summary>
+            <param name="applicationMgr">Pass the ApplicationMgr control for the application</param>
+            <param name="errorMessage">Pass the error message</param>
+            <param name="errorCode">Pass the error code</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.ApplicationWrapper">
+            <remarks>
+            This class exists to provide an exception suppressing wrapper around System.Windows.Forms.Application.Run
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.ApplicationWrapper.Run(System.Windows.Forms.Form)">
+            <remarks>
+            This method is identical to System.Windows.Forms.Application.Run() except that it suppresses a harmless exception that can occur during dll unloading if the application exited while 
+            a menu is open. The error occurs only in a very specific interaction between Windows forms, Windows timer messages, and COM components. This is a simple workaround.
+            </remarks>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.ApplicationWrapper.Run(System.Windows.Forms.ApplicationContext)">
+            <remarks>
+            This method is identical to System.Windows.Forms.Application.Run() except that it suppresses a harmless exception that can occur during dll unloading if the application exited while 
+            a menu is open. The error occurs only in a very specific interaction between Windows forms, Windows timer messages, and COM components. This is a simple workaround.
+            </remarks>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain">
+            <remarks>
+            You can use this class to launch the application in a separate AppDomain. This class ensures
+            that the TestStand Engine is destructed after the application exits so that the Engine does
+            not report incorrect object leaks.
+            </remarks>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegate">
+            <summary>
+            Delegate for the main entry point to the application.
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegateWithArgs">
+            <summary>
+            Delegate for the main entry point to the application with command-line arguments
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegateWithArgsReturnCode">
+            <summary>
+            Delegate for the main entry point to the application with command-line arguments and a return code.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.DisplayErrorMessageDelegate">
+            <summary>
+            Delegate for displaying error messages from the LaunchProtected method
+            </summary>
+            <param name="caption">Receives the caption that should be displayed in the message</param>
+            <param name="message">Receives the error message to display</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.Launch(NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegateWithArgs,System.String[])">
+            <summary>
+            Launches the application in a new AppDomain. This method can throw exceptions when using
+            an old 32-bit Engine. Use LaunchProtected instead.
+            </summary>
+            <param name="entryPoint">Pass the main entry point to the application</param>
+            <param name="args">Command-line arguments</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.Launch(NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegate)">
+            <summary>
+            Launches the application in a new AppDomain. This method can throw exceptions when using
+            an old 32-bit Engine. Use LaunchProtected instead.
+            </summary>
+            <param name="entryPoint">Pass the main entry point to the application</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.LaunchProtected(NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegateWithArgs,System.String[],System.String,NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.DisplayErrorMessageDelegate,System.Boolean)">
+            <summary>
+            Launches the application in a new AppDomain. If the engine cannot be created displays 
+            an error message. Handles the specific case that the engine cannot be created in 
+            process because a version of TestStand that is only 32-bit is active and this 
+            application is 64-bit.
+            </summary>
+            <param name="entryPoint">Pass the main entry point to the application</param>
+            <param name="applicationName">The name of the application to display in an error message in case of errors.</param>
+            <param name="args">Pass the arguments expected by the <paramref name="entryPoint"/> method.</param>
+            <param name="displayErrorMessage">Pass the method to use if an error message needs to be displayed</param>
+            <param name="parseArgs">Pass true to enable the application to parse TestStand specific arguments, such as the "/env" flag, from the command line. Pass false if your application handles all command line arguments manually</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.LaunchProtected(NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegate,System.String,NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.DisplayErrorMessageDelegate)">
+            <summary>
+            Launches the application in a new AppDomain. If the engine cannot be created displays 
+            an error message. Handles the specific case that the engine cannot be created in 
+            process because a version of TestStand that is only 32-bit is active and this 
+            application is 64-bit.
+            </summary>
+            <param name="entryPoint">Pass the main entry point to the application</param>
+            <param name="applicationName">The name of the application to display in an error message in case of errors.</param>
+            <param name="displayErrorMessage">Pass the method to use if an error message needs to be displayed</param>
+            
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.LaunchProtectedReturnCode(NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.MainEntryPointDelegateWithArgsReturnCode,System.String[],System.String,NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.DisplayErrorMessageDelegate,System.Boolean)">
+            <summary>
+            Launches the application in a new AppDomain. If the engine cannot be created displays
+            an error message. Handles the specific case that the engine cannot be created in process
+            because a version of TestStand that is only 32-bit is active and this application
+            is 64-bit. Will return the return code given by entryPoint. If the Application cannot
+            be run or unloaded appropriately, this method will return the code -1000.
+            </summary>
+            <param name="entryPoint"></param>
+            <param name="args"></param>
+            <param name="applicationName"></param>
+            <param name="displayErrorMessage"></param>
+            <param name="parseArgs">Pass true to enable the application to parse TestStand specific arguments, such as the "/env" flag, from the command line. Pass false if your application handles all command line arguments manually</param>
+            <returns></returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LaunchTestStandApplicationInNewDomain.SetEngineEnvironment(System.String)">
+            <summary>
+            Initialize the environment using the provided path. This method must be called before creating an instance of the TestStand engine.
+            </summary>
+            <param name="engineEnvironmentPath"></param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LongPath">
+             <summary>
+             This is a utilitiy class to help work with path names greater than
+             MAX_PATH.
+            
+             Note:  On Windows 10, you can enable long paths in the file system by setting the registry value
+             HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled.  See also
+             https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry.
+             I am not sure if or how this setting affects .NET calls, but it will be useful for testing
+             if nothing else.
+             </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.LongPath.DirectorySeparatorChar">
+            <summary>Provided for convenience.  <see cref="F:System.IO.Path.DirectorySeparatorChar"/></summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.LongPath.AltDirectorySeparatorChar">
+            <summary>Provided for convenience.  <see cref="F:System.IO.Path.AltDirectorySeparatorChar"/></summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.Utility.LongPath.VolumeSeparatorChar">
+            <summary>Provided for convenience.  <see cref="F:System.IO.Path.VolumeSeparatorChar"/></summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.IsPathRooted(System.String)">
+            <summary>Provided for convenience.  <see cref="M:System.IO.Path.IsPathRooted(System.String)"/></summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.UsesDriveLetter(System.String)">
+            <summary>Very simple check to see if the path begins with a drive letter (e.g. "C:").
+            
+            Because UsesDriveLetter() is an internal helper function, it does not normalize the path.  You must
+            do that if you want to.</summary>
+            <param name="path">The path to evaluate.</param>
+            <returns>true if path begins with a drive letter; false otherwise.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.IsAbsolute(System.String)">
+            <summary>Checks if the path is absolute.
+            
+            Because InAbsolute() is an internal helper function, it does not normalize the path.  You must do that
+            if you want to.</summary>
+            <param name="path">The path to evaluate.</param>
+            <returns>true if path is absolute; false otherwise.</returns>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LongPath.PathNotAbsoluteException">
+            <summary>Long paths cannot be relative.  This exception is thrown when one of our path functions
+            encounters a relative path.
+            
+            See also http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247.aspx
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.PathNotAbsoluteException.#ctor">
+            <summary>Construct a new PathNotAbsoluteException.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.CheckAndNormalizePath(System.String,System.String,System.Boolean)">
+             <summary>This is a helper function for methods such as
+             <see cref="M:NationalInstruments.TestStand.Utility.LongPath.GetPathRoot(System.String)"/> and
+             <see cref="M:NationalInstruments.TestStand.Utility.LongPath.GetDirectoryName(System.String)"/>.
+             It checks for conditions that the C# documentation
+             specifies lead to argument exceptions.  It also performs
+             normalization. I found when reverse engineering some of the C#
+             path methods that they were implicitly normalizing path
+             arguments in multiple ways:
+             
+             1.  They trim leading and trailing whitespace.
+             2.  They replace all slashes with backslashes.
+             3.  Runs of consecutive directory separators are coalesced.
+             
+             This method performs said normalization.
+            
+             In addition, this method will optionally evaluate "." and ".." chacters.  Note that doing so requires
+             path be absolute.  If collapseDots is true and path is relative, a PathNotAbsoluteException is thrown.
+             
+             Checking and normalization are combined because some of the
+             checking needs to happen before and some after
+             normalization.</summary>
+             <param name="path">The path to normalize.</param>
+             <param name="paramName">The name of the paramter (to use with exceptions.)</param>
+             <param name="collapseDots">Evaluate the ".." and "." chacters in the specified path.</param>
+             <returns>A normalized version of the path.</returns>
+             <exception cref="T:System.ArgumentException">If the path is empty,
+             contains invalid path characters, or is not of legal
+             form.</exception>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetDirectoryName(System.String)">
+            <summary>This function mimics the behavior of
+            <see cref="M:System.IO.Path.GetDirectoryName(System.String)"/>
+            but works on paths longer than MAX_PATH.
+            
+            NOTE:  Every attempt was made to make this method match the
+            behavior of Path.GetDirectoryName() as closely as possible,
+            but the actual behavior of Path.GetDirectoryName() is more
+            complex than documented at MSDN.  We had to reverse engineer
+            the actual behavior for many cases.  Our implementation may
+            miss some corner cases, particularly of the normalization
+            process.  This implementation was tested and works for most
+            reasonable cases.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetFullPath(System.String)">
+            <summary>This function mimics the behavior of
+            <see cref="M:System.IO.Path.GetFullPath(System.String)"/> but works for
+            paths longer than MAX_PATH.  Note that paths longer than
+            MAX_PATH cannot be relative, so we cannot truly duplicate the
+            behavior of Path.GetFullPath() for arbitrary paths.
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the path yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetPathRoot(System.String)">
+             <summary>This function mimics the behavior of
+             <see cref="M:System.IO.Path.GetPathRoot(System.String)"/>
+             but works on paths longer than MAX_PATH.
+            
+             NOTE:  Every attempt was made to make this method match the
+             behavior of Path.GetPathRoot() as closely as possible,
+             but the actual behavior of Path.GetPathRoot() is more
+             complex than documented at MSDN.  We had to reverse engineer
+             the actual behavior for many cases.  Our implementation may
+             miss some corner cases, particularly of the normalization
+             process.  This implementation was tested and works for most
+             reasonable cases.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetFileName(System.String)">
+            <summary>
+            Convenience method which calls into <see cref="M:System.IO.Path.GetFileName(System.String)"/>
+            </summary>
+            <param name="path">The path to get the file name for</param>
+            <returns>The file name of the path passed as a parameter.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.Combine(System.String,System.String)">
+            <summary>
+            Convenience method which calls <see cref="M:System.IO.Path.Combine(System.String,System.String)"/>
+            </summary>
+            <param name="path1">The first path to combine. </param>
+            <param name="path2">The second path to combine. </param>
+            <returns>
+            The combined paths. If one of the specified paths is a zero-length string, this method 
+            returns the other path. If <paramref name="path2"/> contains an absolute path, this 
+            method returns <paramref name="path2"/>.
+            </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.Combine(System.String[])">
+            <summary>
+            Convenience method which calls <see cref="M:System.IO.Path.Combine(System.String[])"/>.
+            </summary>
+            <param name="paths">An array of parts of the path.</param>
+            <returns>The combined paths.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetFileNameWithoutExtension(System.String)">
+            <summary>
+            Convenience method that calls <see cref="M:System.IO.Path.GetFileNameWithoutExtension(System.String)"/>
+            </summary>
+            <param name="path">The path of the file. </param>
+            <returns>
+            The string returned by <see cref="M:NationalInstruments.TestStand.Utility.LongPath.GetFileName(System.String)"/>, minus the last period (.) and all 
+            characters following it.
+            </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetExtension(System.String)">
+            <summary>
+            Convenience method that calls <see cref="M:System.IO.Path.GetExtension(System.String)"/>
+            </summary>
+            <param name="path">The path of the file. </param>
+            <returns>
+            The extension of the specified path (including the period "."), or null, or 
+            String.Empty. If <paramref name="path"/> is null, GetExtension returns null. If 
+            <paramref name="path"/> does not have extension information, GetExtension returns 
+            <see cref="F:System.String.Empty"/>.
+            </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetInvalidFileNameChars">
+            <summary>
+            Convenience method that calls <see cref="M:System.IO.Path.GetInvalidFileNameChars"/>
+            </summary>
+            <returns>An array containing the characters that are not allowed in file names.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongPath.GetInvalidPathChars">
+            <summary>
+            Convenience method that calls <see cref="M:System.IO.Path.GetInvalidPathChars"/>
+            </summary>
+            <returns>An array containing the characters that are not allowed in path names.</returns>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LongFileInfo">
+            <summary>
+            This is a utility class to help work with path names greater than MAX_PATH
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.LongFileInfo.FullName">
+            <summary>
+            The full path of the file
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.LongFileInfo.Initialized">
+            <summary>
+            Whether the values have been initialized. 
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFileInfo.Refresh">
+            <summary>
+            Refreshes the information in the long file info structure. 
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.LongFileInfo.Length">
+            <summary>
+            Gets the size, in bytes, of the current file.
+            </summary>
+            <returns>The size of the current file in bytes.</returns>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.LongFileInfo.CreationTime">
+            <summary>
+            The creation time of the file. Note that this value is initialized the first time it 
+            is read and it will not be refreshed unless you manually call refresh.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.LongFileInfo.LastAccessTime">
+            <summary>
+            The last time the file was accessed. Note that this value is initialized the first time
+            it is read and it will not be refreshed unless you manually call refresh.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.TestStand.Utility.LongFileInfo.LastWriteTime">
+            <summary>
+            The modification time of the file. Note that this value is initialized the first time
+            it is read and it will not be refreshed unless you manually call refresh.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFileInfo.#ctor(System.String)">
+            <summary>
+            Creates a new instance of LongFileInfo with the file specified by <paramref name="fileName"/>
+            </summary>
+            <param name="fileName">The path of the file</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFileInfo.#ctor(System.String,NationalInstruments.TestStand.Utility.Win32.WIN32_FIND_DATAW)">
+            <summary>
+            Creates a new instance of LongFileInfo using the information contained in 
+            <paramref name="fileData"/> to get the date information.
+            </summary>
+            <param name="fullName">The path of the file</param>
+            <param name="fileData">The data structure which contains the dates for the files</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LongFile">
+            <summary>This is a utilitiy class to help work with path names
+            greater than MAX_PATH.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.Exists(System.String)">
+            <summary> This function mimics the behavior of
+            <see cref="M:System.IO.File.Exists(System.String)"/>
+            but works on paths longer than MAX_PATH.
+            Note that paths longer than MAX_PATH cannot be relative,
+            so we cannot duplicate the behavior of 
+            File.Exists() exactly.  This Exists() method requires
+            an absolute path (even for short paths).
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the path yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.Move(System.String,System.String)">
+            <summary> This function mimics the behavior of
+            <see cref="M:System.IO.File.Move(System.String,System.String)"/>
+            but works on paths longer than MAX_PATH.  Note that paths longer
+            than MAX_PATH cannot be relative, so we cannot duplicate
+            the behavior of File.Move() exactly.  This Move() method requires
+            an absolute path (even for short paths).  Also, the exception
+            behavior is not identical to that specified in File.Move().
+            You may get different types of
+            <see cref="T:System.IO.IOException"/> than specified.  You may
+            also get <see cref="T:System.ComponentModel.Win32Exception"/>.
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the paths yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.Copy(System.String,System.String)">
+             <summary> This function mimics the behavior of
+             <see cref="M:System.IO.File.Copy(System.String,System.String)"/>
+             but works on paths longer than MAX_PATH.  Note that paths longer
+             than MAX_PATH cannot be relative, so we cannot duplicate
+             the behavior of File.Copy() exactly.  This Copy() method requires
+             an absolute path (even for short paths).  Also, the exception
+             behavior is not identical to that specified in File.Copy().
+             You may get different types of
+             <see cref="T:System.IO.IOException"/> than specified.  You may
+             also get <see cref="T:System.ComponentModel.Win32Exception"/>.
+            
+             Note:  This method will escape any path you give it with "\\?\"
+             (or "\\?\UNC\" if appropriate). You should not prepend the
+             "\\?\" to the paths yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.Copy(System.String,System.String,System.Boolean)">
+             <summary> This function mimics the behavior of
+             <see cref="M:System.IO.File.Copy(System.String,System.String,System.Boolean)"/>
+             but works on paths longer than MAX_PATH.  Note that paths longer
+             than MAX_PATH cannot be relative, so we cannot duplicate
+             the behavior of File.Copy() exactly.  This Copy() method requires
+             an absolute path (even for short paths).  Also, the exception
+             behavior is not identical to that specified in File.Copy().
+             You may get different types of
+             <see cref="T:System.IO.IOException"/> than specified.  You may
+             also get <see cref="T:System.ComponentModel.Win32Exception"/>.
+            
+             Note:  This method will escape any path you give it with "\\?\"
+             (or "\\?\UNC\" if appropriate). You should not prepend the
+             "\\?\" to the paths yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.Delete(System.String)">
+             <summary> This function mimics the behavior of
+             <see cref="M:System.IO.File.Delete(System.String)"/>
+             but works on paths longer than MAX_PATH.  Note that paths longer
+             than MAX_PATH cannot be relative, so we cannot duplicate
+             the behavior of File.Delete() exactly.  This Delete() method
+             requires an absolute path (even for short paths).  Also, the
+             exception behavior is not identical to that specified in
+             File.Delete().  You may get different types of
+             <see cref="T:System.IO.IOException"/> than specified.  You may
+             also get <see cref="T:System.ComponentModel.Win32Exception"/>.
+            
+             Note:  This method will escape any path you give it with "\\?\"
+             (or "\\?\UNC\" if appropriate). You should not prepend the
+             "\\?\" to the path yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.GetAttributes(System.String)">
+            <summary>
+            Gets the FileAttributes of the file on the <paramref name="path"/>.
+            </summary>
+            <param name="path">The path to the file.</param>
+            <returns>The FileAttributes of the file on the path.</returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.SetAttributes(System.String,NationalInstruments.TestStand.Utility.Win32.FileAttributes)">
+            <summary>
+            Sets the specified <paramref name="fileAttributes"/> of the file on the specified 
+            <paramref name="path"/>. 
+            </summary>
+            <param name="path">The path to the file.</param>
+            <param name="fileAttributes">A bitwise combination of the enumeration values.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongFile.WriteAllText(System.String,System.String)">
+            <summary>
+            Creates a new file, writes the specified string to the file, and then closes the file.
+            If the target file already exists, it is overwritten.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The string to write to the file.</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.LongDirectory">
+            <summary>
+            This is a utilitiy class to help work with path names greater than
+            MAX_PATH.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongDirectory.Exists(System.String)">
+            <summary>
+            This function mimics the behavior of
+            <see cref="M:System.IO.Directory.Exists(System.String)"/>
+            but works on paths longer than MAX_PATH.
+            Note that paths longer than MAX_PATH cannot be relative,
+            so we cannot duplicate the behavior of 
+            Directory.Exists() exactly.  This Exists() method requires
+            an absolute path (even for short paths).
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the paths yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongDirectory.Delete(System.String,System.Boolean)">
+            <summary>
+            This function mimics the behavior of
+            <see cref="M:System.IO.Directory.Delete(System.String,System.Boolean)"/>
+            but works on paths longer than MAX_PATH.
+            Note that paths longer than MAX_PATH cannot be relative,
+            so we cannot duplicate the behavior of 
+            Directory.Delete() exactly.  This Delete() method requires
+            an absolute path (even for short paths).
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the paths yourself.</summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongDirectory.CreateDirectory(System.String)">
+            <summary>This function mimics the behavior of
+            <see cref="M:System.IO.Directory.CreateDirectory(System.String)"/>
+            but works on paths longer than MAX_PATH.
+            Note that paths longer than MAX_PATH cannot be relative,
+            so we cannot duplicate the behavior of 
+            Directory.CreateDirectory() exactly.  This method requires
+            an absolute path (even for short paths).
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the paths yourself.
+            </summary>
+            <param name="path">The directory path to create.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongDirectory.GetFiles(System.String)">
+            <summary>This function mimics the behavior of
+            <see cref="M:System.IO.Directory.GetFiles(System.String)"/>
+            but works on paths longer than MAX_PATH.
+            Note that paths longer than MAX_PATH cannot be relative,
+            so we cannot duplicate the behavior of 
+            Directory.GetFiles() exactly.  This method requires
+            an absolute path (even for short paths).
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the paths yourself.
+            </summary>
+            <param name="path">The full path name of the directory to get
+            files from.</param>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.LongDirectory.GetDirectories(System.String)">
+            <summary>This function mimics the behavior of
+            <see cref="M:System.IO.Directory.GetDirectories(System.String)"/>
+            but works on paths longer than MAX_PATH.
+            Note that paths longer than MAX_PATH cannot be relative,
+            so we cannot duplicate the behavior of 
+            Directory.GetDirectories() exactly.  This method requires
+            an absolute path (even for short paths).
+            
+            Note:  This method will escape any path you give it with "\\?\"
+            (or "\\?\UNC\" if appropriate). You should not prepend the
+            "\\?\" to the paths yourself.
+            </summary>
+            <param name="path">The full path name of the directory to get
+            directories from.</param>
+        </member>
+        <member name="T:NationalInstruments.TestStand.Utility.ExternalAutoPropsPanelSupport">
+            <summary>
+            This class contains utility functions for use with the AutoPropsPanel feature.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.Utility.ExternalAutoPropsPanelSupport.ConvertTSPropertyToDnValue``1(NationalInstruments.TestStand.Interop.API.PropertyObject)">
+             <summary>
+             Create an instance of a .NET struct and intialize it from a PropertyObject.
+            
+             The TestStand PropetyObject must exactly match the desired .NET value type.  </summary>
+             <typeparam name="T">A .NET value type.</typeparam>
+             <param name="tsProp">A TestStand PropertyObject to convert.</param>
+             <returns>An instance of the specified .NET type initialized with the values from tsProp.</returns>
+        </member>
+    </members>
+</doc>

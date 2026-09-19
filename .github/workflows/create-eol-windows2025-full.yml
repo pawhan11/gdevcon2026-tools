@@ -1,0 +1,132 @@
+name: Create ctc-eol-windows-2025-full image
+
+on:
+  workflow_dispatch:
+  
+  
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  build:
+    runs-on: ctc-windows-2025-bare
+    snapshot:
+      image-name: ctc-eol-windows-2025-full
+    steps:
+      - name: Install Git (required for checkout)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          $ProgressPreference = "SilentlyContinue"
+          [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
+
+          Write-Host "Finding latest Git for Windows release..."
+          $releasesApi = "https://api.github.com/repos/git-for-windows/git/releases/latest"
+          $release = Invoke-RestMethod -Uri $releasesApi -Headers @{ "User-Agent" = "PowerShell" }
+          $asset = $release.assets | Where-Object { $_.name -like "Git-*-64-bit.exe" } | Select-Object -First 1
+          if (-not $asset) { throw "Could not find Git 64-bit installer" }
+
+          $installerPath = Join-Path $env:TEMP $asset.name
+          Write-Host "Downloading $($asset.name)..."
+          Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $installerPath
+
+          Write-Host "Installing Git for Windows..."
+          $process = Start-Process -FilePath $installerPath -ArgumentList @(
+              "/VERYSILENT", "/NORESTART", "/NOCANCEL", "/SP-",
+              "/CLOSEAPPLICATIONS", "/RESTARTAPPLICATIONS",
+              "/o:PathOption=CmdTools", "/o:BashTerminalOption=ConHost",
+              "/o:EnableSymlinks=Enabled", "/COMPONENTS=gitlfs"
+          ) -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Git installer failed with exit code $($process.ExitCode)" }
+          Remove-Item $installerPath -Force
+
+          # Add Git to PATH for current and subsequent steps
+          $gitPath = "C:\Program Files\Git\bin"
+          $env:PATH = "$gitPath;$env:PATH"
+          [Environment]::SetEnvironmentVariable("PATH", "$([Environment]::GetEnvironmentVariable('PATH', 'Machine'));$gitPath", "Machine")
+          echo "$gitPath" >> $env:GITHUB_PATH
+
+          & "$gitPath\git.exe" config --system --add safe.directory "*"
+
+          Write-Host "Git for Windows installed successfully"
+
+          # Install Git LFS
+          Write-Host "Finding latest Git LFS release..."
+          $lfsReleasesApi = "https://api.github.com/repos/git-lfs/git-lfs/releases/latest"
+          $lfsRelease = Invoke-RestMethod -Uri $lfsReleasesApi -Headers @{ "User-Agent" = "PowerShell" }
+          $lfsAsset = $lfsRelease.assets | Where-Object { $_.name -like "git-lfs-windows-amd64-*.zip" } | Select-Object -First 1
+          if (-not $lfsAsset) { throw "Could not find Git LFS Windows installer" }
+
+          $lfsZipPath = Join-Path $env:TEMP $lfsAsset.name
+          $lfsExtractPath = Join-Path $env:TEMP "git-lfs"
+          Write-Host "Downloading $($lfsAsset.name)..."
+          Invoke-WebRequest -Uri $lfsAsset.browser_download_url -OutFile $lfsZipPath
+
+          Expand-Archive -Path $lfsZipPath -DestinationPath $lfsExtractPath -Force
+          $lfsExe = Get-ChildItem -Path $lfsExtractPath -Filter "git-lfs.exe" -Recurse | Select-Object -First 1
+          Copy-Item -Path $lfsExe.FullName -Destination "$gitPath\git-lfs.exe" -Force
+          Remove-Item $lfsZipPath -Force
+          Remove-Item $lfsExtractPath -Recurse -Force
+
+          & "$gitPath\git-lfs.exe" install
+          Write-Host "Git LFS installed successfully"
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          lfs: 'true'
+    
+      - name: Configure Base Image
+        shell: powershell
+        run: scripts/runner/Configure-BaseImage.ps1
+                 
+      - name: Install Powershell Core
+        shell: powershell
+        run: scripts/runner/Install-PowershellCore.ps1
+        
+      - name: Install .NET SDK
+        shell: powershell
+        run: scripts/runner/Install-DotnetSDK.ps1 -SdkVersions "8.0.413","10.0.101"
+
+      - name: Install CycloneDX CLI
+        shell: powershell
+        run: scripts/runner/Install-CycloneDxCli.ps1 -Version "v0.33.1"
+        
+      - name: Install NI Package Manager
+        shell: powershell
+        run: scripts/runner/Install-NIPackageManager.ps1
+
+      - name: Install NI LabVIEW 2026
+        shell: powershell
+        run: scripts/runner/Install-LabVIEW-2026.ps1
+        
+      - name: Install NI TestStand 2025
+        shell: powershell
+        env:
+          TS_SERIALNUMBER: ${{ secrets.TESTSTAND_SN }}
+        run: scripts/runner/Install-TestStand-2025.ps1 -SerialNumber $env:TS_SERIALNUMBER
+
+      - name: Clean up workspace and caches
+        shell: powershell
+        if: always()
+        run: |
+          # Remove checked out repo
+          Remove-Item -Path $env:GITHUB_WORKSPACE -Recurse -Force -ErrorAction SilentlyContinue
+          Write-Host "Workspace cleaned up"
+
+          # Remove NuGet package cache (from dotnet build)
+          Remove-Item -Path "$env:USERPROFILE\.nuget\packages" -Recurse -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "$env:LOCALAPPDATA\NuGet\Cache" -Recurse -Force -ErrorAction SilentlyContinue
+          Write-Host "NuGet caches cleaned up"
+
+          # Remove NI Package Manager caches
+          Remove-Item -Path "C:\ProgramData\National Instruments\NI Package Manager\packages\*.nipkg" -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "C:\ProgramData\National Instruments\MDF\ProductCache" -Recurse -Force -ErrorAction SilentlyContinue
+          Write-Host "NI caches cleaned up"
+
+          # Clear temp directory
+          Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
+          Write-Host "Temp directory cleaned up"
+

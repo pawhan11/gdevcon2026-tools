@@ -1,0 +1,1841 @@
+<?xml version="1.0" encoding="utf-8"?><doc><members>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnection">
+      <summary>Represents a connection from an Application Manager control to a control that displays the list of adapters. Use the connected control to select an adapter to which to set the Engine.DefaultAdapter property.&#13; <para>Note:  This class currently contains no properties or methods. Properties or methods might be added to this class in future versions of TestStand.&#13; </para></summary>
+      <seealso cref="AdapterListConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections">
+      <summary>A collection of AdapterListConnection objects.</summary>
+      <seealso cref="AdapterListConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <param name="itemIndex">[In] Specifies the zero-based index of the item to retrieve.</param>
+      <seealso cref="AdapterListConnection" />
+      <seealso cref="AdapterListConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections.Add(System.Object)">
+      <summary>Creates and adds a new AdapterListConnection to the collection.</summary>
+      <returns>The AdapterListConnection this method creates.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="AdapterListConnection" />
+      <seealso cref="AdapterListConnections.Remove" />
+      <seealso cref="ApplicationMgr.ConnectAdapterList" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="AdapterListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections.FromControl(System.Object)">
+      <summary>Returns the AdapterListConnection connected to the uiObj parameter. When no AdapterListConnection is connected to the user interface object the parameter specifies, this method returns <c>NULL</c> .</summary>
+      <param name="uiObj">[In] Specifies a connected user interface object.</param>
+      <seealso cref="AdapterListConnection" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.AdapterListConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the AdapterListConnection is removed. Returns <c>False</c> when the AdapterListConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="AdapterListConnection" />
+      <seealso cref="AdapterListConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ApplicationMgrConnections">
+      <summary>Contains the connections for an Application Manager control. Use the ApplicationMgr.Connections property to obtain a collection of ApplicationMgrConnections objects.</summary>
+      <seealso cref="ApplicationMgr.Connections" />
+      <seealso cref="ExecutionViewMgrConnections" />
+      <seealso cref="SequenceFileViewMgrConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ApplicationMgrConnections.AdapterList">
+      <summary>Collection of AdapterListConnection objects.</summary>
+      <seealso cref="AdapterListConnection" />
+      <seealso cref="AdapterListConnections" />
+      <seealso cref="ApplicationMgr.ConnectAdapterList" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ApplicationMgrConnections.Caption">
+      <summary>Collection of CaptionConnection objects.</summary>
+      <seealso cref="ApplicationMgr.ConnectCaption" />
+      <seealso cref="CaptionConnection" />
+      <seealso cref="CaptionConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ApplicationMgrConnections.Command">
+      <summary>Collection of CommandConnection objects.</summary>
+      <seealso cref="ApplicationMgr.ConnectCommand" />
+      <seealso cref="CommandConnection" />
+      <seealso cref="CommandConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnection">
+      <summary>Represents a connection from the ExecutionView Manager control to a control that displays the callstack. You can use the connected control to change the selected sequence context when the execution is paused.&#13; <para>Note:  This class currently contains no properties or methods. Properties or methods might be added to this class in future versions of TestStand.&#13; </para></summary>
+      <seealso cref="CallStackConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections">
+      <summary>A collection of CallStackConnection objects.</summary>
+      <seealso cref="CallStackConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="CallStackConnection" />
+      <seealso cref="CallStackConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections.Add(System.Object)">
+      <summary>Creates and adds a new CallStackConnection to the collection.</summary>
+      <returns>New CallStackConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="CallStackConnections.Remove" />
+      <seealso cref="ExecutionViewMgr.ConnectCallStack" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="CallStackConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections.FromControl(System.Object)">
+      <summary>Returns the CallStackConnection connected to the UI object.</summary>
+      <returns>CallStackConnection connected to this user interface object. When no CallStackConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CallStackConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the CallStackConnection is removed. Returns <c>False</c> when the CallStackConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="CallStackConnection" />
+      <seealso cref="CallStackConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnection">
+      <summary>Represents a connection to a caption source.</summary>
+      <seealso cref="CaptionConnections" />
+      <seealso cref="CaptionSources" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnection.FormatExpression">
+      <summary>Specifies a format expression to evaluate when generating the caption text.</summary>
+      <remarks>For CaptionSource_MacroExpression , specify a format expression that evaluates to a string value that contains macros that specify other caption sources. For all other caption sources, specify a format expression that evaluates to a string value that contains the characters <c>&#37;1</c> . This method replaces the <c>&#37;1</c> characters with the text from the caption source. Pass an empty string to use the default format for the caption source.</remarks>
+      <seealso cref="CaptionSource_MacroExpression" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnection.LongName">
+      <summary>For certain caption sources, this property specifies whether to return a long or short version of the caption text. Refer to the CaptionSources enumeration for more information about determining when this option affects the text and for more information about the long and short versions of the text.</summary>
+      <seealso cref="CaptionSources" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnection.Source">
+      <summary>Specifies the type of caption source to obtain the text from.</summary>
+      <seealso cref="CaptionSources" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnection.Refresh">
+      <summary>Refreshes the user interface control connected to this CaptionConnection with the most recent text from the CaptionSource.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections">
+      <summary>A collection of CaptionConnection objects.</summary>
+      <seealso cref="CaptionConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="CaptionConnection" />
+      <seealso cref="CaptionConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections.Add(System.Object)">
+      <summary>Creates and adds a new CaptionConnection to the collection.</summary>
+      <returns>New CaptionConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ApplicationMgr.ConnectCaption" />
+      <seealso cref="CaptionConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="CaptionConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections.FromControl(System.Object)">
+      <summary>Returns the CaptionConnection connected to the uiObj parameter.</summary>
+      <returns>CaptionConnection connected to the uiObj parameter. When no CaptionConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CaptionConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the CaptionConnection is removed. Returns <c>False</c> when the CaptionConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="CaptionConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CommandConnection">
+      <summary>Represents a connection to a CommandKind .</summary>
+      <seealso cref="CommandConnectionOptions" />
+      <seealso cref="CommandConnections" />
+      <seealso cref="CommandKinds" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CommandConnection.Index">
+      <summary>Specifies which command in the set of commands to use.</summary>
+      <remarks>Use this on sets of commands. Refer to the CommandKinds enumeration for more information about supported command sets.</remarks>
+      <seealso cref="CommandKinds" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CommandConnection.Kind">
+      <summary>Specifies the type of Command to which this CommandConnection connects.</summary>
+      <seealso cref="CommandKinds" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CommandConnection.Options">
+      <summary>Specifies the behavior of the CommandConnection.</summary>
+      <remarks>The value of this property is a bitwise-OR combination of the CommandConnectionOptions constants.</remarks>
+      <seealso cref="CommandConnectionOptions" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CommandConnection.FreezeRefresh(System.Boolean)">
+      <summary>Specifies to freeze the CommandConnection when setting the properties to avoid flicker on the connected control.</summary>
+      <remarks><c>FreezeRefresh</c> calls must be balanced. For example, each time you call this method with a value of <c>True</c> , you must also call it with a value of <c>False</c> .</remarks>
+      <param name="frz">[In] When this parameter is <c>True</c> , the CommandConnection does not refresh the control. When this parameter is <c>False</c> , the CommandConnection refreshes the control.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CommandConnection.Refresh">
+      <summary>Refreshes the state of the user interface control connected to the CommandConnection.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections">
+      <summary>A collection of CommandConnection objects.</summary>
+      <seealso cref="CommandConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="CommandConnection" />
+      <seealso cref="CommandConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections.Add(System.Object)">
+      <summary>Creates and adds a new CommandConnection to the collection.</summary>
+      <returns>New CommandConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ApplicationMgr.ConnectCommand" />
+      <seealso cref="CommandConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="CommandConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections.FromControl(System.Object)">
+      <summary>Returns the CommandConnection connected to the uiObj parameter.</summary>
+      <returns>CommandConnection connected to the uiObj parameter. When no CommandConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.CommandConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the CommandConnection is removed. Returns <c>False</c> when the CommandConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="CommandConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnection">
+      <summary>Represents a connection from the ExecutionView Manager control to a control that displays the list of currently running executions. You can use the connected control to select an execution from the list of executions.</summary>
+      <seealso cref="ExecutionListConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnection.DisplayExpression">
+      <summary>Specifies how to display executions in the execution list using a format expression. By default, the value of this property is <c>&#34;&#37;CurrentExecution&#37;&#34;</c> . Refer to the CaptionSource_MacroExpression enumeration value for more information about types of caption sources.</summary>
+      <seealso cref="CaptionSource_MacroExpression" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnection.ShowHiddenExecutions">
+      <summary>When this property is <c>True</c> , the execution list shows executions created with the <c>ExecTypeMask_InitiallyHidden</c> flag.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections">
+      <summary>A collection of ExecutionListConnection objects.</summary>
+      <seealso cref="ExecutionListConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="ExecutionListConnection" />
+      <seealso cref="ExecutionListConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections.Add(System.Object)">
+      <summary>Creates and adds a new ExecutionListConnection to the collection.</summary>
+      <returns>New ExecutionListConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionListConnections.Remove" />
+      <seealso cref="ExecutionViewMgr.ConnectExecutionList" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="ExecutionListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections.FromControl(System.Object)">
+      <summary>Returns the ExecutionListConnection connected to the uiObj parameter.</summary>
+      <returns>ExecutionListConnection connected to the uiObj parameter. When no ExecutionListConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionListConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the ExecutionListConnection is removed. Returns <c>False</c> when the <c>ExecutionListConnection</c> is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="ExecutionListConnection" />
+      <seealso cref="ExecutionListConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnection">
+      <summary>Represents a connection from an ExecutionView Manager control to an ExecutionViewMgrConnections.ExecutionView property. When tracing is enabled, the connected control shows the steps of the execution as they are executing. Use the ExecutionViewMgr.Connections property to obtain a collection of ExecutionViewConnection objects.</summary>
+      <seealso cref="ExecutionViewMgrConnections.ExecutionView" />
+      <seealso cref="ExecutionViewConnections" />
+      <seealso cref="ExecutionViewMgr.Connections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnection.ColorPaused">
+      <summary>Specifies the background color of the control when the execution in the ExecutionView Manager control is paused. This setting is ignored when the value of the ExecutionViewConnection.Options property is <c>ExecutionViewConnection_IgnoreColors</c> .</summary>
+      <seealso cref="ExecutionViewConnection.Options" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnection.ColorRunning">
+      <summary>Specifies the background color of the control when the execution in the ExecutionView Manager control is running. This setting is ignored when the value of the ExecutionViewConnection.Options property is <c>ExecutionViewConnection_IgnoreColors</c> .</summary>
+      <seealso cref="ExecutionViewConnection.Options" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnection.ColorStopped">
+      <summary>Specifies the background color of the control when the execution in the ExecutionView Manager control is stopped. This setting is ignored when the value of the ExecutionViewConnection.Options property is <c>ExecutionViewConnection_IgnoreColors</c> .</summary>
+      <seealso cref="ExecutionViewConnection.Options" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnection.Options">
+      <summary>Specifies the behavior of the ExecutionViewConnection. The value of this property is a bitwise-OR combination of the ExecutionViewOptions constants.</summary>
+      <seealso cref="ExecutionViewOptions" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnection.UIControl">
+      <summary>Returns the user interface control the connection connects to an ExecutionView Manager control.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections">
+      <summary>A collection of ExecutionViewConnection objects you obtain by calling the ExecutionViewMgr.Connections property.</summary>
+      <seealso cref="ExecutionViewConnection" />
+      <seealso cref="ExecutionViewMgr.Connections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="ExecutionViewConnection" />
+      <seealso cref="ExecutionViewConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections.Add(System.Object)">
+      <summary>Creates and adds a new ExecutionViewConnection to the collection.</summary>
+      <returns>New ExecutionViewConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="ExecutionViewConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections.FromControl(System.Object)">
+      <summary>Returns the ExecutionViewConnection that is connected to the uiObj parameter.</summary>
+      <returns>ExecutionViewConnection connected to the uiObj parameter. When no ExecutionViewConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the ExecutionViewConnection is removed. Returns <c>False</c> when the ExecutionViewConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="ExecutionViewConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections">
+      <summary>Contains the connections for an ExecutionView Manager control.</summary>
+      <seealso cref="ApplicationMgrConnections" />
+      <seealso cref="SequenceFileViewMgrConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.CallStack">
+      <summary>Collection of CallStackConnection objects.</summary>
+      <seealso cref="CallStackConnection" />
+      <seealso cref="CallStackConnections" />
+      <seealso cref="ExecutionViewMgr.ConnectCallStack" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.Caption">
+      <summary>Collection of CaptionConnection objects.</summary>
+      <seealso cref="CaptionConnection" />
+      <seealso cref="CaptionConnections" />
+      <seealso cref="ExecutionViewMgr.ConnectCaption" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.Command">
+      <summary>Collection of CommandConnection objects.</summary>
+      <seealso cref="CommandConnection" />
+      <seealso cref="CommandConnections" />
+      <seealso cref="ExecutionViewMgr.ConnectCommand" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.ExecutionList">
+      <summary>Collection of ExecutionListConnection objects.</summary>
+      <seealso cref="ExecutionListConnection" />
+      <seealso cref="ExecutionListConnections" />
+      <seealso cref="ExecutionViewMgr.ConnectExecutionList" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.ExecutionView">
+      <summary>Collection of ExecutionViewConnection objects.</summary>
+      <seealso cref="ExecutionViewConnection" />
+      <seealso cref="ExecutionViewConnections" />
+      <seealso cref="ExecutionViewMgr.ConnectExecutionView" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.Image">
+      <summary>Collection of ImageConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectImage" />
+      <seealso cref="ImageConnection" />
+      <seealso cref="ImageConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.Numeric">
+      <summary>Collection of NumericConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectNumeric" />
+      <seealso cref="NumericConnection" />
+      <seealso cref="NumericConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.ReportView">
+      <summary>Collection of ReportViewConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectReportView" />
+      <seealso cref="ReportViewConnection" />
+      <seealso cref="ReportViewConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.ThreadList">
+      <summary>Collection of ThreadListConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectThreadList" />
+      <seealso cref="ThreadListConnection" />
+      <seealso cref="ThreadListConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ExecutionViewMgrConnections.Variables">
+      <summary>Collection of VariablesConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectVariables" />
+      <seealso cref="VariablesConnection" />
+      <seealso cref="VariablesConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ImageConnection">
+      <summary>Represents a connection to an image source.</summary>
+      <seealso cref="ImageConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ImageConnection.Source">
+      <summary>Specifies the type of ImageConnection to obtain an image from.</summary>
+      <returns>Use the following constants with this data type: ImageSource_BatchState &#8211;(Value: 6) Displays an image that indicates the execution state of the batch that contains the current execution. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_BatchStatus &#8211;(Value: 5) Displays an image that indicates the batch result status for the batch that contains the current execution. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_CurrentCallStackEntry &#8211;(Value: 23) Displays a call stack icon for the selected stack frame in the current execution thread. When no current thread exists, the image source displays an empty image. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_CurrentExecution &#8211;(Value: 21) Displays an execution icon when a current execution exists. Otherwise, the image source displays an empty image. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_CurrentProcessModelFile &#8211;(Value: 24) Displays a sequence file icon when a process model exists for the currently executing or currently selected file. Otherwise, the image source displays an empty image. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.&#13; ImageSource_CurrentSequence &#8211;(Value: 12) Displays a sequence icon when a currently executing or currently selected sequence exists. Otherwise, the image source displays an empty image. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.&#13; ImageSource_CurrentSequenceFile &#8211;(Value: 11) Displays a sequence file icon when a currently executing or currently selected file exists. Otherwise, the image source displays an empty image. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.&#13; ImageSource_CurrentStep &#8211;(Value: 14) Displays the icon for the current step in the current execution. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_CurrentStepGroup &#8211;(Value: 13) Displays an image that indicates the currently executing or currently selected step group. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.&#13; ImageSource_CurrentThread &#8211;(Value: 22) Displays a thread icon when a current thread for the current execution exists. When no current thread exists, the image source displays an empty image. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_ModelState &#8211;(Value: 7) Displays an image that indicates the state of the current execution. This image source applies only to the ExecutionView Manager control.&#13; ImageSource_NotASource &#8211;(Value: 0) Guaranteed to never be a valid image source specifier.&#13; ImageSource_UUTStatus &#8211;(Value: 3) Displays an image that indicates the result status of the unit under test for the current execution. This image source applies only to the ExecutionView Manager control.</returns>
+      <seealso cref="ExecutionViewMgr" />
+      <seealso cref="SequenceFileViewMgr" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections">
+      <summary>A collection of ImageConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectImage" />
+      <seealso cref="ImageConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="ImageConnection" />
+      <seealso cref="ImageConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections.Add(System.Object)">
+      <summary>Creates and adds a new ImageConnection to the collection.</summary>
+      <returns>New ImageConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewMgr.ConnectImage" />
+      <seealso cref="ImageConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="ImageConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections.FromControl(System.Object)">
+      <summary>Returns the ImageConnection connected to the uiObj parameter.</summary>
+      <returns>ImageConnection connected to the uiObj parameter. When no ImageConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ImageConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the ImageConnection is removed. Returns <c>False</c> when the ImageConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="ImageConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnection">
+      <summary>Represents a connection from a SequenceFileView Manager control to an InsertionPalette control. The InsertionPalette control displays a list of step types and a list of user defined template steps, sequences, and variables. Use the connected control to insert a step, sequence, or variable into a sequence file.</summary>
+      <seealso cref="InsertionPalette" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnection.StepTypesPage">
+      <summary>Specifies the index of the Step Types page in the InsertionPalettePages collection.</summary>
+      <seealso cref="InsertionPaletteConnection.TemplatesPage" />
+      <seealso cref="InsertionPalettePage" />
+      <seealso cref="InsertionPalettePages" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnection.TemplatesPage">
+      <summary>Specifies the index of the Templates page in the InsertionPalettePages collection.</summary>
+      <seealso cref="InsertionPaletteConnection.StepTypesPage" />
+      <seealso cref="InsertionPalettePage" />
+      <seealso cref="InsertionPalettePages" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnection.UIControl">
+      <summary>Returns the user interface control the connection connects to a SequenceFileView Manager control.</summary>
+      <seealso cref="SequenceFileViewMgr" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections">
+      <summary>A collection of InsertionPaletteConnection objects.</summary>
+      <seealso cref="InsertionPaletteConnection" />
+      <seealso cref="SequenceFileViewMgr.ConnectInsertionPalette" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the zero-based index of the item to retrieve.</param>
+      <seealso cref="InsertionPaletteConnection" />
+      <seealso cref="InsertionPaletteConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections.Add(System.Object)">
+      <summary>Creates and adds a new InsertionPaletteConnection to the collection.</summary>
+      <returns>New InsertionPaletteConnection object.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewMgr.ConnectVariables" />
+      <seealso cref="InsertionPaletteConnections.Remove" />
+      <seealso cref="SequenceFileViewMgr.ConnectVariables" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="InsertionPaletteConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections.FromControl(System.Object)">
+      <summary>Returns the InsertionPaletteConnection connected to the uiObj parameter.</summary>
+      <returns>InsertionPaletteConnection connected to this user interface object. When no InsertionPaletteConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.InsertionPaletteConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the InsertionPaletteConnection is removed. Returns <c>False</c> when the InsertionPaletteConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="InsertionPaletteConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles">
+      <summary>A collection of the most recently used (MRU) files. Each item in the collection is a filename.</summary>
+      <seealso cref="ApplicationMgr.MRUFiles" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.Count">
+      <summary>Returns the number of items in the collection.</summary>
+      <seealso cref="MRUFiles.Max" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Filename of the most recently used file at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="MRUFiles.Count" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.Max">
+      <summary>Specifies the maximum size of the collection.</summary>
+      <remarks>The MRUFiles collection cannot become larger than the size this property specifies. When the collection reaches the maximum size, new items you add to the beginning of the collection replace the oldest items at the end of the collection. The Application Manager control persists the value this property specifies.</remarks>
+      <seealso cref="MRUFiles.Add" />
+      <seealso cref="MRUFiles.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.Add(System.String)">
+      <summary>Adds a filename to the beginning of the collection.</summary>
+      <param name="fileNameVal">[In] Specifies the filename to add to the collection.</param>
+      <seealso cref="MRUFiles.Max" />
+      <seealso cref="MRUFiles.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="MRUFiles.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.GetDisplayName(System.Int32,System.Int32)">
+      <summary>Returns a string that you can display in a menu used for opening the most recently used files.</summary>
+      <returns>The display name of the filename at the index.</returns>
+      <param name="itemIndex">[In] Specifies the index of an item.</param>
+      <param name="maxWidth">[In] Specifies the maximum width, in pixels, of the display name string. The width of the string is measured using the system menu font.&#13; This parameter has a default value of <c>200</c> .</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.MRUFiles.Remove(System.String)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the item is removed from the collection. Returns <c>False</c> when the item is not found.</returns>
+      <param name="fileNameVal">[In] Specifies the filename to remove from the collection.</param>
+      <seealso cref="MRUFiles.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.NumericConnection">
+      <summary>Represents a connection to a numeric source.</summary>
+      <seealso cref="NumericConnections" />
+      <seealso cref="NumericSources" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.NumericConnection.Source">
+      <summary>NumericSource of the connection.</summary>
+      <returns>Use the following constants with this data type: NumericSources_NotASource &#8211;(Value: 0) Guaranteed to never be a valid numeric source specifier.&#13; NumericSources_ProgressPercent &#8211;(Value: 10) A value from <c>0.0</c> to <c>100.0</c> that indicates the percentage of progress the current execution reports. This value indicates the progress of operations for which the execution chooses to report the amount of progress. The value does not necessarily reflect the progress of the execution as a whole. This numeric source applies only to the ExecutionView Manager control.</returns>
+      <seealso cref="ExecutionViewMgr" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.NumericConnection.Refresh">
+      <summary>Refreshes the connected control with the current value of the NumericSource.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections">
+      <summary>A collection of NumericConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectNumeric" />
+      <seealso cref="NumericConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="NumericConnection" />
+      <seealso cref="NumericConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections.Add(System.Object)">
+      <summary>Creates and adds a new NumericConnection to the collection.</summary>
+      <returns>New NumericConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewMgr.ConnectNumeric" />
+      <seealso cref="NumericConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="NumericConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections.FromControl(System.Object)">
+      <summary>Returns the NumericConnection connected to the uiObj parameter.</summary>
+      <returns>NumericConnection connected to the uiObj parameter. When no NumericConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.NumericConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the NumericConnection is removed. Returns <c>False</c> when the NumericConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="NumericConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnection">
+      <summary>Represents a connection from the ExecutionView Manager control to a control that displays a report associated with an execution.&#13; <para>Note:  This class currently contains no properties or methods. Properties or methods might be added to this class in future versions of TestStand.&#13; </para></summary>
+      <seealso cref="ReportViewConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections">
+      <summary>A collection of ReportViewConnection objects.</summary>
+      <seealso cref="ReportViewConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="ReportViewConnection" />
+      <seealso cref="ReportViewConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections.Add(System.Object)">
+      <summary>Creates and adds a new ReportViewConnection to the collection.</summary>
+      <returns>New ReportViewConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewMgr.ConnectReportView" />
+      <seealso cref="ReportViewConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="ReportViewConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections.FromControl(System.Object)">
+      <summary>Returns the ReportViewConnection connected to the uiObj parameter.</summary>
+      <returns>ReportViewConnection connected to the uiObj parameter. When no ReportViewConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ReportViewConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the ReportViewConnection is removed. Returns <c>False</c> when the ReportViewConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="ReportViewConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects">
+      <summary>A collection of selected property objects. Controls connected to the SequenceFileView Manager and ExecutionView Manager controls, such as the VariablesView , automatically update the collection while active. You can obtain a reference to the collection from the SequenceFileViewMgr.SelectedPropertyObjects and ExecutionViewMgr.SelectedPropertyObjects properties.</summary>
+      <seealso cref="ExecutionViewMgr" />
+      <seealso cref="ExecutionViewMgr.SelectedPropertyObjects" />
+      <seealso cref="SequenceFileViewMgr" />
+      <seealso cref="SequenceFileViewMgr.SelectedPropertyObjects" />
+      <seealso cref="VariablesView" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <param name="itemIndex">[In] Specifies a zero-based index of the item to retrieve.</param>
+      <seealso cref="SelectedPropertyObjects.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.AddPropertyObject(NationalInstruments.TestStand.Interop.API.PropertyObject)">
+      <summary>Adds a property object to the collection.</summary>
+      <param name="val">[In] Specifies the property object to add.</param>
+      <seealso cref="SelectedPropertyObjects.Clear" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.AddPropertyObjects(System.Object[])">
+      <summary>Adds an array of property objects to the collection.</summary>
+      <param name="val">[In] Specifies the property objects to add.</param>
+      <seealso cref="SelectedPropertyObjects.Clear" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.BeginUpdate">
+      <summary>Call this method before you make multiple changes to the SelectedPropertyObjects collection. When you finish changing the collection, call the SelectedPropertyObjects.EndUpdate method to update the TestStand User Interface (UI) Controls according to the changes.</summary>
+      <remarks>Use this method to minimize redrawing in the TestStand UI Controls when you programmatically change the selection.</remarks>
+      <seealso cref="SelectedPropertyObjects.EndUpdate" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="SelectedPropertyObjects.AddPropertyObject" />
+      <seealso cref="SelectedPropertyObjects.AddPropertyObjects" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedPropertyObjects.EndUpdate">
+      <summary>Updates the TestStand User Interface Controls according to the SelectedPropertyObjects collection changes you make after you call the SelectedPropertyObjects.BeginUpdate method.</summary>
+      <seealso cref="SelectedPropertyObjects.BeginUpdate" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences">
+      <summary>A collection of selected sequences. You can obtain a reference to the collection from the SequenceFileViewMgr.SelectedSequences property.</summary>
+      <seealso cref="SequenceFileViewMgr.SelectedSequences" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>The sequence at the specified index in the collection.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="SelectedSequences.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.AddSequence(NationalInstruments.TestStand.Interop.API.Sequence)">
+      <summary>Adds a sequence to the SelectedSequences collection.</summary>
+      <param name="val">[In] Specifies the sequence to add.</param>
+      <seealso cref="SelectedSequences.AddSequences" />
+      <seealso cref="SelectedSequences.Clear" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.AddSequences(System.Object[])">
+      <summary>Adds an array of sequences to the SelectedSequences collection.</summary>
+      <param name="val">[In] Specifies the array of sequences to add.</param>
+      <seealso cref="SelectedSequences.AddSequence" />
+      <seealso cref="SelectedSequences.Clear" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.BeginUpdate">
+      <summary>Call this method before making multiple changes to the SelectedSequences collection. When you finish changing the collection, call the SelectedSequences.EndUpdate method to update the TestStand User Interface (UI) Controls according to the changes.</summary>
+      <remarks>Use this method to minimize redrawing in the TestStand UI Controls when you programmatically change the selection.</remarks>
+      <seealso cref="SelectedSequences.EndUpdate" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="SelectedSequences.AddSequence" />
+      <seealso cref="SelectedSequences.AddSequences" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSequences.EndUpdate">
+      <summary>Updates the user interface according to all changes to the SelectedSequences collection you make after a previous call to the SelectedSequences.BeginUpdate method.</summary>
+      <seealso cref="SelectedSequences.BeginUpdate" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps">
+      <summary>A collection of selected steps. You can obtain a reference to the collection from the SequenceFileViewMgr.SelectedSteps and ExecutionViewMgr.SelectedSteps properties.</summary>
+      <seealso cref="ExecutionViewMgr.SelectedSteps" />
+      <seealso cref="SequenceFileViewMgr.SelectedSteps" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.EndSelected">
+      <summary>Specifies whether the End step is selected.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>The step at the specified index in the collection.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="SelectedSteps.Count" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.SelectionFlags">
+      <summary>When the SequenceFileViewMgr.StepGroupMode property is <c>StepGroupMode_AllGroups</c> , this property indicates whether the selection includes the step group start and end markers. The property also indicates whether each step group is expanded or collapsed. The value of this property is a bitwise-OR combination of the SelectionFlags constants.</summary>
+      <seealso cref="SelectionFlags" />
+      <seealso cref="SequenceFileViewMgr.StepGroupMode" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.AddStep(NationalInstruments.TestStand.Interop.API.Step)">
+      <summary>Adds a step to the collection.</summary>
+      <param name="val">[In] Specifies the step to add.</param>
+      <seealso cref="SelectedSteps.AddStepIndex" />
+      <seealso cref="SelectedSteps.AddSteps" />
+      <seealso cref="SelectedSteps.Clear" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.AddStepIndex(System.Int32)">
+      <summary>Adds a step to the collection.</summary>
+      <remarks>When the SequenceFileViewMgr.StepGroupMode property is <c>StepGroupMode_AllGroups</c> , call the SelectedSteps.AddStep method instead of this method.</remarks>
+      <param name="stepIndex">[In] Specifies the index in the current step group of the step to add.</param>
+      <seealso cref="SelectedSteps.AddStep" />
+      <seealso cref="SelectedSteps.EndSelected" />
+      <seealso cref="SequenceFileViewMgr.StepGroup" />
+      <seealso cref="SequenceFileViewMgr.StepGroupMode" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.AddSteps(System.Object[])">
+      <summary>Adds an array of steps to the collection.</summary>
+      <param name="val">[In] Specifies the steps to add.</param>
+      <seealso cref="SelectedSteps.AddStepIndex" />
+      <seealso cref="SelectedSteps.AddSteps" />
+      <seealso cref="SelectedSteps.Clear" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.BeginUpdate">
+      <summary>Call this method before making multiple changes to the SelectedSteps collection. When you finish changing the collection, call the SelectedSteps.EndUpdate method to update the TestStand User Interface (UI) Controls according to the changes.</summary>
+      <remarks>Use this method to minimize redrawing in the TestStand UI Controls when you programmatically change the selection.</remarks>
+      <seealso cref="SelectedSteps.EndUpdate" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="SelectedSteps.AddStep" />
+      <seealso cref="SelectedSteps.AddStepIndex" />
+      <seealso cref="SelectedSteps.AddSteps" />
+      <seealso cref="SelectedSteps.EndSelected" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.EndUpdate">
+      <summary>Updates the user interface according to all changes to the SelectedSteps collection you made after the previous call to the SelectedSteps.BeginUpdate method.</summary>
+      <seealso cref="SelectedSteps.BeginUpdate" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.GetStepGroup(System.Int32)">
+      <summary>Returns the step group of the specified step in the collection.</summary>
+      <returns>Use the following constants with this data type: StepGroup_Cleanup &#8211;(Value: 2) Specifies the Cleanup step group.&#13; StepGroup_Main &#8211;(Value: 1) Specifies the Main step group.&#13; StepGroup_Setup &#8211;(Value: 0) Specifies the Setup step group.</returns>
+      <param name="nthSelectedStep">[In] Specifies the index of a step in the collection.</param>
+      <seealso cref="SelectedSteps.GetStepIndex" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SelectedSteps.GetStepIndex(System.Int32)">
+      <summary>Retrieves the step index within a step group of a selected step.</summary>
+      <returns>The step index of the step in the collection.</returns>
+      <param name="nthSelectedStep">[In] Specifies the index of a step in the collection.</param>
+      <seealso cref="SelectedSteps.EndSelected" />
+      <seealso cref="SelectedSteps.GetStepGroup" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnection">
+      <summary>Represents a connection from a SequenceFileView Manager control to a control that displays a list of open sequence files. Use the connected control to select a sequence file to open in the SequenceFileView Manager control from the list of sequence files.</summary>
+      <seealso cref="SequenceFileListConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceFileList" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnection.ShowCommentInTip">
+      <summary>Specifies whether the item tooltip includes the sequence file comment in controls you connect to display the list of loaded sequence files.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnection.ShowFullPath">
+      <summary>When this property is <c>True</c> , the connected control displays the full path for all sequence files. Otherwise, the connected control displays only filenames.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections">
+      <summary>A collection of SequenceFileListConnection objects.</summary>
+      <seealso cref="SequenceFileListConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="SequenceFileListConnection" />
+      <seealso cref="SequenceFileListConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections.Add(System.Object)">
+      <summary>Creates and adds a new SequenceFileListConnection to the collection.</summary>
+      <returns>New SequenceFileListConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="SequenceFileListConnections.Remove" />
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceFileList" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="SequenceFileListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections.FromControl(System.Object)">
+      <summary>Returns the SequenceFileListConnection connected to the uiObj parameter.</summary>
+      <returns>SequenceFileListConnection connected to the uiObj parameter. When no SequenceFileListConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileListConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the SequenceFileListConnection is removed. Returns <c>False</c> when the SequenceFileListConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="SequenceFileListConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections">
+      <summary>Contains the connections for the SequenceFileView Manager control.</summary>
+      <seealso cref="ApplicationMgrConnections" />
+      <seealso cref="ExecutionViewMgrConnections" />
+      <seealso cref="SequenceFileViewMgr.Connections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.Caption">
+      <summary>Collection of CaptionConnection objects.</summary>
+      <seealso cref="CaptionConnection" />
+      <seealso cref="CaptionConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectCaption" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.Command">
+      <summary>Collection of CommandConnection objects.</summary>
+      <seealso cref="CommandConnection" />
+      <seealso cref="CommandConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectCommand" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.Image">
+      <summary>Collection of ImageConnection objects.</summary>
+      <seealso cref="ImageConnection" />
+      <seealso cref="ImageConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectImage" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.InsertionPalettes">
+      <summary>Collection of InsertionPaletteConnection objects.</summary>
+      <seealso cref="InsertionPaletteConnection" />
+      <seealso cref="InsertionPaletteConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectInsertionPalette" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.SequenceFileList">
+      <summary>Collection of SequenceFileListConnection objects.</summary>
+      <seealso cref="SequenceFileListConnection" />
+      <seealso cref="SequenceFileListConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceFileList" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.SequenceList">
+      <summary>Collection of SequenceListConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceList" />
+      <seealso cref="SequenceListConnection" />
+      <seealso cref="SequenceListConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.SequenceView">
+      <summary>Collection of SequenceViewConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceView" />
+      <seealso cref="SequenceViewConnection" />
+      <seealso cref="SequenceViewConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.StepGroupList">
+      <summary>Collection of StepGroupListConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectStepGroupList" />
+      <seealso cref="StepGroupListConnection" />
+      <seealso cref="StepGroupListConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceFileViewMgrConnections.Variables">
+      <summary>Collection of VariablesConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectVariables" />
+      <seealso cref="VariablesConnection" />
+      <seealso cref="VariablesConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnection">
+      <summary>Represents a connection from a SequenceFileView Manager control to a control that displays a list of sequences for the current sequence file. Use the connected control to select the sequence to display.</summary>
+      <seealso cref="SequenceListConnections" />
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceList" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnection.ShowCommentInTip">
+      <summary>Specifies whether the item tooltip includes the sequence comment in controls you connect to display the list of sequences in the selected sequence file.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnection.UIControl">
+      <summary>Returns the user interface control the connection connects to a SequenceFileView Manager control.</summary>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnection.GetColumnIndex(NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns)">
+      <summary>When the specified column is visible, this method returns the index of the column within the ListBoxColumns collection. Otherwise, this method returns <c>-1</c> .</summary>
+      <remarks>Use this index in the ListBoxColumns.Item property to return the ListBoxColumn for a specific column.</remarks>
+      <param name="column">[In] Specifies the column to select.</param>
+      <seealso cref="ListBox.ColumnSet" />
+      <seealso cref="ListBoxColumn" />
+      <seealso cref="ListBoxColumns" />
+      <seealso cref="ListBoxColumns.Item" />
+      <seealso cref="SequenceListConnection.GetColumnVisible" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnection.GetColumnVisible(NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns)">
+      <summary>Returns a Boolean value that indicates whether the column is visible.</summary>
+      <param name="column">[In] Specifies the column to select.</param>
+      <seealso cref="SequenceListConnection.SetColumnVisible" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnection.SetColumnVisible(NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns,System.Boolean)">
+      <summary>Specifies whether the column is visible.</summary>
+      <remarks>You cannot hide the <c>SeqListConnectionColumn_Label</c> column.</remarks>
+      <param name="column">[In] Specifies the column to select.</param>
+      <param name="val">[In] Pass <c>False</c> to hide the column. Otherwise, the column is visible.</param>
+      <seealso cref="SequenceListConnection.GetColumnVisible" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections">
+      <summary>A collection of SequenceListConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceList" />
+      <seealso cref="SequenceListConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="SequenceListConnection" />
+      <seealso cref="SequenceListConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections.Add(System.Object)">
+      <summary>Creates and adds a new SequenceListConnection to the collection.</summary>
+      <returns>New SequenceListConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceList" />
+      <seealso cref="SequenceListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="SequenceListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections.FromControl(System.Object)">
+      <summary>Returns the SequenceListConnection connected to the uiObj parameter.</summary>
+      <returns>SequenceListConnection connected to the uiObj parameter. When no SequenceListConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceListConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the SequenceListConnection is removed. Returns <c>False</c> when the SequenceListConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="SequenceListConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnection">
+      <summary>Represents a connection from a SequenceFileView Manager control to a SequenceView control. The SequenceView control shows the contents of the current sequence in the SequenceFileView Manager control. Use the SequenceFileViewMgr.Connections property to obtain a collection of SequenceViewConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.Connections" />
+      <seealso cref="SequenceView" />
+      <seealso cref="SequenceViewConnections" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnection.DoubleClickEditsStepProperties">
+      <summary>Specifies whether the connected SequenceView control displays the Step Properties dialog box when editing is enabled and the user double-clicks a step. This property defaults to <c>True</c> . Set the property to <c>False</c> if you implement an alternate behavior for double-clicking a step in a sequence file.</summary>
+      <seealso cref="SequenceView" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnection.UIControl">
+      <summary>Returns the user interface control the connection connects to a SequenceFileView Manager control.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections">
+      <summary>A collection of SequenceViewConnection objects you obtain by calling the SequenceFileViewMgr.Connections property.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceView" />
+      <seealso cref="SequenceFileViewMgr.Connections" />
+      <seealso cref="SequenceViewConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="SequenceViewConnection" />
+      <seealso cref="SequenceViewConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections.Add(System.Object)">
+      <summary>Creates and adds a new SequenceViewConnection to the collection.</summary>
+      <returns>New SequenceViewConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="SequenceFileViewMgr.ConnectSequenceView" />
+      <seealso cref="SequenceViewConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="SequenceViewConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections.FromControl(System.Object)">
+      <summary>Returns the SequenceViewConnection connected to the uiObj parameter.</summary>
+      <returns>SequenceViewConnection connected to the uiObj parameter. When no SequenceViewConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.SequenceViewConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the SequenceViewConnection is removed. Returns <c>False</c> when the SequenceViewConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="SequenceViewConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnection">
+      <summary>Represents a connection from a SequenceFileView Manager control to a control that displays the list of step groups. Use the connected control to select the step group for the current sequence.&#13; <para>Note:  This class currently contains no properties or methods. Properties or methods might be added to this class in future versions of TestStand.&#13; </para></summary>
+      <seealso cref="StepGroupListConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections">
+      <summary>A collection of StepGroupListConnection objects.</summary>
+      <seealso cref="SequenceFileViewMgr.ConnectStepGroupList" />
+      <seealso cref="StepGroupListConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="StepGroupListConnection" />
+      <seealso cref="StepGroupListConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections.Add(System.Object)">
+      <summary>Creates and adds a new StepGroupListConnection to the collection.</summary>
+      <returns>New StepGroupListConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="SequenceFileViewMgr.ConnectStepGroupList" />
+      <seealso cref="StepGroupListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="StepGroupListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections.FromControl(System.Object)">
+      <summary>Returns the StepGroupListConnection connected to the uiObj parameter.</summary>
+      <returns>StepGroupListConnection connected to the uiObj parameter. When no StepGroupListConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.StepGroupListConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the StepGroupListConnection is removed. Returns <c>False</c> when the StepGroupListConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="StepGroupListConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.Strings">
+      <summary>A collection of strings. You can obtain a reference to the collection from the ApplicationMgr.CommandLineArguments property, the ExpressionEdit.GetValidEvaluationTypes , and ExpressionEdit.SetValidEvaluationTypes methods, and the ApplicationMgr.ProcessUserCommandLineArguments event.</summary>
+      <seealso cref="ApplicationMgr.CommandLineArguments" />
+      <seealso cref="ApplicationMgr.ProcessUserCommandLineArguments" />
+      <seealso cref="ExpressionEdit.GetValidEvaluationTypes" />
+      <seealso cref="ExpressionEdit.SetValidEvaluationTypes" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.Strings.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.Strings.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>The item at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="Strings.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.Strings.Add(System.String)">
+      <summary>Adds a string to the end of the collection.</summary>
+      <param name="val">[In] Specifies the string to be added.</param>
+      <seealso cref="Strings.Insert" />
+      <seealso cref="Strings.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.Strings.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="Strings.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.Strings.Insert(System.Int32,System.String)">
+      <summary>Adds a new item to the collection at the specified index.</summary>
+      <param name="itemIndex">[In] Specifies the index of the item to insert.</param>
+      <param name="val">[In] Specifies the string to be added.</param>
+      <seealso cref="Strings.Add" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.Strings.Remove(System.Int32)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <param name="itemIndex">[In] Specifies the index of the item to remove.</param>
+      <seealso cref="Strings.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnection">
+      <summary>Represents a connection from the ExecutionView Manager control to a control that displays the list of threads in the execution. You can use the connected control to display the foreground thread and to change the foreground thread when the execution is paused.&#13; <para>Note:  This class currently contains no properties or methods. Properties or methods might be added to this class in future versions of TestStand.&#13; </para></summary>
+      <seealso cref="ThreadListConnections" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections">
+      <summary>A collection of ThreadListConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectThreadList" />
+      <seealso cref="ThreadListConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies the index of the item to retrieve.</param>
+      <seealso cref="ThreadListConnection" />
+      <seealso cref="ThreadListConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections.Add(System.Object)">
+      <summary>Creates and adds a new ThreadListConnection to the collection.</summary>
+      <returns>New ThreadListConnection.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewMgr.ConnectThreadList" />
+      <seealso cref="ThreadListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="ThreadListConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections.FromControl(System.Object)">
+      <summary>Returns the ThreadListConnection connected to the uiObj parameter.</summary>
+      <returns>ThreadListConnection connected to the uiObj parameter. When no ThreadListConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.ThreadListConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the ThreadListConnection is removed. Returns <c>False</c> when the ThreadListConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="ThreadListConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnection">
+      <summary>Represents a connection from a SequenceFileView Manager or ExecutionView Manager control to a VariablesView control.</summary>
+      <seealso cref="VariablesView" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnection.UIControl">
+      <summary>Returns the user interface control that the connection connects to a SequenceFileView Manager or ExecutionView Manager control.</summary>
+      <seealso cref="ExecutionViewMgr" />
+      <seealso cref="SequenceFileViewMgr" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections">
+      <summary>A collection of VariablesConnection objects.</summary>
+      <seealso cref="ExecutionViewMgr.ConnectVariables" />
+      <seealso cref="SequenceFileViewMgr.ConnectVariables" />
+      <seealso cref="VariablesConnection" />
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections.Count">
+      <summary>Returns the number of items in the collection.</summary>
+    </member>
+    <member name="P:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections.Item(System.Int32)">
+      <summary>Returns a reference to an item at the specified index in the collection.</summary>
+      <returns>Item located at the specified index.</returns>
+      <param name="itemIndex">[In] Specifies a zero-based index of the item to retrieve.</param>
+      <seealso cref="VariablesConnection" />
+      <seealso cref="VariablesConnections.Count" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections.Add(System.Object)">
+      <summary>Creates and adds a new VariablesConnection to the collection.</summary>
+      <returns>New VariablesConnection object.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to connect.</param>
+      <seealso cref="ExecutionViewMgr.ConnectVariables" />
+      <seealso cref="SequenceFileViewMgr.ConnectVariables" />
+      <seealso cref="VariablesConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections.Clear">
+      <summary>Removes all items from the collection.</summary>
+      <seealso cref="VariablesConnections.Remove" />
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections.FromControl(System.Object)">
+      <summary>Returns the VariablesConnection connected to the uiObj parameter.</summary>
+      <returns>VariablesConnection connected to the uiObj parameter. When no VariablesConnection exists for this control, this method returns <c>NULL</c> .</returns>
+      <param name="uiObj">[In] Specifies the connected user interface object.</param>
+    </member>
+    <member name="M:NationalInstruments.TestStand.Interop.UI.Support.VariablesConnections.Remove(System.Object)">
+      <summary>Removes the specified item from this collection, if it exists.</summary>
+      <returns>Returns <c>True</c> when the VariablesConnection is removed. Returns <c>False</c> when the VariablesConnection is not found.</returns>
+      <param name="uiObj">[In] Specifies the user interface object to disconnect.</param>
+      <seealso cref="VariablesConnection" />
+      <seealso cref="VariablesConnections.Add" />
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags">
+      <summary>Use these constants to select step group start or end markers and to expand or collapse step groups. These constants apply only when the application displays more than one step group at a time.&#13; You cannot select step group start and end markers when steps are selected. You cannot select steps and step group end markers in collapsed step groups.</summary>
+      <seealso cref="ExecutionViewMgr.SelectedSteps" />
+      <seealso cref="ExecutionViewMgr.StepGroupMode" />
+      <seealso cref="SelectedSteps.SelectionFlags" />
+      <seealso cref="SequenceFileViewMgr.SelectedSteps" />
+      <seealso cref="SequenceFileViewMgr.StepGroupMode" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_CleanupCollapsed">
+      <summary>&#8211;(Value: 256) Collapses the Cleanup step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_CleanupEndSelected">
+      <summary>&#8211;(Value: 32) Selects the end marker for the Cleanup step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_CleanupStartSelected">
+      <summary>&#8211;(Value: 4) Selects the start marker for the Cleanup step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_MainCollapsed">
+      <summary>&#8211;(Value: 128) Collapses the Main step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_MainEndSelected">
+      <summary>&#8211;(Value: 16) Selects the end marker for the Main step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_MainStartSelected">
+      <summary>&#8211;(Value: 2) Selects the start marker for the Main step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_NoFlags">
+      <summary>&#8211;(Value: 0) No collapsed step group and no selected step group markers.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_SetupCollapsed">
+      <summary>&#8211;(Value: 64) Collapses the Setup step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_SetupEndSelected">
+      <summary>&#8211;(Value: 8) Selects the end marker for the Setup step group.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SelectionFlags.SelectionFlag_SetupStartSelected">
+      <summary>&#8211;(Value: 1) Selects the start marker for the Setup step group.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources">
+      <summary>These constants specify types of caption sources. Each caption source provides text that describes an aspect of the current application state. You can use these constants to connect a caption to a Label or StatusBarPane using the ApplicationMgr.ConnectCaption , ExecutionViewMgr.ConnectCaption , or SequenceFileViewMgr.ConnectCaption method.&#13; To obtain the text of a caption without connecting it to a control, call the ApplicationMgr.GetCaptionText , ExecutionViewMgr.GetCaptionText , or SequenceFileViewMgr.GetCaptionText method.&#13; A caption source applies to all manager controls unless the help for the enumeration element specifies the particular manager control or controls with which it applies.</summary>
+      <seealso cref="ApplicationMgr.ConnectCaption" />
+      <seealso cref="ApplicationMgr.GetCaptionText" />
+      <seealso cref="ExecutionViewMgr.ConnectCaption" />
+      <seealso cref="ExecutionViewMgr.GetCaptionText" />
+      <seealso cref="Label" />
+      <seealso cref="SequenceFileViewMgr.ConnectCaption" />
+      <seealso cref="SequenceFileViewMgr.GetCaptionText" />
+      <seealso cref="StatusBarPane" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_BatchSerialNumber">
+      <summary>&#8211;(Value: 4) Displays the batch serial number for the batch that contains the current execution. A process model sends the batch serial number through the <c>UIMsg_ModelState_Identified</c> UIMessageCode. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_BatchState">
+      <summary>&#8211;(Value: 6) Displays a description of the execution state of the batch that contains the current execution. For example, this caption might display <c>Initializing</c> , <c>Testing</c> , <c>Waiting</c> , or <c>Completed [Passed]</c> . This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_BatchStatus">
+      <summary>&#8211;(Value: 5) Displays the batch result status for the batch that contains the current execution. A process model sends the batch status through the <c>UIMsg_ModelState_TestingComplete</c> UIMessageCode. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentCallStackEntry">
+      <summary>&#8211;(Value: 26) Displays a name that identifies the current call stack item in the foreground thread in the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentExecution">
+      <summary>&#8211;(Value: 24) Displays a name that identifies the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentProcessModelFile">
+      <summary>&#8211;(Value: 27) Displays the path name of the process model file for the currently executing or currently selected sequence file. When you pass <c>True</c> to the long name option for the caption, the caption displays the full path name. Otherwise, the caption displays the base filename.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentSequence">
+      <summary>&#8211;(Value: 13) Displays the name of the currently executing or currently selected sequence. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentSequenceComment">
+      <summary>&#8211;(Value: 14) Displays the comment for the currently executing or currently selected sequence. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentSequenceFile">
+      <summary>&#8211;(Value: 11) Displays the path name of the currently executing or currently selected sequence file with a read-only, locked, executing, or modified file state suffix. When you pass <c>True</c> to the long name option for the caption, the caption displays the full path name. Otherwise, the caption displays the base filename. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentSequenceFile_FileStateOnly">
+      <summary>&#8211;(Value: 33) Displays only the read-only, locked, executing, or modified file state of the currently executing or currently selected sequence file. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentSequenceFile_WithoutFileState">
+      <summary>&#8211;(Value: 32) Displays the path name of the currently executing or currently selected sequence file without a file state suffix. When you pass <c>True</c> to the long name option for the caption, the caption displays the full path name. Otherwise, the caption displays the base filename. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentSequenceFileComment">
+      <summary>&#8211;(Value: 12) Displays the comment for the currently executing or currently selected sequence file. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentStep">
+      <summary>&#8211;(Value: 16) Displays the name of the current step in the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentStepComment">
+      <summary>&#8211;(Value: 17) Displays the comment for the current step in the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentStepGroup">
+      <summary>&#8211;(Value: 15) Displays the name of the currently executing or currently selected step group. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentStepIndex_ZeroBased">
+      <summary>&#8211;(Value: 18) Displays the zero-based index of the current step in the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentTestIndex_OneBased">
+      <summary>&#8211;(Value: 19) Displays the one-based index of the current step in the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_CurrentThread">
+      <summary>&#8211;(Value: 25) Displays a name that identifies the foreground thread in the current execution. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_Date">
+      <summary>&#8211;(Value: 31) Displays the current date. When you pass <c>True</c> to the long name option for the caption, the caption displays the system long date format. Otherwise, the caption displays the system short date format.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_EngineEnvironment">
+      <summary>&#8211;(Value: 34) Displays the path name of the current TestStand environment. When you pass <c>True</c> to the long name option for the caption, the caption displays the full path name. Otherwise, the caption displays the base filename.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_MacroExpression">
+      <summary>&#8211;(Value: 1) Displays the evaluated result of a format expression that can contain macros that specify text from other caption sources. You can use this caption source to combine text from multiple caption sources. Place the macros that specify other caption sources within string constants in the format expression for the caption text or caption connection you create with this caption source. The following are the available macros: Macro, Caption Source, Specifies caption source long name <para><code>&#37;UUTSerialNumber&#37;, CaptionSource_UUTSerialNumber, no</code></para><para><code>&#37;UUTStatus&#37;, CaptionSource_UUTStatus, no</code></para><para><code>&#37;BatchSerialNumber&#37;, CaptionSource_BatchSerialNumber, no</code></para><para><code>&#37;BatchStatus&#37;, CaptionSource_BatchStatus, no</code></para><para><code>&#37;BatchState&#37;, CaptionSource_BatchState, no</code></para><para><code>&#37;ModelState&#37;, CaptionSource_ModelState, no</code></para><para><code>&#37;UserName&#37;, CaptionSource_UserName, no</code></para><para><code>&#37;ProgressText&#37;, CaptionSource_ProgressText, no</code></para><para><code>&#37;ProgressPercent&#37;, CaptionSource_ProgressPercent, no</code></para><para><code>&#37;CurrentSequenceFile&#37;, CaptionSource_CurrentSequenceFile, no</code></para><para><code>&#37;CurrentSequence&#37;, CaptionSource_CurrentSequence, no</code></para><para><code>&#37;CurrentStepGroup&#37;, CaptionSource_CurrentStepGroup, no</code></para><para><code>&#37;CurrentStep&#37;, CaptionSource_CurrentStep, no</code></para><para><code>&#37;CurrentStepIndex_ZeroBased&#37;, CaptionSource_CurrentStepIndex_ZeroBased, no</code></para><para><code>&#37;CurrentTestIndex_OneBased&#37;, CaptionSource_CurrentTestIndex_OneBased, no</code></para><para><code>&#37;NumberOfSteps&#37;, CaptionSource_NumberOfSteps, no</code></para><para><code>&#37;CurrentExecution&#37;, CaptionSource_CurrentExecution, no</code></para><para><code>&#37;CurrentThread&#37;, CaptionSource_CurrentThread, no</code></para><para><code>&#37;CurrentCallStackEntry&#37;, CaptionSource_CurrentCallStackEntry, no</code></para><para><code>&#37;CurrentProcessModelFile&#37;, CaptionSource_CurrentProcessModelFile, no</code></para><para><code>&#37;UUTSerialNumberLongName&#37;, CaptionSource_UUTSerialNumber, yes</code></para><para><code>&#37;UUTStatusLongName&#37;, CaptionSource_UUTStatus, yes</code></para><para><code>&#37;BatchSerialNumberLongName&#37;, CaptionSource_BatchSerialNumber, yes</code></para><para><code>&#37;BatchStatusLongName&#37;, CaptionSource_BatchStatus, yes</code></para><para><code>&#37;BatchStateLongName&#37;, CaptionSource_BatchState, yes</code></para><para><code>&#37;ModelStateLongName&#37;,CaptionSource_ModelState,yes</code></para><para><code>&#37;UserNameLongName&#37;,CaptionSource_UserName,yes</code></para><para><code>&#37;ProgressTextLongName&#37;,CaptionSource_ProgressText,yes</code></para><para><code>&#37;ProgressPercentLongName&#37;,CaptionSource_ProgressPercent,yes</code></para><para><code>&#37;CurrentSequenceFileLongName&#37;,CaptionSource_CurrentSequenceFile,yes</code></para><para><code>&#37;CurrentSequenceLongName&#37;,CaptionSource_CurrentSequence,yes</code></para><para><code>&#37;CurrentStepGroupLongName&#37;,CaptionSource_CurrentStepGroup,yes</code></para><para><code>&#37;CurrentStepLongName&#37;,CaptionSource_CurrentStep,yes</code></para><para><code>&#37;CurrentStepIndex_ZeroBasedLongName&#37;,CaptionSource_CurrentStepIndex_ZeroBased,yes</code></para><para><code>&#37;CurrentTestIndex_OneBasedLongName&#37;, CaptionSource_CurrentTestIndex_OneBased, yes</code></para><para><code>&#37;NumberOfStepsLongName&#37;, CaptionSource_NumberOfSteps, yes</code></para><para><code>&#37;CurrentExecutionLongName&#37;, CaptionSource_CurrentExecution, yes</code></para><para><code>&#37;CurrentThreadLongName&#37;, CaptionSource_CurrentThread, yes</code></para><para><code>&#37;CurrentCallStackEntryLongName&#37;, CaptionSource_CurrentCallStackEntry, yes</code></para><c>&#37;CurrentProcessModelFileLongName&#37;, CaptionSource_CurrentProcessModelFile, yes</c></summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_ModelState">
+      <summary>&#8211;(Value: 7) Displays a description of the execution state of the current execution. For example, this caption might display <c>Initializing</c> , <c>Testing</c> , <c>Waiting</c> , or <c>Completed [Passed]</c> . This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_NotASource">
+      <summary>&#8211;(Value: 0) Guaranteed to never be a valid caption source specifier.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_NumberOfSteps">
+      <summary>&#8211;(Value: 22) Displays the number of steps in the currently executing or currently selected step group. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_NumberOfTests">
+      <summary>&#8211;(Value: 23) Displays the number of steps in the currently executing or currently selected step group. The description uses the word test in place of the word step . This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_ProgressPercent">
+      <summary>&#8211;(Value: 10) Displays the progress percentage information for the current execution. This caption indicates the progress of operations for which the execution chooses to report the amount of progress. The caption does not necessarily reflect the progress of the execution as a whole. A process model sends the progress percent through the <c>UIMsg_ProgressPercent</c> UIMessageCode. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_ProgressText">
+      <summary>&#8211;(Value: 9) Displays the progress message for the current execution. A process model sends the progress text through the <c>UIMsg_ProgressText</c> UIMessageCode. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_ReportLocation">
+      <summary>&#8211;(Value: 28) Displays the location of the report for the current execution. The Report.Location property specifies the display value for a report. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_SelectedSteps_ZeroBased">
+      <summary>&#8211;(Value: 20) Displays a description of which steps are selected. The description uses zero-based indexes. This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_SelectedTests_OneBased">
+      <summary>&#8211;(Value: 21) Displays a description of which steps are selected. The description uses one-based indexes and the word test in place of the word step . This caption source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_TestSocketIndex">
+      <summary>&#8211;(Value: 29) Displays the zero-based index of the test socket for the current execution. Displays nothing when the execution is not participating in a multi-socket test process. A process model sends the text socket index through the <c>UIMsg_ModelState_BeginTesting</c> and <c>UIMsg_ModelState_Waiting</c> UIMessageCodes. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_Time">
+      <summary>&#8211;(Value: 30) Displays the current time using the system time format.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_UserName">
+      <summary>&#8211;(Value: 8) Displays the name of the current user. When you pass <c>True</c> to the long name option for the caption, the caption displays the full user name. Otherwise, the caption displays the user login name.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_UUTSerialNumber">
+      <summary>&#8211;(Value: 2) Displays the serial number of the UUT for the current execution. A process model sends the UUT serial number through the <c>UIMsg_ModelState_Identified</c> UIMessageCode. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CaptionSources.CaptionSource_UUTStatus">
+      <summary>&#8211;(Value: 3) Displays the result status of the UUT for the current execution. A process model sends the UUT status through the <c>UIMsg_ModelState_TestingComplete</c> UIMessageCode. This caption source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds">
+      <summary>These constants specify types of standard commands. CommandKinds values specify a single command or a set of commands that can contain several commands or no commands, depending on the state of the application.&#13; You can pass these constants to the ApplicationMgr.ConnectCommand , SequenceFileViewMgr.ConnectCommand , and ExecutionViewMgr.ConnectCommand methods to connect commands to buttons or checkboxes. You can also connect commands to menu items .&#13; <para>Note:  If you connect a command that applies to the control that has the input focus, such as <c>CommandKind_Edit_Cut</c> and <c>CommandKind_Edit_EditCode</c> , to a button control, the command does not function after the first time the user clicks the button because the button acquires the input focus. To avoid this issue, you must ensure the button does not acquire the input focus when clicked. For a TestStand Button, you can achieve this by setting the Button.Style property to <c>ButtonStyle_ToolBar</c> .&#13; </para> You can pass these constants to the Commands.InsertKind method to directly create command objects.&#13; Most commands, such as <c>OpenSequenceFile</c> , <c>Login</c> , and <c>Restart</c> , behave the same as the corresponding menu items in the TestStand Sequence Editor with regard to the action they take and the circumstances under which they are enabled. Refer to the NI TestStand Environment Reference Help for the corresponding sequence editor menu item for more information about how the item behaves.&#13; TestStand assigns default images to some commands, which TestStand displays when you connect the command to a Button control and you enable images for the control.</summary>
+      <seealso cref="ApplicationMgr" />
+      <seealso cref="ApplicationMgr.ConnectCommand" />
+      <seealso cref="ApplicationMgr.PostCommandExecute" />
+      <seealso cref="ApplicationMgr.PreCommandExecute" />
+      <seealso cref="ApplicationMgr.UndoStack" />
+      <seealso cref="Button" />
+      <seealso cref="Command" />
+      <seealso cref="Command.Enabled" />
+      <seealso cref="Command.UserData" />
+      <seealso cref="Command.UserObject" />
+      <seealso cref="Command.Visible" />
+      <seealso cref="Commands.InsertKind" />
+      <seealso cref="Commands" />
+      <seealso cref="ExecutionViewMgr" />
+      <seealso cref="ExecutionViewMgr.ConnectCommand" />
+      <seealso cref="ListBox" />
+      <seealso cref="SequenceFileViewMgr" />
+      <seealso cref="SequenceFileViewMgr.ConnectCommand" />
+      <seealso cref="SequenceView" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Abort">
+      <summary>&#8211;(Value: 75) Aborts the current execution. The execution does not run the Cleanup steps. This command applies to the ExecutionView Manager control only.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_AbortAll">
+      <summary>&#8211;(Value: 78) Aborts all executions. This command applies only to the Application Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Break">
+      <summary>&#8211;(Value: 71) Suspends the selected execution. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_BreakAll">
+      <summary>&#8211;(Value: 76) Suspends all executions. This command applies only to the Application Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_BreakOnFirstStep">
+      <summary>&#8211;(Value: 50) Toggles whether executions suspend at the first step.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_BreakOnSequenceFailure">
+      <summary>&#8211;(Value: 52) Toggles whether executions suspend when a sequence fails.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_BreakOnStepFailure">
+      <summary>&#8211;(Value: 51) Toggles whether executions suspend when a step fails.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_BreakpointSubmenu">
+      <summary>&#8211;(Value: 85) Contains the <c>CommandKind_ToggleBreakpoint</c> and <c>CommandKind_DisplayBreakpointSettings</c> subsidiary commands. When you insert this command into a menu, each subsidiary command appears as a submenu item. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_BreakResume">
+      <summary>&#8211;(Value: 72) Suspends the selected execution if it is executing. Resumes the selected execution if it is suspended. This command applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Close">
+      <summary>&#8211;(Value: 21) Closes the currently selected sequence file or execution. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_CloseAll">
+      <summary>&#8211;(Value: 22) Closes all executions and sequence files. This command applies only to the Application Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_CloseCompletedExecutions">
+      <summary>&#8211;(Value: 23) Closes all completed executions. This command applies only to the Application Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigurationEntryPointDefaultMenuInsertionMarker">
+      <summary>&#8211;(Value: 113) Specifies a set of commands that contains a <c>CommandKind_RunEntryPoint</c> command for each Configuration entry point with a menu hint that does not select a menu other than the current menu. Because most entry points do not have menu hints, this constant typically specifies all Configuration entry points.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigurationEntryPointInsertionMarker">
+      <summary>&#8211;(Value: 112) Specifies a set of commands that contains a <c>CommandKind_RunEntryPoint</c> command for each Configuration entry point with a menu hint that selects the current menu.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigurationEntryPoints_Set">
+      <summary>&#8211;(Value: 145) Specifies a set of commands that contains a <c>CommandKind_RunEntryPoint</c> command for each Configuration entry point. When you specify commands to create menu items, use the <c>CommandKind_ConfigurationEntryPointInsertionMarker</c> and <c>CommandKind_ConfigurationEntryPointDefaultInsertionMarker</c> constants to honor menu hints entry points can specify.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigureAdapters">
+      <summary>&#8211;(Value: 90) Launches the Adapter Configuration dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigureEngineEnvironment">
+      <summary>&#8211;(Value: 94) Launches the Configure Environment dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigureExternalViewers">
+      <summary>&#8211;(Value: 93) Launches the Configure External Viewers dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigureSearchDirectories">
+      <summary>&#8211;(Value: 92) Launches the Edit Search Directories dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigureSequenceViews">
+      <summary>&#8211;(Value: 149) Launches the Edit Step List Configurations dialog box. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ConfigureStationOptions">
+      <summary>&#8211;(Value: 91) Launches the Station Options dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Container">
+      <summary>&#8211;(Value: 1) Contains only subsidiary commands.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Custom">
+      <summary>&#8211;(Value: 3) Represents an action you define. You must set Command properties, such as the Command.Enabled and Command.Visible properties, to the values you require. Although this command does not perform an action when it executes, an application can perform an action when it receives the ApplicationMgr.PreCommandExecute or ApplicationMgr.PostCommandExecute event for the command. You can attach data you define to the command using the Command.UserObject and Command.UserData properties so the data is available to the application in the handlers for <c>PreCommandExecute</c> and <c>PostCommandExecute</c> events.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_CustomizeTools">
+      <summary>&#8211;(Value: 101) Launches the Customize Tools Menu dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultConfigureMenu_Set">
+      <summary>&#8211;(Value: 124) Specifies a set of commands that correspond to the typical items in the Configure menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_ConfigureStationOptions</code></para><para><code>CommandKind_ConfigureSearchDirectories</code></para><para><code>CommandKind_ConfigureExternalViewers</code></para><para><code>CommandKind_ConfigureAdapters</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ExecutionEntryPointInsertionMarker</code></para><c>CommandKind_ConfigurationEntryPointDefaultMenuInsertionMarker</c></summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultDebugMenu_Set">
+      <summary>&#8211;(Value: 123) Specifies a set of commands that correspond to the typical items in the Debug menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_ExecutionEntryPointInsertionMarker</code></para><para><code>CommandKind_ConfigurationEntryPointInsertionMarker</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ToggleBreakpoint</code></para><para><code>CommandKind_SetRunModeSubmenu</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_Resume</code></para><para><code>CommandKind_StepInto</code></para><para><code>CommandKind_StepOver</code></para><para><code>CommandKind_StepOut</code></para><para><code>CommandKind_SetNextStep</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_Break</code></para><para><code>CommandKind_Terminate</code></para><para><code>CommandKind_Abort</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_BreakAll</code></para><para><code>CommandKind_TerminateAll</code></para><para><code>CommandKind_AbortAll</code></para><para><code>CommandKind_ResumeAll</code></para><para><code>CommandKind_Separator</code></para><c>CommandKind_DisplayBreakAndWatchPoints</c></summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultEditMenu_Set">
+      <summary>&#8211;(Value: 128) Specifies a set of commands that correspond to the typical items in the Edit menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_Edit_Undo*</code></para><para><code>CommandKind_Edit_Redo*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_Cut*</code></para><para><code>CommandKind_Edit_Copy</code></para><para><code>CommandKind_Edit_Paste*</code></para><para><code>CommandKind_Edit_Delete*</code></para><para><code>CommandKind_Edit_Rename*</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_SelectAll</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_EditSteps_Set*</code></para><para><code>CommandKind_Edit_SpecifyModule*</code></para><para><code>CommandKind_Edit_EditCode*</code></para><para><code>CommandKind_Edit_Preconditions*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_SequenceFileCallbacks*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_StepProperties*</code></para><para><code>CommandKind_Edit_SequenceProperties*</code></para><c>CommandKind_Edit_SequenceFileProperties*</c> * The command is present only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultExecuteMenu_Set">
+      <summary>&#8211;(Value: 121) Specifies a set of commands that correspond to the typical menu items in the Execute menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_Restart</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ExecutionEntryPointDefaultMenuInsertionMarker</code></para><para><code>CommandKind_ConfigurationEntryPointDefaultMenuInsertionMarker</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_RunCurrentSequence</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_RunSelectedSteps</code></para><para><code>CommandKind_RunSelectedStepsUsingEntryPointSubmenu</code></para><para><code>CommandKind_LoopOnSelectedSteps</code></para><para><code>CommandKind_LoopOnSelectedStepsUsingEntryPointSubmenu</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_BreakOnFirstStep</code></para><para><code>CommandKind_BreakOnStepFailure</code></para><para><code>CommandKind_BreakOnSequenceFailure</code></para><c>CommandKind_TracingEnabled</c> This command applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultFileMenu_Set">
+      <summary>&#8211;(Value: 120) Specifies a set of commands that correspond to the typical items in the File menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_Login</code></para><para><code>CommandKind_Logout</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_Edit_NewSequenceFile*</code></para><para><code>CommandKind_OpenSequenceFiles</code></para><para><code>CommandKind_Close</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_CloseAll</code></para><para><code>CommandKind_CloseCompletedExecutions</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_OpenWorkspaceBrowser</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_Edit_Save*</code></para><para><code>CommandKind_Edit_SaveAs*</code></para><para><code>CommandKind_Edit_SaveAll*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_UnloadAllModules</code></para><para><code>CommandKind_LockUnlock</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ExecutionEntryPointInsertionMarker</code></para><para><code>CommandKind_ConfigurationEntryPointInsertionMarker</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_MRUFiles_Set</code></para><para><code>CommandKind_Separator</code></para><c>CommandKind_Exit</c> * The command is present only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultHelpMenu_Set">
+      <summary>&#8211;(Value: 440) Specifies a set of commands that corresponds to the typical items in the Help menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_ShowTestStandHelp</code></para><para><code>CommandKind_ShowGuideToDocumentation</code></para><para><code>CommandKind_ShowHelpTopic</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ShowTestStandWebResources</code></para><para><code>CommandKind_ShowTestStandDiscussionForum</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ShowPatents</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ExecutionEntryPointInsertionMarker</code></para><c>CommandKind_ConfigurationEntryPointInsertionMarker</c></summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultListBarContextMenu_Set">
+      <summary>&#8211;(Value: 127) Specifies a set of commands that corresponds to the typical items in the list bar context menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following are a representative set of commands: SequenceFileView Manager Control: <para><code>CommandKind_ExecutionEntryPointDefaultMenuInsertionMarker</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_RunCurrentSequence</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_OpenSequenceFile</code></para><c>CommandKind_Close</c> ExecutionView Manager Control: <para><code>CommandKind_Close</code></para><para><code>CommandKind_CloseCompletedExecutions</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_TerminateRestart</code></para><para><code>CommandKind_BreakResume</code></para><para><code>CommandKind_Abort</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_BreakAll</code></para><para><code>CommandKind_TerminateAll</code></para><para><code>CommandKind_AbortAll</code></para><c>CommandKind_ResumeAll</c></summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultSequenceListContextMenu_Set">
+      <summary>&#8211;(Value: 129) Specifies a set of commands that corresponds to the typical items in the sequence list context menu of a TestStand application. This constant applies to the SequenceFileView Manager control. Although the specific commands this constant represents might vary according to the version of TestStand, the following are a representative set of commands: <para><code>CommandKind_Edit_InsertSequence*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_Cut*</code></para><para><code>CommandKind_Edit_Copy*</code></para><para><code>CommandKind_Edit_Paste*</code></para><para><code>CommandKind_Edit_Delete*</code></para><para><code>CommandKind_Edit_Rename*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_SequenceFileCallbacks*</code></para><para><code>CommandKind_Separator*</code></para><c>CommandKind_Edit_SequenceProperties*</c> * The command is present only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultSequenceViewContextMenu_Set">
+      <summary>&#8211;(Value: 126) Specifies a set of commands that corresponds to the typical items in the sequence view context menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following are a representative set of commands: SequenceFileView Manager Control : <para><code>CommandKind_Edit_InsertStepsSubmenu*</code></para><para><code>CommandKind_Edit_EncapsulateSelectedStepsSubmenu*</code></para><para><code>CommandKind_Edit_SelectDefaultAdapters_Set*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_Edit_EditSteps_Set*</code></para><para><code>CommandKind_Edit_SpecifyModule*</code></para><para><code>CommandKind_Edit_EditCode*</code></para><para><code>CommandKind_Edit_Preconditions*</code></para><para><code>CommandKind_Separator*</code></para><para><code>CommandKind_BreakpointSubmenu</code></para><para><code>CommandKind_SetRunModeSubmenu</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_Edit_Cut*</code></para><para><code>CommandKind_Edit_Copy*</code></para><para><code>CommandKind_Edit_Paste*</code></para><para><code>CommandKind_Edit_Delete*</code></para><para><code>CommandKind_Edit_Rename*</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_RunSelectedSteps</code></para><para><code>CommandKind_RunSelectedStepsUsingEntryPointsSubmenu</code></para><para><code>CommandKind_LoopOnSelectedSteps</code></para><para><code>CommandKind_LoopOnSelectedStepsUsingEntryPointsSubmenu</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_SequenceViewConfigurationsSubmenu</code></para><para><code>CommandKind_Separator*</code></para><c>CommandKind_Edit_StepProperties*</c> ExecutionView Manager Control : <para><code>CommandKind_BreakpointSubmenu</code></para><para><code>CommandKind_SetRunModeSubmenu</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_RunSelectedSteps</code></para><para><code>CommandKind_LoopOnSelectedSteps</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_SetNextStep</code></para><para><code>CommandKind_Separator*</code></para><c>CommandKind_SequenceViewConfigurationsSubmenu</c> * The command is present only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DefaultToolsMenu_Set">
+      <summary>&#8211;(Value: 125) Specifies a set of commands that correspond to the typical items found in the Tools menu of a TestStand application. Although the specific commands this constant represents might vary according to the version of TestStand, the following is a representative set of commands: <para><code>CommandKind_Tools_Set</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_CustomizeTools</code></para><para><code>CommandKind_Separator</code></para><para><code>CommandKind_ExecutionEntryPointInsertionMarker</code></para><c>CommandKind_ConfigurationEntryPointInsertionMarker</c></summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DisplayBreakpointsAndWatchExpressions">
+      <summary>&#8211;(Value: 80) Launches the Edit Breakpoints/Watch Expressions dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_DisplayBreakpointSettings">
+      <summary>&#8211;(Value: 81) Launches the Breakpoint Settings dialog box for the selected step. This command applies to the ExecutionView Manager or SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_AdvancedSequenceListSubmenu">
+      <summary>&#8211;(Value: 451) Contains the <c>CommandKind_Edit_Attributes</c> subsidiary command. When you insert this command into a menu, the subsidiary commands appear within a submenu item. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Attributes">
+      <summary>&#8211;(Value: 450) Displays the Attributes dialog box. TestStand supports this command only for a sequence connection. This command applies to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Copy">
+      <summary>&#8211;(Value: 204) Copies the selection to the clipboard. This command applies to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Cut">
+      <summary>&#8211;(Value: 203) Moves the selection onto the clipboard. This command applies to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Delete">
+      <summary>&#8211;(Value: 206) Deletes the selection. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EditCode">
+      <summary>&#8211;(Value: 216) Displays the module source code for the step with focus. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EditPaths">
+      <summary>&#8211;(Value: 223) Launches the Edit Paths in Files dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EditStep">
+      <summary>&#8211;(Value: 217) Performs a step type-dependent editing operation on the step with focus. Typically, the operation launches an editing dialog box. For example, this command might launch the Edit Numeric Limit Test dialog box for a Numeric Limit Test step. You do not create commands of this type. Instead, the <c>CommandKind_Edit_EditSteps_Set</c> and <c>CommandKind_Edit_EditStepsSubmenu</c> constants contain commands of this type as needed. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EditSteps_Set">
+      <summary>&#8211;(Value: 341) Specifies a set of commands that contains a <c>CommandKind_Edit_EditStep</c> command for each step type specific editing operation that applies to the step with focus. A step type can define the available editing operations for instances of the type by specifying Edit substeps, which typically call a module to launch an editing dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EditStepsSubmenu">
+      <summary>&#8211;(Value: 301) Specifies a container command with subsidiary commands the <c>CommandKind_Edit_ EditSteps_Set</c> constant specifies. When you insert this command into a menu, the subsidiary commands appear within a submenu item. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EncapsulateSelectedSteps">
+      <summary>&#8211;(Value: 224) Surrounds the selected steps with the specified step and a corresponding end step. You do not create commands of this type. Instead, the <c>CommandKind_Edit_EncapsulateSelectedSteps_Set</c> and <c>CommandKind_Edit_EncapsulateSelectedStepsSubmenu</c> constants contain commands of this type as needed. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EncapsulateSelectedSteps_Set">
+      <summary>&#8211;(Value: 343) Specifies a set of commands that contains a <c>CommandKind_Edit_EncapsulateSelectedSteps</c> command for each available step type with the StepType.CanEncapsulate property set to <c>True</c> and that starts a block structure in a sequence. Insert this command into a menu to create the contents of the Encapsulate With context menu. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_EncapsulateSelectedStepsSubmenu">
+      <summary>&#8211;(Value: 303) Specifies a container command whose subsidiary commands the <c>CommandKind_Edit_EncapsulateSelectedSteps_Set</c> constant specifies. When you insert this command into a menu, each subsidiary command is visible as a submenu item. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_InsertSequence">
+      <summary>&#8211;(Value: 221) Inserts a new empty sequence into the selected sequence file. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_InsertStep">
+      <summary>&#8211;(Value: 207) Inserts a step into the selected file. You do not create commands of this type. Instead, the <c>CommandKind_Edit_InsertSteps_Set</c> and <c>CommandKind_Edit_InsertStepsSubmenu</c> constants contain commands of this type as needed. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_InsertSteps_Set">
+      <summary>&#8211;(Value: 340) Specifies a set of commands that contains a <c>CommandKind_Edit_InsertStep</c> command for each available step type. The commands are organized hierarchically as specified for the step types in the Step Type Menu Editor dialog box. Insert this command into a menu to create the contents of the Insert Step context menu. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_InsertStepsSubmenu">
+      <summary>&#8211;(Value: 300) Specifies a container command with subsidiary commands the <c>CommandKind_Edit_InsertSteps_Set</c> constant specifies. When you insert this command into a menu, each subsidiary command is visible as a submenu item. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_NewSequenceFile">
+      <summary>&#8211;(Value: 211) Creates a new, empty sequence file. This command applies to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Paste">
+      <summary>&#8211;(Value: 205) Pastes the contents of the clipboard into the selected file. This command applies to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Preconditions">
+      <summary>&#8211;(Value: 218) Launches the Preconditions dialog box. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Redo">
+      <summary>&#8211;(Value: 201) Calls Redo on the UndoStack of the connected manager control. This command applies to the SequenceFileView Manager and Application Manager controls. When connected to a SequenceFileView Manager control, this command redoes the last edit to the currently selected sequence file an undo command reverted. Before connecting this command to the Application Manager control, you must assign an UndoStack to the ApplicationMgr.UndoStack property. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Rename">
+      <summary>&#8211;(Value: 202) Enters name-editing mode for the step with focus or the sequence item in a SequenceView or ListBox control. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Save">
+      <summary>&#8211;(Value: 208) Saves the selected sequence file. This command applies to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SaveAll">
+      <summary>&#8211;(Value: 210) Saves all modified sequences files. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SaveAs">
+      <summary>&#8211;(Value: 209) Launches the Save As dialog box. The dialog box prompts you to choose a location in which to save the selected sequence file. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SelectDefaultAdapter">
+      <summary>&#8211;(Value: 220) Select a specific module adapter for new steps. You do not create commands of this type. Instead, the <c>CommandKind_Edit_SelectDefaultAdapters_Set</c> and <c>CommandKind_Edit_SelectDefaultAdaptersSubmenu</c> constants contain commands of this type as needed.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SelectDefaultAdapters_Set">
+      <summary>&#8211;(Value: 342) Specifies a set of commands that contains a <c>CommandKind_Edit_SelectDefaultAdapter</c> command for each module adapter.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SelectDefaultAdaptersSubmenu">
+      <summary>&#8211;(Value: 302) Specifies a container command with subsidiary commands the <c>CommandKind_Edit_SelectDefaultAdapters_Set</c> constant specifies. When you insert this command into a menu, each subsidiary command is visible as a submenu item.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SequenceFileCallbacks">
+      <summary>&#8211;(Value: 222) Launches the Sequence File Callbacks dialog box. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SequenceFileProperties">
+      <summary>&#8211;(Value: 214) Launches the Sequence File Properties dialog box for the selected sequence file.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SequenceProperties">
+      <summary>&#8211;(Value: 213) Launches the Sequence Properties dialog box for the sequence with focus.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_SpecifyModule">
+      <summary>&#8211;(Value: 215) Launches the Specify Module dialog box for the step with focus. This command applies to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_StepProperties">
+      <summary>&#8211;(Value: 212) Launches the Step Properties dialog box for the step with focus.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Edit_Undo">
+      <summary>&#8211;(Value: 200) Calls Undo on the UndoStack of the connected manager control. This command applies to the SequenceFileView Manager and Application Manager controls. When connected to a SequenceFileView Manager control, this command reverts the most recent edit to the currently selected sequence file. Before connecting this command to the Application Manager control, you must assign an UndoStack to the <c>ApplicationMgr.UndoStack</c> property. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ExecutionEntryPointDefaultMenuInsertionMarker">
+      <summary>&#8211;(Value: 111) Specifies a set of commands that contains a <c>CommandKind_RunEntryPoint</c> command for each Execution entry point with a menu hint that does not select a menu other than the current menu. Because most entry points do not have menu hints, this constant typically specifies all Execution entry points.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ExecutionEntryPointInsertionMarker">
+      <summary>&#8211;(Value: 110) Specifies a set of commands that contains a <c>CommandKind_RunEntryPoint</c> command for each Execution entry point with a menu hint that selects the current menu.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ExecutionEntryPoints_Set">
+      <summary>&#8211;(Value: 141) Specifies a set of commands that contains a <c>CommandKind_RunEntryPoint</c> command for each Execution entry point. When you specify commands to create menu items, use the <c>CommandKind_ExecutionEntryPointInsertionMarker</c> and <c>CommandKind_ExecutionEntryPointDefaultInsertionMarker</c> constants to honor any menu hints the entry points might specify.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Exit">
+      <summary>&#8211;(Value: 30) Unloads all files and exits the application.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_LockUnlock">
+      <summary>&#8211;(Value: 148) When a sequence file is protected, this command launches the Lock File dialog box or the Unlock File dialog box, depending on whether the file is currently locked.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Login">
+      <summary>&#8211;(Value: 25) Launches the user login dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_LoginLogout">
+      <summary>&#8211;(Value: 27) Launches the user login dialog box when no user is logged in. Otherwise, logs out the current user.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Logout">
+      <summary>&#8211;(Value: 26) Logs out the current user.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_LoopEntryPointOnSelectedSteps">
+      <summary>&#8211;(Value: 43) Launches the Loop On Selected Steps dialog box, in which you can specify how many times the command loops on the selected steps using a specific Process Model entry point sequence. Do not directly create commands of this type. Instead, the following constants contain commands of this type as needed: <para><code>CommandKind_LoopOnSelectedStepsUsingEntryPoints_Set</code></para><c>CommandKind_LoopOnSelectedStepsUsingEntryPointsSubmenu</c> This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_LoopOnSelectedSteps">
+      <summary>&#8211;(Value: 48) Launches the Loop On Selected Steps dialog box, in which you can specify how many times the command loops on the selected steps without using a process model. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_LoopOnSelectedStepsUsingEntryPoints_Set">
+      <summary>&#8211;(Value: 144) Specifies a set of <c>CommandKind_LoopEntryPointOnSelectedSteps</c> commands that contains a command to run the selected steps with each applicable Execution entry point.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_LoopOnSelectedStepsUsingEntryPointsSubmenu">
+      <summary>&#8211;(Value: 49) For each applicable Process Model entry point, this command contains a subsidiary command that launches the Loop On Selected Steps dialog box, in which you can specify how many times the subsidiary command loops on the selected steps using the entry point. When you insert this command into a menu, each subsidiary command is listed as a submenu item. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_MRUFile">
+      <summary>&#8211;(Value: 29) Opens a file in the most recently used (MRU) file list. Each command in the set opens one of the files from the most recently used file list. Do not directly create commands of this type. Instead, use <c>CommandKind_MRUFiles_Set</c> to create a set of commands of this type.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_MRUFiles_Set">
+      <summary>&#8211;(Value: 140) Specifies a set of <c>CommandKind_MRUFile</c> commands. Each command opens one of the files in the MRU file list. This command applies only to the Application Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_NotACommand">
+      <summary>&#8211;(Value: 0) Guaranteed to never be a valid command kind specifier.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_OpenSequenceFile">
+      <summary>&#8211;(Value: 20) Launches the Open File dialog box. When the user selects a sequence file, the command loads and displays the file. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_OpenSequenceFiles">
+      <summary>&#8211;(Value: 147) Launches the Open Multiple File dialog box, in which the user can select any number of files to open. The command loads all selected sequence files and displays one of the selected sequence files. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_OpenWorkspaceBrowser">
+      <summary>&#8211;(Value: 24) Launches the Workspace Browser dialog box.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Restart">
+      <summary>&#8211;(Value: 40) Restarts the selected execution. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Resume">
+      <summary>&#8211;(Value: 66) Resumes the selected execution. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ResumeAll">
+      <summary>&#8211;(Value: 79) Resumes all executions. This command applies only to the Application Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunCurrentSequence">
+      <summary>&#8211;(Value: 44) Runs the selected sequence without using a process model. This command applies only to the SequenceFileView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunEntryPoint">
+      <summary>&#8211;(Value: 41) Runs a particular Process Model entry point sequence. Do not directly create commands of this type. Instead, use one of the following constants to create commands of this type as needed: <para><code>CommandKind_ExecutionEntryPoints_Set</code></para><para><code>CommandKind_ConfigurationEntryPoints_Set</code></para><para><code>CommandKind_ExecutionEntryPointInsertionMarker</code></para><para><code>CommandKind_ExecutionEntryPointDefaultMenuInsertionMarker</code></para><para><code>CommandKind_ConfigurationEntryPointInsertionMarker</code></para><c>CommandKind_ConfigurationEntryPointDefaultInsertionMarker</c> This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunEntryPointOnSelectedSteps">
+      <summary>&#8211;(Value: 42) Runs the selected steps using a specific Process Model entry point sequence. Do not directly create commands of this type. Instead, use one of the following constants to create commands of this type, as needed: <para><code>CommandKind_RunSelectedStepsUsingEntryPoints_Set</code></para><c>CommandKind_RunSelectedStepsUsingEntryPointSubmenu</c> These commands apply only to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunModeForceFail">
+      <summary>&#8211;(Value: 63) Sets the run mode of the selected steps to <c>Force Fail</c> . This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunModeForcePass">
+      <summary>&#8211;(Value: 62) Sets the run mode of the selected steps to <c>Force Pass</c> . This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunModeNormal">
+      <summary>&#8211;(Value: 65) Sets the run mode of the selected steps to <c>Normal</c> . This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunModeSkip">
+      <summary>&#8211;(Value: 64) Sets the run mode of the selected steps to <c>Skip</c> . This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunSelectedSteps">
+      <summary>&#8211;(Value: 46) Runs the selected steps without using a process model. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunSelectedStepsUsingEntryPoints_Set">
+      <summary>&#8211;(Value: 143) Specifies a set of <c>CommandKind_RunEntryPointOnSelectedSteps</c> commands that contains a command to run the selected steps with each applicable Execution entry point.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunSelectedStepsUsingEntryPointsSubmenu">
+      <summary>&#8211;(Value: 47) For each applicable Process Model entry point, this command contains a subsidiary command that runs the selected steps with that entry point. When you insert this command into a menu, each subsidiary command appears as an item in a submenu. This command applies only to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunSequences_Set">
+      <summary>&#8211;(Value: 142) Specifies a set of <c>CommandKind_RunSpecificSequence</c> commands that contains commands to run each sequence in the selected file without using a process model. This command applies only to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_RunSpecificSequence">
+      <summary>&#8211;(Value: 45) Runs a specific sequence without using a process model. You do not directly create commands of this type. Instead, the <c>CommandKinds_RunSequences_Set</c> constant contains commands of this type as needed. This command applies only to the SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_SelectAll">
+      <summary>&#8211;(Value: 219) Selects all the items or text in the control with focus.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Separator">
+      <summary>&#8211;(Value: 2) Denotes a visual separation between other commands. For example, when commands appear as items in a menu, commands of this type appear as menu item separator bars.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_SequenceViewConfiguration">
+      <summary>&#8211;(Value: 116) Do not directly create commands of this type. Instead the <c>CommandKind_SequenceViewConfigurations_Set</c> constant contains commands of this type as needed.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_SequenceViewConfigurations_Set">
+      <summary>&#8211;(Value: 139) Specifies a set of <c>CommandKind_SequenceViewConfiguration</c> commands. Each command in the set applies a specific configuration to all SequenceView controls that connect to the specified manager control. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_SequenceViewConfigurationsSubmenu">
+      <summary>&#8211;(Value: 118) Contains all the <c>CommandKind_SequenceViewConfiguration</c> commands the <c>CommandKind_SequenceViewConfigurations_Set</c> constant specifies, followed by a <c>CommandKind_Separator</c> and a <c>CommandKind_ConfigureSequenceViews</c> command. Insert this command into a menu to create a submenu with menu items to apply any existing SequenceView configuration or to edit the set of available configurations. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_SetNextStep">
+      <summary>&#8211;(Value: 70) Moves the execution pointer to the selected step. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_SetRunModeSubmenu">
+      <summary>&#8211;(Value: 61) Contains the following subsidiary commands: <para><code>CommandKind_RunModeForcePass</code></para><para><code>CommandKind_RunModeForceFail</code></para><para><code>CommandKind_RunModeSkip</code></para><c>CommandKind_RunModeForceNormal</c> When you insert this command into a menu, each subsidiary command appears as an item in a submenu. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowExamples">
+      <summary>&#8211;(Value: 453) Launches the help for the NI TestStand example programs.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowGettingStarted">
+      <summary>&#8211;(Value: 454) Launches the Getting Started with TestStand manual.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowGuideToDocumentation">
+      <summary>&#8211;(Value: 421) Launches a topic that is a guide to the TestStand documentation . This command is visible only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowHelpTopic">
+      <summary>&#8211;(Value: 422) Launches the help for the currently active TestStand User Interface Control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowInList">
+      <summary>&#8211;(Value: 400) Takes the selected step for an ExecutionView Manager control and selects the step in a SequenceFileView Manager control. This command is used in the context menu of a SequenceView control connected to an ExecutionView Manager control, and the command displays the step in the SequenceView control connected to a SequenceFileView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowInVariables">
+      <summary>&#8211;(Value: 401) Takes the selected step for an ExecutionView Manager control and selects the step in a VariablesView control connected to the ExecutionView Manager control. This command is used in the context menu of a SequenceView control connected to an ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowPatents">
+      <summary>&#8211;(Value: 425) Displays a list of National Instruments patents.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowTestStandDiscussionForum">
+      <summary>&#8211;(Value: 424) Opens the TestStand discussion forum on <c>ni.com</c> in a web browser. This command is visible only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowTestStandHelp">
+      <summary>&#8211;(Value: 420) Launches the NI TestStand Help file. This command is visible only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowTestStandWebResources">
+      <summary>&#8211;(Value: 423) Opens the TestStand support web page in a browser. This command is visible only when editing is enabled.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ShowUpdateService">
+      <summary>&#8211;(Value: 452) Launches the NI Update Service. This option is available only when you have installed the NI Update Service.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_StepInto">
+      <summary>&#8211;(Value: 67) Steps into the current step in the selected execution. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_StepOut">
+      <summary>&#8211;(Value: 69) Resumes execution through the end of the current sequence and suspends before the next step in the calling sequence. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_StepOver">
+      <summary>&#8211;(Value: 68) Steps over the current step in the selected execution. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Terminate">
+      <summary>&#8211;(Value: 73) Terminates the selected execution. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_TerminateAll">
+      <summary>&#8211;(Value: 77) Terminates all executions. This command applies only to the Application Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_TerminateRestart">
+      <summary>&#8211;(Value: 74) Terminates the selected execution if it is executing or suspended and restarts the selected execution if it has completed. This command applies only to the ExecutionView Manager control. This command has a default image.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ToggleBreakpoint">
+      <summary>&#8211;(Value: 60) Toggles the breakpoint state of the selected steps. This command applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_ToolItem">
+      <summary>&#8211;(Value: 100) Executes a particular tool item in the TestStand Tools menu. Do not directly create commands of this type. Instead, the <c>CommandKind_Tools_Set</c> constant contains a command of this type for each item in the TestStand Tools menu.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_Tools_Set">
+      <summary>&#8211;(Value: 146) Specifies a set of <c>CommandKind_ToolItem</c> commands that contains a command for each tool item in the Tools menu.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_TracingEnabled">
+      <summary>&#8211;(Value: 53) Toggles whether the user interface application displays the steps in an execution as they execute.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_UnloadAllModules">
+      <summary>&#8211;(Value: 28) Removes all code modules from memory.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.CommandKinds.CommandKind_UnloadStepModule">
+      <summary>&#8211;(Value: 455) Displays the module source code for the step with focus. This command is similar to CommandKind_Edit_EditCode, but does not increment the change count of the current sequence file. Unlike CommandKind_Edit_EditCode, this command is available when a sequence file is not editable, such as while the sequence is executing. CommandKind_UnloadStepModule is not available while any executions are actively running; the user must suspend all executions to use this command. This command applies to the SequenceFileView Manager and ExecutionView Manager control.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.ImageSources">
+      <summary>These constants specify types of image sources. Each image source provides an icon that indicates an aspect of the current application state. You can use these constants to connect an image to a StatusBar pane or button using the ExecutionViewMgr.ConnectImage or SequenceFileViewMgr.ConnectImage methods.&#13; To obtain an image name without connecting it to a control, call the ApplicationMgr.GetImageName , ExecutionViewMgr.GetImageName , or SequenceFileViewMgr.GetImageName method. An image name is an icon name you can use to retrieve an icon from the TestStand Engine.&#13; An image source applies to all manager controls unless the help for the enumeration element specifies particular manager controls to which it applies.</summary>
+      <seealso cref="ApplicationMgr.GetImageName" />
+      <seealso cref="ExecutionViewMgr" />
+      <seealso cref="ExecutionViewMgr.ConnectImage" />
+      <seealso cref="ExecutionViewMgr.GetImageName" />
+      <seealso cref="SequenceFileViewMgr" />
+      <seealso cref="SequenceFileViewMgr.ConnectImage" />
+      <seealso cref="SequenceFileViewMgr.GetImageName" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_BatchState">
+      <summary>&#8211;(Value: 6) Displays an image that indicates the execution state of the batch that contains the current execution. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_BatchStatus">
+      <summary>&#8211;(Value: 5) Displays an image that indicates the batch result status for the batch that contains the current execution. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentCallStackEntry">
+      <summary>&#8211;(Value: 23) Displays a call stack icon for the selected stack frame in the current execution thread. When no current thread exists, the image source displays an empty image. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentExecution">
+      <summary>&#8211;(Value: 21) Displays an execution icon when a current execution exists. Otherwise, the image source displays an empty image. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentProcessModelFile">
+      <summary>&#8211;(Value: 24) Displays a sequence file icon when a process model exists for the currently executing or currently selected file. Otherwise, the image source displays an empty image. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentSequence">
+      <summary>&#8211;(Value: 12) Displays a sequence icon when a currently executing or currently selected sequence exists. Otherwise, the image source displays an empty image. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentSequenceFile">
+      <summary>&#8211;(Value: 11) Displays a sequence file icon when a currently executing or currently selected file exists. Otherwise, the image source displays an empty image. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentStep">
+      <summary>&#8211;(Value: 14) Displays the icon for the current step in the current execution. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentStepGroup">
+      <summary>&#8211;(Value: 13) Displays an image that indicates the currently executing or currently selected step group. This image source applies to the ExecutionView Manager and SequenceFileView Manager controls.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_CurrentThread">
+      <summary>&#8211;(Value: 22) Displays a thread icon when a current thread for the current execution exists. When no current thread exists, the image source displays an empty image. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_ModelState">
+      <summary>&#8211;(Value: 7) Displays an image that indicates the state of the current execution. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_NotASource">
+      <summary>&#8211;(Value: 0) Guaranteed to never be a valid image source specifier.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.ImageSources.ImageSource_UUTStatus">
+      <summary>&#8211;(Value: 3) Displays an image that indicates the result status of the unit under test for the current execution. This image source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.NumericSources">
+      <summary>These constants specify types of numeric sources. Each numeric source provides numeric values that describe an aspect of the current application state. You can use these constants to connect the execution progress state to a StatusBarPane progress indicator with the ExecutionViewMgr.ConnectNumeric method.&#13; To obtain a numeric value without connecting it to a control, call the ExecutionViewMgr.GetNumericValue method.&#13; A numeric source applies to all manager controls unless the help for the enumeration element specifies a particular manager control or controls with which it applies.</summary>
+      <seealso cref="ExecutionViewMgr" />
+      <seealso cref="ExecutionViewMgr.ConnectNumeric" />
+      <seealso cref="ExecutionViewMgr.GetNumericValue" />
+      <seealso cref="StatusBarPane" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.NumericSources.NumericSources_NotASource">
+      <summary>&#8211;(Value: 0) Guaranteed to never be a valid numeric source specifier.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.NumericSources.NumericSources_ProgressPercent">
+      <summary>&#8211;(Value: 10) A value from <c>0.0</c> to <c>100.0</c> that indicates the percentage of progress the current execution reports. This value indicates the progress of operations for which the execution chooses to report the amount of progress. The value does not necessarily reflect the progress of the execution as a whole. This numeric source applies only to the ExecutionView Manager control.</summary>
+    </member>
+    <member name="T:NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns">
+      <summary>These constants represent the column type you can use with the column parameter of the SequenceListConnection.SetColumnVisible and SequenceListConnection.GetColumnVisible methods.</summary>
+      <seealso cref="SequenceListConnection.GetColumnVisible" />
+      <seealso cref="SequenceListConnection.SetColumnVisible" />
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns.SeqListConnectionColumn_Comments">
+      <summary>&#8211;(Value: 1) Specifies the column that contains the comment of the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns.SeqListConnectionColumn_Label">
+      <summary>&#8211;(Value: 0) Specifies the column that contains the name of the sequence.</summary>
+    </member>
+    <member name="F:NationalInstruments.TestStand.Interop.UI.Support.SeqListConnectionColumns.SeqListConnectionColumn_Requirements">
+      <summary>&#8211;(Value: 2) Specifies the column that contains the requirements of the sequence.</summary>
+    </member>
+  </members>
+</doc>

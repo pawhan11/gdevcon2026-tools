@@ -1,0 +1,16 @@
+# .NET build results
+**/bin/
+**/obj/
+
+# NuGet
+**/packages/
+
+# User-specific files
+*.user
+*.suo
+
+# JetBrains IDE
+.idea/
+
+# Visual Studio
+.vs/

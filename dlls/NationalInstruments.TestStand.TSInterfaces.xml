@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NationalInstruments.TestStand.TSInterfaces</name>
+    </assembly>
+    <members>
+        <member name="T:NationalInstruments.TestStand.TSInterfaces.IAutoPropsPanel">
+            <summary>
+            Implement IAutoPropsPanel to use .NET module import functionality with TestStand custom step types
+            implemented using the AutoPropsPanel feature.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.TestStand.TSInterfaces.IAutoPropsPanel.GetAutoPropsPanelStruct">
+            <summary>
+             Returns a structure defining the settings for a custom step type implemented using AutoProps.
+            </summary>
+            <returns>A struct defining settings for a custom step type. </returns>
+        </member>
+        <member name="M:NationalInstruments.TestStand.TSInterfaces.IAutoPropsPanel.GetDescription">
+            <summary>
+            Returns a brief description of this IAutoPropsPanel.
+            </summary>
+            <returns>A string describing this IAutoPropsPanel.</returns>
+        </member>
+        <member name="T:NationalInstruments.TestStand.TSInterfaces.NI_AutoPropsPanelSettingsAttribute">
+            <summary>
+            Control specific details about AutoProps settings.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.TSInterfaces.NI_AutoPropsPanelSettingsAttribute.DisplayName">
+            <summary>
+            Specify the display name of the setting.  The string must be a valid TestStand expression.  By default, the variable name is used.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.TSInterfaces.NI_AutoPropsPanelSettingsAttribute.Description">
+            <summary>
+            Specify a description for the setting.  The string must be a valid TestStand expression.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.TSInterfaces.NI_AutoPropsPanelSettingsAttribute.UseExpression">
+             <summary>
+             Specify whether to use an expression for this setting instead of a simple field defined by the type.
+            
+             Applies only to leaf properties.
+             </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.TSInterfaces.NI_AutoPropsPanelSettingsAttribute.AllowEmptyExpression">
+             <summary>
+             Specify whether to allow empty expressions.
+            
+             Applies only to leaf properties.
+             </summary>
+        </member>
+        <member name="F:NationalInstruments.TestStand.TSInterfaces.NI_AutoPropsPanelSettingsAttribute.ArrayIsResizable">
+             <summary>
+             Specify whether to allow resizing of an array property.
+            
+             Applies only to arrays properties.
+             </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,90 @@
+# ---------------------------------------------------------------------------
+# Stage 1: Build (install .NET 10 SDK, build vipm2, build TeststandCLI)
+# ---------------------------------------------------------------------------
+FROM nationalinstruments/labview:2026q3-windows AS build
+SHELL ["cmd", "/S", "/C"]
+
+# Install .NET SDK 10.0.101 and clean workload manifests
+RUN powershell -Command \
+    $ProgressPreference = 'SilentlyContinue'; \
+    Invoke-WebRequest -Uri 'https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.101/dotnet-sdk-10.0.101-win-x64.exe' -OutFile 'dotnet-sdk-installer.exe'; \
+    Start-Process -FilePath 'dotnet-sdk-installer.exe' -ArgumentList '/quiet', '/norestart' -Wait; \
+    Remove-Item 'dotnet-sdk-installer.exe'; \
+    Remove-Item -Recurse -Force 'C:\Program Files\dotnet\sdk-manifests\*' -ErrorAction SilentlyContinue
+
+# Add .NET to PATH
+RUN setx /M PATH "%PATH%;C:\Program Files\dotnet"
+
+WORKDIR C:/src
+# Copy the whole repo (filtered by .dockerignore) so ..\dlls HintPaths resolve
+COPY . C:/src
+
+RUN dotnet publish "C:/src/vipm2/vipm2.csproj" \
+    -c Release \
+    -r win-x64 \
+    --self-contained true \
+    -o C:/out/vipm2
+
+RUN dotnet publish "C:/src/TeststandCLI/TeststandCLI.csproj" \
+    -c Release \
+    -r win-x64 \
+    --self-contained true \
+    -o C:/out/TeststandCLI
+
+# ---------------------------------------------------------------------------
+# Stage 2: Runtime (.NET SDK, CycloneDX CLI, vipm2, TeststandCLI, NI TestStand)
+# ---------------------------------------------------------------------------
+FROM nationalinstruments/labview:2026q3-windows
+ARG SERIALNUMBER
+SHELL ["cmd", "/S", "/C"]
+
+# Install .NET SDK 10.0.101 and clean workload manifests
+RUN powershell -Command \
+    $ProgressPreference = 'SilentlyContinue'; \
+    Invoke-WebRequest -Uri 'https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.101/dotnet-sdk-10.0.101-win-x64.exe' -OutFile 'dotnet-sdk-installer.exe'; \
+    Start-Process -FilePath 'dotnet-sdk-installer.exe' -ArgumentList '/quiet', '/norestart' -Wait; \
+    Remove-Item 'dotnet-sdk-installer.exe'; \
+    Remove-Item -Recurse -Force 'C:\Program Files\dotnet\sdk-manifests\*' -ErrorAction SilentlyContinue
+
+# Add .NET to PATH
+RUN setx /M PATH "%PATH%;C:\Program Files\dotnet"
+
+# Install CycloneDX CLI (not available as a dotnet tool, so download the pinned release binary)
+RUN powershell -Command "$ProgressPreference = 'SilentlyContinue'; $null = New-Item -Path 'C:\Convertertec\cyclonedx-cli' -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/CycloneDX/cyclonedx-cli/releases/download/v0.33.1/cyclonedx-win-x64.exe' -OutFile 'C:\Convertertec\cyclonedx-cli\cyclonedx.exe' -UseBasicParsing"
+
+# Copy CLIs and add to PATH
+COPY --from=build C:/out/vipm2 C:/Convertertec/vipm2
+COPY --from=build C:/out/TeststandCLI C:/Convertertec/TeststandCLI
+RUN setx /M PATH "C:\Convertertec\vipm2;C:\Convertertec\TeststandCLI;C:\Convertertec\cyclonedx-cli;%PATH%"
+
+RUN vipm2 --help
+RUN TeststandCLI --help
+RUN cyclonedx --version
+
+# Install NI Package Manager
+ADD https://download.ni.com/support/nipkg/products/ni-package-manager/installers/NIPackageManager26.5.0.exe .
+RUN NIPackageManager26.5.0.exe --passive --accept-eulas --prevent-reboot &&\
+ del NIPackageManager26.5.0.exe & exit 0
+
+# Add NI Package Manager to PATH
+RUN setx /M PATH "%PATH%;C:\Program Files\National Instruments\NI Package Manager"
+
+# Configure NI package feed and update
+RUN nipkg.exe feed-add --name=ni-teststand-2025 https://download.ni.com/support/nipkg/products/ni-t/ni-teststand-2025/25.5/released &&\
+    nipkg.exe update
+
+# Install TestStand components, remove pkg and cache to reduce image size
+RUN nipkg.exe install --yes --accept-eulas ni-teststand-2025 2>nul & del "C:\ProgramData\National Instruments\NI Package Manager\packages\*.nipkg" & rmdir /S /Q "C:\ProgramData\National Instruments\MDF\ProductCache" & exit 0
+RUN nipkg.exe install --yes --accept-eulas ni-teststand-2025-tools 2>nul & del "C:\ProgramData\National Instruments\NI Package Manager\packages\*.nipkg" & rmdir /S /Q "C:\ProgramData\National Instruments\MDF\ProductCache" & exit 0
+RUN nipkg.exe install --yes --accept-eulas ni-teststand-2025-process-models-source 2>nul & del "C:\ProgramData\National Instruments\NI Package Manager\packages\*.nipkg" & rmdir /S /Q "C:\ProgramData\National Instruments\MDF\ProductCache" & exit 0
+RUN nipkg.exe install --yes --accept-eulas ni-teststand-2025-process-models-runtime 2>nul & del "C:\ProgramData\National Instruments\NI Package Manager\packages\*.nipkg" & rmdir /S /Q "C:\ProgramData\National Instruments\MDF\ProductCache" & exit 0
+RUN nipkg.exe install --yes --accept-eulas ni-teststand-2025-runtime-fx40-support 2>nul & del "C:\ProgramData\National Instruments\NI Package Manager\packages\*.nipkg" & rmdir /S /Q "C:\ProgramData\National Instruments\MDF\ProductCache" & exit 0
+
+# Enable and activate NI TestStand
+RUN TeststandCLI list-installed -v
+RUN TeststandCLI set-active 25.5 -v
+RUN TeststandCLI check-active -v
+RUN TeststandCLI activate-license "%SERIALNUMBER%" -v
+RUN TeststandCLI check-license -v
+
+ENTRYPOINT ["powershell.exe", "-NoExit"]
